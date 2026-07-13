@@ -23,7 +23,7 @@ Then open `http://localhost:8080`.
 
 ## Deployment
 
-Upload the `pizza-virtuoso/` folder to GitHub Pages, Cloudflare Pages, Netlify, Vercel static hosting, or any regular web server. Replace `https://example.com/` in `index.html`, `robots.txt`, and `sitemap.xml` with the production canonical URL before launch.
+Upload the `pizza-virtuoso/` folder to GitHub Pages, Cloudflare Pages, Netlify, Vercel static hosting, or any regular web server. The current canonical URL is configured for `https://ransht.github.io/pizza-virtuoso/`.
 
 ## Updating Business Data
 
