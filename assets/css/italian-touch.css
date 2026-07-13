@@ -1,0 +1,185 @@
+.hero {
+  overflow: hidden;
+}
+
+.hero {
+  background:
+    radial-gradient(circle at 18% 46%, rgba(226, 45, 31, .18), transparent 24%),
+    radial-gradient(circle at 84% 28%, rgba(244, 165, 28, .28), transparent 30%),
+    linear-gradient(135deg, #fff2dc 0%, #ffe0ad 54%, #fff8ec 100%);
+}
+
+.site-header {
+  background: rgba(255, 253, 248, .68);
+  backdrop-filter: blur(12px);
+}
+
+.brand img {
+  box-shadow: 0 8px 22px rgba(201, 54, 43, .16);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero::before {
+  inline-size: min(42vw, 560px);
+  aspect-ratio: 1;
+  inset-block-start: 12%;
+  inset-inline-end: -10%;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 8deg, rgba(226, 45, 31, .11) 0 9deg, transparent 9deg 18deg),
+    radial-gradient(circle, rgba(255, 253, 248, .55) 0 42%, transparent 43%);
+  border: 1px dashed rgba(169, 120, 45, .18);
+  animation: slow-spin 30s linear infinite;
+}
+
+.hero::after {
+  inline-size: min(34vw, 440px);
+  aspect-ratio: 1;
+  inset-block-end: -14%;
+  inset-inline-start: -8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(17, 136, 61, .18), transparent 62%);
+}
+
+.hero__italy-flag {
+  position: absolute;
+  inset-block-start: var(--header-height);
+  inset-inline: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  block-size: 6px;
+  z-index: 1;
+  box-shadow: 0 6px 20px rgba(82, 49, 31, .12);
+}
+
+.hero__italy-flag span:nth-child(1) { background: #11883d; }
+.hero__italy-flag span:nth-child(2) { background: #fff7e8; }
+.hero__italy-flag span:nth-child(3) { background: #e22d1f; }
+
+.pizza-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-pizza-photo {
+  position: absolute;
+  inline-size: clamp(280px, 36vw, 560px);
+  block-size: clamp(280px, 36vw, 560px);
+  object-fit: cover;
+  border-radius: 50%;
+  inset-block-start: 18%;
+  left: clamp(1rem, 6vw, 5rem);
+  box-shadow:
+    0 28px 70px rgba(78, 34, 16, .28),
+    0 0 0 12px rgba(255, 210, 63, .22),
+    0 0 0 22px rgba(226, 45, 31, .08);
+  animation: rotate-real-pizza 34s linear infinite;
+}
+
+.hero .button--primary::before,
+.final-cta .button--primary::before {
+  content: "";
+  inline-size: .7rem;
+  block-size: .7rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, .26);
+  margin-inline-end: .55rem;
+}
+
+.deal-card,
+.menu-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.deal-card::before,
+.menu-card::before,
+.quality-strip::before,
+.final-cta::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 5px;
+  background: linear-gradient(90deg, #11883d 0 33%, #ffd23f 33% 66%, #e22d1f 66%);
+}
+
+.deal-card::after,
+.menu-card::after {
+  content: "";
+  position: absolute;
+  inline-size: 78px;
+  aspect-ratio: 1;
+  inset-block-end: -34px;
+  inset-inline-start: -24px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 34%, #e22d1f 0 7%, transparent 7.5%),
+    radial-gradient(circle at 62% 58%, #11883d 0 5%, transparent 5.5%),
+    radial-gradient(circle, rgba(255, 210, 63, .48), rgba(185, 93, 36, .26));
+  opacity: .52;
+}
+
+.quality-strip,
+.final-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact {
+  background:
+    linear-gradient(135deg, rgba(17, 136, 61, .1), transparent 36%),
+    linear-gradient(315deg, rgba(226, 45, 31, .1), transparent 34%);
+}
+
+.menu-tabs a.is-active,
+.mobile-action-bar .is-primary {
+  background: linear-gradient(135deg, #11883d, #e22d1f);
+  border-color: transparent;
+  color: #fff;
+}
+
+.site-footer {
+  background: linear-gradient(180deg, #fffdf8, #fff3e3);
+}
+
+@keyframes slow-spin {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes rotate-real-pizza {
+  to { transform: rotate(1turn); }
+}
+
+@media (max-width: 680px) {
+  .hero-pizza-photo {
+    inline-size: 235px;
+    block-size: 235px;
+    opacity: .26;
+    inset-block-start: 13%;
+    left: -72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pizza-photo,
+  .hero::before {
+    animation: none !important;
+  }
+}
