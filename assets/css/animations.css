@@ -4,8 +4,40 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .hero__spinning-pizza {
+    animation: pizza-spin 24s linear infinite;
+  }
+
+  .header-cta,
+  .mobile-action-bar .is-primary {
+    animation: cta-breathe 3.8s ease-in-out infinite;
+  }
+
+  .featured-item:hover,
+  .deal-card:hover,
+  .menu-row:hover {
+    transform: translateY(-2px);
+  }
+
   .reveal.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes pizza-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes cta-breathe {
+  0%,
+  100% {
+    box-shadow: 0 10px 24px rgba(201, 40, 28, .18);
+  }
+
+  50% {
+    box-shadow: 0 14px 34px rgba(201, 40, 28, .28);
   }
 }

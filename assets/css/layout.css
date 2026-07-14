@@ -48,15 +48,31 @@
 
 .hero__media {
   margin: 0;
+  position: relative;
+  isolation: isolate;
 }
 
-.hero__media img {
+.hero__media > img:not(.hero__spinning-pizza) {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: var(--radius-large);
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--color-border);
+}
+
+.hero__spinning-pizza {
+  position: absolute;
+  inline-size: clamp(112px, 14vw, 190px);
+  block-size: clamp(112px, 14vw, 190px);
+  object-fit: cover;
+  border-radius: 50%;
+  inset-inline-start: clamp(.75rem, 3vw, 2rem);
+  inset-block-end: clamp(.75rem, 3vw, 2rem);
+  z-index: 2;
+  box-shadow:
+    0 18px 38px rgba(36, 24, 18, .22),
+    0 0 0 8px rgba(255, 248, 239, .74);
 }
 
 .hero-facts {
@@ -100,8 +116,7 @@
 }
 
 .trust-strip__grid span {
-  color: var(--color-green);
-  font-weight: 900;
+  flex: 0 0 auto;
 }
 
 .featured-grid,
@@ -111,7 +126,6 @@
 }
 
 .story__grid,
-.reviews__grid,
 .location__grid {
   display: grid;
   gap: clamp(1.5rem, 4vw, 3rem);
@@ -165,7 +179,6 @@
   }
 
   .story__grid,
-  .reviews__grid,
   .location__grid {
     grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr);
   }

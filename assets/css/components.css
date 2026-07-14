@@ -165,11 +165,67 @@
   font-weight: 900;
 }
 
+.trust-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff2e8;
+  border: 1px solid rgba(201, 40, 28, .18);
+  color: var(--color-primary);
+  position: relative;
+}
+
+.trust-icon::before,
+.trust-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.trust-icon--dough::before {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.trust-icon--cheese::before {
+  width: 15px;
+  height: 12px;
+  clip-path: polygon(0 0, 100% 35%, 18% 100%);
+  background: currentColor;
+}
+
+.trust-icon--kosher::before {
+  width: 14px;
+  height: 8px;
+  border-inline-start: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.trust-icon--delivery::before {
+  width: 16px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+}
+
+.trust-icon--delivery::after {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  inset-inline-end: 5px;
+  inset-block-end: 5px;
+  box-shadow: -9px 0 0 currentColor;
+}
+
 .featured-item,
 .deal-card,
 .menu-note,
 .story-points,
-.reviews-empty,
 .location-card,
 .contact-actions a {
   border: 1px solid var(--color-border);
@@ -192,8 +248,7 @@
 .featured-item > div,
 .deal-card,
 .menu-note,
-.story-points,
-.reviews-empty {
+.story-points {
   padding: 1.15rem;
 }
 
@@ -341,11 +396,6 @@
 
 .story-points p {
   margin: 0;
-}
-
-.reviews-empty {
-  border-style: dashed;
-  box-shadow: none;
 }
 
 .contact-actions {
@@ -513,12 +563,21 @@
     font-size: .95rem;
   }
 
+  .brand span {
+    display: none;
+  }
+
   .brand small {
     display: none;
   }
 
   .hero__copy {
-    text-align: right;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .hero-facts div {
+    text-align: center;
   }
 
   .menu-row a {

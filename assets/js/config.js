@@ -8,8 +8,12 @@ export const BUSINESS_CONFIG = {
   externalOrderUrl: "",
   address: "ז׳בוטינסקי 16, מול היכל התרבות, ראשון לציון",
   kosherText: "כשר רבנות ראשון לציון",
-  openingHoursVerified: false,
-  openingHours: [],
+  openingHoursVerified: true,
+  openingHours: [
+    "ראשון עד חמישי: 17:00-23:00",
+    "שישי: סגור",
+    "מוצאי שבת: נפתחים עד שעה אחרי צאת השבת ועד 23:00"
+  ],
   deliveryAreasVerified: false,
   deliveryAreas: [],
   googleRatingVerified: false,

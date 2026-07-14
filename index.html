@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>פיצה וירטואוז ראשון לציון | פיצה כשרה מול היכל התרבות</title>
-    <meta name="description" content="פיצה וירטואוז בראשון לציון - פיצות מבצק טרי, גבינת גד, פסטות, סלטים ומאפים. כשר רבנות ראשון לציון, מול היכל התרבות. להזמנה ב-וואטסאפ או בטלפון.">
+    <meta name="description" content="פיצה וירטואוז בראשון לציון - פיצות מבצק טרי, גבינת גד, פסטות, סלטים ומאפים. כשר רבנות ראשון לציון, מול היכל התרבות. להזמנה בוואטסאפ או בטלפון.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ransht.github.io/pizza-virtuoso/">
     <meta property="og:type" content="website">
@@ -44,6 +44,14 @@
         "priceRange": "₪₪",
         "currenciesAccepted": "ILS",
         "paymentAccepted": "Cash, Credit Card",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+            "opens": "17:00",
+            "closes": "23:00"
+          }
+        ],
         "menu": "https://ransht.github.io/pizza-virtuoso/#menu",
         "url": "https://ransht.github.io/pizza-virtuoso/",
         "image": [
@@ -54,8 +62,12 @@
     </script>
     <script type="application/json" id="verified-business-data">
       {
-        "openingHoursVerified": false,
-        "openingHours": [],
+        "openingHoursVerified": true,
+        "openingHours": [
+          "ראשון עד חמישי: 17:00-23:00",
+          "שישי: סגור",
+          "מוצאי שבת: נפתחים עד שעה אחרי צאת השבת ועד 23:00"
+        ],
         "deliveryAreasVerified": false,
         "deliveryAreas": [],
         "googleRatingVerified": false,
@@ -82,7 +94,6 @@
         <nav class="desktop-nav" aria-label="ניווט ראשי">
           <a href="#menu" data-track-event="navigation_click">תפריט</a>
           <a href="#deals" data-track-event="navigation_click">מבצעים</a>
-          <a href="#reviews" data-track-event="navigation_click">ביקורות</a>
           <a href="#location" data-track-event="navigation_click">מיקום</a>
         </nav>
         <a class="header-cta" href="https://wa.me/972542537257?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%A4%D7%99%D7%A6%D7%94%20%D7%95%D7%99%D7%A8%D7%98%D7%95%D7%90%D7%95%D7%96%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%91%D7%A6%D7%A2%20%D7%94%D7%96%D7%9E%D7%A0%D7%94" target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click">הזמנה בוואטסאפ</a>
@@ -94,7 +105,6 @@
       <nav class="mobile-nav" id="mobile-nav" aria-label="ניווט מובייל" data-mobile-nav hidden>
         <a href="#menu" data-track-event="navigation_click">תפריט</a>
         <a href="#deals" data-track-event="navigation_click">מבצעים</a>
-        <a href="#reviews" data-track-event="navigation_click">ביקורות</a>
         <a href="#location" data-track-event="navigation_click">מיקום</a>
         <a class="mobile-nav__cta" href="https://wa.me/972542537257?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%A4%D7%99%D7%A6%D7%94%20%D7%95%D7%99%D7%A8%D7%98%D7%95%D7%90%D7%95%D7%96%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%91%D7%A6%D7%A2%20%D7%94%D7%96%D7%9E%D7%A0%D7%94" target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click">הזמנה בוואטסאפ</a>
       </nav>
@@ -106,19 +116,20 @@
           <div class="hero__copy reveal" data-reveal>
             <p class="eyebrow">כשר רבנות ראשון לציון · בצק טרי · גבינת גד</p>
             <h1 id="hero-title">הפיצה השכונתית שלכם, מול היכל התרבות</h1>
-            <p class="hero__lead">בצק טרי, גבינת גד ופיצות חמות ונדיבות - למשלוח או איסוף עצמי בראשון לציון.</p>
+            <p class="hero__lead">בא לכם מגש חם עכשיו? אצלנו תקבלו בצק טרי שנפתח במקום, גבינת גד שנמסה בדיוק כמו שצריך, רוטב עגבניות עשיר ופיצות נדיבות שמגיעות לשולחן, למשלוח או לאיסוף עצמי בראשון לציון.</p>
             <div class="button-row">
               <a class="button button--primary" href="https://wa.me/972542537257?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%A4%D7%99%D7%A6%D7%94%20%D7%95%D7%99%D7%A8%D7%98%D7%95%D7%90%D7%95%D7%96%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%91%D7%A6%D7%A2%20%D7%94%D7%96%D7%9E%D7%A0%D7%94" target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click">הזמנה בוואטסאפ</a>
               <a class="button button--ghost" href="#menu" data-track-event="navigation_click">לצפייה בתפריט</a>
             </div>
             <dl class="hero-facts" aria-label="מידע שימושי">
-              <div><dt>שעות פתיחה</dt><dd>לא אומתו עדיין - מומלץ להתקשר לפני הגעה</dd></div>
-              <div><dt>שירות</dt><dd>משלוחים ואיסוף עצמי</dd></div>
-              <div><dt>כתובת</dt><dd>ז׳בוטינסקי 16, מול היכל התרבות</dd></div>
+              <div><dt>פתוחים בערב</dt><dd>א׳-ה׳ 17:00-23:00 · שישי סגור · מוצ״ש עד שעה אחרי צאת שבת</dd></div>
+              <div><dt>קל להזמין</dt><dd>וואטסאפ, טלפון, משלוחים ואיסוף עצמי</dd></div>
+              <div><dt>איפה אנחנו</dt><dd>ז׳בוטינסקי 16, מול היכל התרבות</dd></div>
             </dl>
           </div>
           <figure class="hero__media reveal" data-reveal>
             <img src="assets/images/hero/pizza-virtuoso-hero.webp" width="1200" height="900" alt="פיצה חמה של פיצה וירטואוז">
+            <img class="hero__spinning-pizza" src="assets/images/hero/rotating-real-pizza.webp" width="420" height="420" alt="" aria-hidden="true">
           </figure>
         </div>
       </section>
@@ -126,10 +137,10 @@
       <section class="trust-strip" aria-labelledby="trust-title">
         <h2 id="trust-title" class="sr-only">למה לבחור בפיצה וירטואוז</h2>
         <div class="container trust-strip__grid">
-          <div><span aria-hidden="true">✓</span><strong>בצק טרי</strong></div>
-          <div><span aria-hidden="true">✓</span><strong>גבינת גד</strong></div>
-          <div><span aria-hidden="true">✓</span><strong>כשר רבנות ראשון לציון</strong></div>
-          <div><span aria-hidden="true">✓</span><strong>משלוחים ואיסוף עצמי</strong></div>
+          <div><span class="trust-icon trust-icon--dough" aria-hidden="true"></span><strong>בצק טרי</strong></div>
+          <div><span class="trust-icon trust-icon--cheese" aria-hidden="true"></span><strong>גבינת גד</strong></div>
+          <div><span class="trust-icon trust-icon--kosher" aria-hidden="true"></span><strong>כשר רבנות ראשון לציון</strong></div>
+          <div><span class="trust-icon trust-icon--delivery" aria-hidden="true"></span><strong>משלוחים ואיסוף עצמי</strong></div>
         </div>
       </section>
 
@@ -268,8 +279,9 @@
           <div>
             <p class="eyebrow">הגישה שלנו</p>
             <h2 id="story-title">לא עוד סתם פיצה</h2>
-            <p>פיצה וירטואוז היא פיצרייה שכונתית בראשון לציון, ממש מול היכל התרבות. המקום בנוי על דברים פשוטים שעושים נכון: בצק טרי, גבינת גד, רוטב מאוזן ושירות ברור.</p>
-            <p>אנחנו בוחרים עגבניות טריות לפי העונה והאיכות, עובדים מסודר, ושומרים על תפריט שקל להבין וקל להזמין ממנו.</p>
+            <p>פיצה וירטואוז היא הפיצרייה השכונתית שעוצרים בה כשבא משהו חם, ברור וטוב. אנחנו ממש מול היכל התרבות, עם פיצות שיוצאות נדיבות, ריח של בצק בתנור ותפריט שקל להזמין ממנו גם כשכל המשפחה רעבה.</p>
+            <p>הבסיס שלנו פשוט: בצק טרי, גבינת גד, רוטב עגבניות מאוזן ועגבניות טריות שנבחרות לפי העונה והאיכות. בלי רעש מיותר, בלי התחכמויות - רק פיצה שמגיעה חמה ועושה חשק לעוד משולש.</p>
+            <p>אפשר לקפוץ לאיסוף עצמי, לשלוח הודעה בוואטסאפ, או להתקשר למסעדה. אנחנו כאן בערבים, מראשון עד חמישי, וגם במוצאי שבת אחרי צאת השבת.</p>
           </div>
           <div class="story-points" aria-label="חומרי גלם ושירות">
             <div><span aria-hidden="true">▢</span><strong>בצק טרי</strong><p>בסיס טוב לפני כל תוספת.</p></div>
@@ -297,20 +309,6 @@
         </div>
       </section>
 
-      <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
-        <div class="container reviews__grid">
-          <div>
-            <p class="eyebrow">ביקורות</p>
-            <h2 id="reviews-title">ביקורות לקוחות</h2>
-            <p>לא מוצגים דירוגים או ציטוטים לפני אימות מקור רשמי. זה שומר על האתר אמין ונקי.</p>
-          </div>
-          <div class="reviews-empty" aria-label="סטטוס ביקורות">
-            <strong>Google Reviews</strong>
-            <p>דירוג, מספר ביקורות וקישור רשמי אינם מאומתים עדיין.</p>
-          </div>
-        </div>
-      </section>
-
       <section class="section location" id="location" aria-labelledby="location-title">
         <div class="container location__grid">
           <div>
@@ -331,8 +329,9 @@
             <img src="assets/images/gallery/pizza-virtuoso-restaurant.webp" width="720" height="540" loading="lazy" alt="פיצה וירטואוז בראשון לציון">
             <div>
               <h3>לפני שיוצאים</h3>
-              <p><strong>שעות פתיחה:</strong> לא אומתו עדיין.</p>
-              <p><strong>משלוחים:</strong> זמינות ואזורי חלוקה יאומתו מול העסק.</p>
+              <p><strong>שעות פתיחה:</strong> ראשון עד חמישי 17:00-23:00.</p>
+              <p><strong>שישי:</strong> סגור.</p>
+              <p><strong>מוצ״ש:</strong> נפתחים עד שעה אחרי צאת השבת ועד 23:00.</p>
               <p><strong>איסוף עצמי:</strong> ז׳בוטינסקי 16, מול היכל התרבות.</p>
             </div>
           </div>
@@ -351,7 +350,6 @@
           <h3>ניווט</h3>
           <a href="#menu">תפריט</a>
           <a href="#deals">מבצעים</a>
-          <a href="#reviews">ביקורות</a>
           <a href="#location">מיקום</a>
         </nav>
         <div class="footer-col">
@@ -363,7 +361,7 @@
         </div>
         <div class="footer-col">
           <h3>שעות</h3>
-          <p>שעות פתיחה רשמיות לא אומתו עדיין.</p>
+          <p>א׳-ה׳ 17:00-23:00<br>שישי סגור<br>מוצ״ש עד שעה אחרי צאת השבת ועד 23:00</p>
         </div>
       </div>
       <p class="copyright">© <span data-current-year>2026</span> פיצה וירטואוז. כל הזכויות שמורות.</p>
