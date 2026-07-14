@@ -29,6 +29,8 @@ Upload the `pizza-virtuoso/` folder to GitHub Pages, Cloudflare Pages, Netlify, 
 
 Phone numbers, WhatsApp number, address, kosher text, and ordering URL are centralized in `assets/js/config.js` for JavaScript enhancements. The same verified business information also appears in visible HTML and JSON-LD for SEO. When prices or business details change, update both visible HTML and structured data where relevant.
 
+Google Analytics 4 is supported through `googleAnalyticsMeasurementId` in `assets/js/config.js`. Set it to the real measurement ID, such as `G-XXXXXXXXXX`, to enable tracking on the published site. It stays disabled on localhost.
+
 ## Menu Prices
 
 Edit the menu cards in `index.html`. Keep descriptions natural and avoid inventing offers, fake urgency, ratings, or delivery areas.

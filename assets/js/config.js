@@ -15,7 +15,9 @@ export const BUSINESS_CONFIG = {
   googleRatingVerified: false,
   googleRating: null,
   googleReviewCount: null,
-  googleReviewsUrl: ""
+  googleReviewsUrl: "",
+  // Set to the GA4 measurement ID, for example "G-XXXXXXXXXX", to enable Google Analytics.
+  googleAnalyticsMeasurementId: ""
 };
 
 export const WHATSAPP_URL =
