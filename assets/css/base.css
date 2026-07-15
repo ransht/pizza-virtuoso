@@ -18,7 +18,9 @@ body {
 .site-header,
 main,
 .site-footer,
-.mobile-action-bar {
+.mobile-action-bar,
+.cart-shell,
+.cart-customizer {
   direction: rtl;
 }
 
@@ -97,7 +99,9 @@ button:focus-visible {
 .site-header,
 main,
 .site-footer,
-.mobile-action-bar {
+.mobile-action-bar,
+.cart-shell,
+.cart-customizer {
   max-width: 100vw;
   overflow-x: clip;
 }

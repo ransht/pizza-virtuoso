@@ -3,6 +3,7 @@ import { initMenuNavigation } from "./menu-navigation.js";
 import { initAnimations } from "./animations.js";
 import { initAccessibility } from "./accessibility.js";
 import { initAnalytics } from "./analytics.js";
+import { initCart } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
@@ -10,4 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   initAccessibility();
   initAnalytics();
+  initCart();
 });
