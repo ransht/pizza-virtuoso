@@ -2,21 +2,9 @@ import { BUSINESS_CONFIG } from "./config.js";
 import { trackEvent } from "./analytics.js";
 
 const STORAGE_KEY = "pizzaVirtuosoCart:v1";
-const TOPPINGS = [
-  "זיתים ירוקים",
-  "זיתים שחורים",
-  "פטריות",
-  "בצל",
-  "תירס",
-  "עגבניות",
-  "עגבניות שרי",
-  "פלפל חריף",
-  "בולגרית",
-  "טונה",
-  "אקסטרה גבינה"
-];
 
 let cart = [];
+let menuData;
 let cartButton;
 let cartPanel;
 let cartList;
@@ -28,7 +16,12 @@ let customizer;
 function loadCart() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    cart = Array.isArray(stored) ? stored : [];
+    cart = Array.isArray(stored) ? stored.map((item) => ({
+      ...item,
+      toppings: Array.isArray(item.toppings)
+        ? item.toppings.map((topping) => typeof topping === "string" ? { name: topping, price: 0 } : topping)
+        : []
+    })) : [];
   } catch {
     cart = [];
   }
@@ -42,39 +35,23 @@ function saveCart() {
   }
 }
 
-function parsePrice(text = "") {
-  const match = text.replace(/,/g, "").match(/\d+/);
-  return match ? Number(match[0]) : null;
-}
-
-function getItemFromCard(card) {
-  const title = card.querySelector("h3, h4")?.textContent.trim();
+function getItemFromButton(button) {
+  const title = button.dataset.cartName?.trim();
   if (!title) return null;
 
-  const priceText = card.querySelector(".price")?.textContent.trim() || "";
-  const category = card.closest(".menu-group")?.id || card.closest("section")?.id || "featured";
-  const isDeal = title.includes("דיל");
-  const isPizza = title.includes("פיצה") || isDeal;
+  const price = Number(button.dataset.cartPrice);
+  const type = button.dataset.cartType || "item";
+  const size = button.dataset.cartSize || "";
 
   return {
     name: title,
-    price: parsePrice(priceText),
-    category,
-    requiresToppings: isPizza,
-    toppingsLabel: isDeal ? "תוספות לדיל" : "תוספות לפיצה"
-  };
-}
-
-function getDrinkItem(listItem) {
-  const name = listItem.textContent.trim();
-  if (!name) return null;
-
-  return {
-    name,
-    price: null,
-    category: "drinks",
-    requiresToppings: false,
-    toppingsLabel: ""
+    price: Number.isFinite(price) ? price : null,
+    category: button.dataset.cartCategory || "menu",
+    type,
+    size,
+    itemId: button.dataset.cartItemId || "",
+    requiresToppings: type === "pizza",
+    toppingsLabel: size ? `תוספות לפיצה ${size}` : "תוספות לפיצה"
   };
 }
 
@@ -82,10 +59,16 @@ function formatPrice(price) {
   return Number.isFinite(price) ? `${price} ₪` : "מחיר לפי המסעדה";
 }
 
+function getLinePrice(item) {
+  const toppingsTotal = item.toppings?.reduce((sum, topping) => sum + (Number(topping.price) || 0), 0) || 0;
+  return (item.price || 0) + toppingsTotal;
+}
+
 function getTotal() {
   return cart.reduce((sum, item) => {
-    if (!Number.isFinite(item.price)) return sum;
-    return sum + item.price * item.quantity;
+    const linePrice = getLinePrice(item);
+    if (!Number.isFinite(linePrice)) return sum;
+    return sum + linePrice * item.quantity;
   }, 0);
 }
 
@@ -97,11 +80,12 @@ function buildWhatsAppMessage() {
   const lines = ["אני רוצה להזמין מפיצה וירטואוז:", ""];
 
   cart.forEach((item, index) => {
-    const price = Number.isFinite(item.price) ? ` - ${item.price * item.quantity} ₪` : "";
+    const linePrice = getLinePrice(item);
+    const price = Number.isFinite(linePrice) ? ` - ${linePrice * item.quantity} ₪` : "";
     lines.push(`${index + 1}. ${item.name} x${item.quantity}${price}`);
 
     if (item.toppings?.length) {
-      lines.push(`   תוספות: ${item.toppings.join(", ")}`);
+      lines.push(`   תוספות: ${item.toppings.map((topping) => `${topping.name} (+${topping.price} ₪)`).join(", ")}`);
     }
 
     if (item.note) {
@@ -137,6 +121,8 @@ function addItem(baseItem, options = {}) {
     name: baseItem.name,
     price: baseItem.price,
     category: baseItem.category,
+    type: baseItem.type,
+    size: baseItem.size,
     quantity: 1,
     toppings: options.toppings || [],
     note: options.note?.trim() || ""
@@ -207,7 +193,7 @@ function renderCart() {
   if (!cart.length) {
     const empty = document.createElement("p");
     empty.className = "cart-empty";
-    empty.textContent = "הסל ריק. הוסיפו פיצה, דיל או שתייה מהתפריט.";
+    empty.textContent = "הסל ריק. הוסיפו פיצה, פסטה, מאפה, סלט או שתייה מהתפריט.";
     cartList.append(empty);
     cartCheckout.setAttribute("aria-disabled", "true");
     cartCheckout.removeAttribute("href");
@@ -231,12 +217,13 @@ function createCartItem(item) {
   const title = document.createElement("h3");
   title.textContent = item.name;
   const meta = document.createElement("p");
-  meta.textContent = `${formatPrice(item.price)} · כמות ${item.quantity}`;
+  const linePrice = getLinePrice(item);
+  meta.textContent = `${formatPrice(linePrice)} · כמות ${item.quantity}`;
   copy.append(title, meta);
 
   if (item.toppings?.length) {
     const toppings = document.createElement("p");
-    toppings.textContent = `תוספות: ${item.toppings.join(", ")}`;
+    toppings.textContent = `תוספות: ${item.toppings.map((topping) => topping.name).join(", ")}`;
     copy.append(toppings);
   }
 
@@ -330,6 +317,8 @@ function createCustomizer() {
 
 function openCustomizer(item) {
   const titleId = "cart-customizer-title";
+  const toppingGroups = menuData?.pizzaToppings ? Object.values(menuData.pizzaToppings) : [];
+  const hasToppings = toppingGroups.length > 0 && item.size;
   customizer.innerHTML = `
     <div class="cart-customizer__dialog" role="dialog" aria-modal="true" aria-labelledby="${titleId}">
       <div class="cart-customizer__header">
@@ -341,16 +330,20 @@ function openCustomizer(item) {
       </div>
       <fieldset class="topping-grid">
         <legend>בחרו תוספות</legend>
-        ${TOPPINGS.map((topping) => `
+        ${hasToppings ? toppingGroups.flatMap((group) => group.items.map((topping) => {
+          const price = group.pricesBySize[item.size] || 0;
+          return `
           <label>
-            <input type="checkbox" value="${topping}">
+            <input type="checkbox" value="${topping}" data-topping-price="${price}">
             <span>${topping}</span>
+            <small>+${price} ₪</small>
           </label>
-        `).join("")}
+        `;
+        })).join("") : "<p>אפשר לכתוב תוספות בהערות להזמנה.</p>"}
       </fieldset>
       <label class="cart-note">
         <span>הערות להזמנה</span>
-        <textarea rows="3" placeholder="לדוגמה: בלי חריף, חצי זיתים חצי פטריות, או תוספות לפי מגשים בדיל"></textarea>
+        <textarea rows="3" placeholder="לדוגמה: בלי חריף, חצי זיתים חצי פטריות, או חיתוך מיוחד"></textarea>
       </label>
       <div class="cart-customizer__actions">
         <button type="button" class="button button--primary" data-confirm-customizer>הוסף לסל</button>
@@ -371,7 +364,10 @@ function openCustomizer(item) {
   });
 
   customizer.querySelector("[data-confirm-customizer]").addEventListener("click", () => {
-    const toppings = [...customizer.querySelectorAll("input[type='checkbox']:checked")].map((input) => input.value);
+    const toppings = [...customizer.querySelectorAll("input[type='checkbox']:checked")].map((input) => ({
+      name: input.value,
+      price: Number(input.dataset.toppingPrice) || 0
+    }));
     const note = customizer.querySelector("textarea").value;
     customizer.hidden = true;
     addItem(item, { toppings, note });
@@ -379,41 +375,21 @@ function openCustomizer(item) {
 }
 
 function attachCartControls() {
-  document.querySelectorAll(".menu-row, .featured-item, .deal-card").forEach((card) => {
-    const item = getItemFromCard(card);
-    if (!item || card.querySelector("[data-add-to-cart]")) return;
-
-    const button = createButton("הוסף לסל", "cart-add");
-    button.dataset.addToCart = "";
+  document.querySelectorAll("[data-add-to-cart]").forEach((button) => {
+    const item = getItemFromButton(button);
+    if (!item || button.dataset.cartReady === "true") return;
+    button.dataset.cartReady = "true";
     button.addEventListener("click", () => {
       if (item.requiresToppings) openCustomizer(item);
       else addItem(item);
     });
-
-    const target = card.classList.contains("featured-item")
-      ? card.querySelector(":scope > div")
-      : card;
-    target.append(button);
-  });
-
-  document.querySelectorAll(".drink-list li").forEach((listItem) => {
-    const item = getDrinkItem(listItem);
-    if (!item || listItem.querySelector("[data-add-to-cart]")) return;
-
-    const label = document.createElement("span");
-    label.textContent = item.name;
-    listItem.textContent = "";
-
-    const button = createButton("הוסף", "cart-add cart-add--small");
-    button.dataset.addToCart = "";
-    button.addEventListener("click", () => addItem(item));
-    listItem.append(label, button);
   });
 }
 
-export function initCart() {
+export function initCart(menu = window.PIZZA_VIRTUOSO_MENU) {
   if (!("localStorage" in window)) return;
 
+  menuData = menu;
   loadCart();
   createCartUi();
   createCustomizer();

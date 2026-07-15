@@ -1,0 +1,204 @@
+{
+  "currency": "ILS",
+  "currencySymbol": "₪",
+  "updatedAt": "2026-07-15",
+  "pizzaToppings": {
+    "regular": {
+      "label": "תוספת רגילה",
+      "pricesBySize": {
+        "M": 4,
+        "L": 5,
+        "XL": 8
+      },
+      "items": [
+        "זיתים ירוקים",
+        "זיתים שחורים",
+        "פטריות",
+        "בצל",
+        "תירס",
+        "עגבניות",
+        "עגבניות שרי",
+        "פלפל חריף"
+      ]
+    },
+    "special": {
+      "label": "תוספת מיוחדת",
+      "pricesBySize": {
+        "M": 8,
+        "L": 10,
+        "XL": 12
+      },
+      "items": [
+        "אקסטרה גבינה",
+        "טונה",
+        "גבינה בולגרית"
+      ]
+    }
+  },
+  "featured": [
+    {
+      "categoryId": "pizzas",
+      "itemId": "regular-pizza",
+      "variantId": "regular-pizza-l",
+      "badge": "נמכר הרבה",
+      "image": "assets/images/gallery/full-pizza.webp",
+      "imageAlt": "פיצה משפחתית"
+    },
+    {
+      "categoryId": "pizzas",
+      "itemId": "alfredo-pizza",
+      "variantId": "alfredo-pizza-l",
+      "badge": "קרמי וחם",
+      "image": "assets/images/gallery/pizza-cheese-closeup.webp",
+      "imageAlt": "גבינה נמתחת על פיצה"
+    },
+    {
+      "categoryId": "pizzas",
+      "itemId": "rosa-pizza",
+      "variantId": "rosa-pizza-xl",
+      "badge": "למשפחה",
+      "image": "assets/images/gallery/pizza-from-oven.webp",
+      "imageAlt": "פיצה יוצאת מהתנור"
+    }
+  ],
+  "categories": [
+    {
+      "id": "pizzas",
+      "title": "פיצות",
+      "emoji": "🍕",
+      "description": "פיצות מבצק טרי עם גבינת גד. בחרו מידה ותוספות, ואנחנו נכין מגש חם ונדיב.",
+      "items": [
+        {
+          "id": "regular-pizza",
+          "name": "פיצה רגילה",
+          "description": "רוטב עגבניות, גבינת גד ובצק טרי.",
+          "type": "pizza",
+          "variants": [
+            { "id": "regular-pizza-m", "label": "M", "price": 35, "size": "M" },
+            { "id": "regular-pizza-l", "label": "L", "price": 49, "size": "L" },
+            { "id": "regular-pizza-xl", "label": "XL", "price": 67, "size": "XL" }
+          ]
+        },
+        {
+          "id": "alfredo-pizza",
+          "name": "פיצה אלפרדו",
+          "description": "בסיס אלפרדו קרמי, גבינה טובה ובצק טרי.",
+          "type": "pizza",
+          "variants": [
+            { "id": "alfredo-pizza-m", "label": "M", "price": 40, "size": "M" },
+            { "id": "alfredo-pizza-l", "label": "L", "price": 59, "size": "L" },
+            { "id": "alfredo-pizza-xl", "label": "XL", "price": 77, "size": "XL" }
+          ]
+        },
+        {
+          "id": "rosa-pizza",
+          "name": "פיצה רוזה",
+          "description": "רוטב רוזה עדין, גבינת גד ובצק שנפתח במקום.",
+          "type": "pizza",
+          "variants": [
+            { "id": "rosa-pizza-m", "label": "M", "price": 40, "size": "M" },
+            { "id": "rosa-pizza-l", "label": "L", "price": 59, "size": "L" },
+            { "id": "rosa-pizza-xl", "label": "XL", "price": 75, "size": "XL" }
+          ]
+        },
+        {
+          "id": "pizza-slice",
+          "name": "משולש פיצה",
+          "description": "משולש חם לאכילה במקום או על הדרך.",
+          "type": "item",
+          "price": 12
+        },
+        {
+          "id": "pizza-slice-topping",
+          "name": "משולש עם תוספת",
+          "description": "משולש פיצה עם תוספת.",
+          "type": "item",
+          "price": 13
+        }
+      ]
+    },
+    {
+      "id": "pastas",
+      "title": "פסטות",
+      "emoji": "🍝",
+      "description": "מנות פסטה חמות וקרמיות, מתאימות לערב קליל או לצד פיצה.",
+      "items": [
+        { "id": "penne", "name": "פנה", "type": "item", "price": 42 },
+        { "id": "sweet-potato-ravioli", "name": "רביולי בטטה", "type": "item", "price": 55 },
+        { "id": "mushroom-ravioli", "name": "רביולי פטריות", "type": "item", "price": 55 },
+        { "id": "cheese-ravioli", "name": "רביולי גבינות", "type": "item", "price": 55 }
+      ]
+    },
+    {
+      "id": "baked",
+      "title": "מאפים",
+      "emoji": "🥐",
+      "description": "מאפים חמים מהתנור, טובים לנשנוש או לארוחה קטנה.",
+      "items": [
+        { "id": "ziva", "name": "זיווה", "type": "item", "price": 32 },
+        { "id": "garlic-bread", "name": "לחם שום", "type": "item", "price": 5 },
+        { "id": "bagel-toast", "name": "בייגל טוסט", "type": "item", "price": 35 },
+        { "id": "malawach-pizza", "name": "מלוואח פיצה", "type": "item", "price": 30 }
+      ]
+    },
+    {
+      "id": "salads",
+      "title": "סלטים",
+      "emoji": "🥗",
+      "description": "סלטים בהרכבה או יווני, טריים ונדיבים.",
+      "items": [
+        { "id": "custom-salad-small", "name": "סלט בהרכבה קטן", "type": "item", "price": 38 },
+        { "id": "custom-salad-large", "name": "סלט בהרכבה גדול", "type": "item", "price": 49 },
+        { "id": "greek-salad-small", "name": "סלט יווני קטן", "type": "item", "price": 38 },
+        { "id": "greek-salad-large", "name": "סלט יווני גדול", "type": "item", "price": 49 }
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "שתייה",
+      "emoji": "🥤",
+      "description": "שתייה קרה מהמקרר להשלמת ההזמנה.",
+      "groups": [
+        {
+          "id": "cans",
+          "title": "פחיות",
+          "price": 10,
+          "items": ["קוקה־קולה", "קוקה־קולה זירו", "ספרייט", "ספרייט זירו", "פאנטה"]
+        },
+        {
+          "id": "blu",
+          "title": "משקאות BLU",
+          "price": 10,
+          "items": ["BLU", "BLU אבטיח", "BLU מלון", "BLU DAY"]
+        },
+        {
+          "id": "small-bottles",
+          "title": "בקבוקים קטנים",
+          "price": 12,
+          "items": [
+            "קוקה־קולה",
+            "קוקה־קולה זירו",
+            "ספרייט",
+            "ספרייט זירו",
+            "פאנטה",
+            "פיוז טי",
+            "משקה ענבים",
+            "משקה תפוזים",
+            "משקה אשכוליות",
+            "משקה תות־בננה",
+            "לימונדה",
+            "מים בטעמים"
+          ]
+        },
+        {
+          "id": "water-soda",
+          "title": "מים וסודה",
+          "items": [
+            { "id": "water-bottle", "name": "בקבוק מים", "price": 10 },
+            { "id": "soda-bottle", "name": "בקבוק סודה", "price": 10 }
+          ]
+        }
+      ]
+    }
+  ]
+}

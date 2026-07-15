@@ -103,8 +103,7 @@
   flex: 0 0 auto;
 }
 
-.featured-grid,
-.deals-grid {
+.featured-grid {
   display: grid;
   gap: 1rem;
 }
@@ -157,8 +156,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .featured-grid,
-  .deals-grid {
+  .featured-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
