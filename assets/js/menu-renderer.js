@@ -48,19 +48,50 @@ function createOrderButton(label = "הוסף לסל") {
   return button;
 }
 
-function createMenuRow(category, item, variant = null) {
-  const row = createElement("article", "menu-row");
+function createVariantButton(category, item, variant) {
+  const button = createOrderButton(`הוסף ${variant.label}`);
+  button.classList.add("cart-add--variant");
+  applyCartData(button, getCartPayload(category, item, variant));
+  return button;
+}
+
+function createPizzaCard(category, item) {
+  const card = createElement("article", "menu-product menu-product--pizza");
   const copy = document.createElement("div");
-  const title = createElement("h4", "", variant ? `${item.name} ${variant.label}` : item.name);
+  const title = createElement("h4", "", item.name);
   copy.append(title);
 
   if (item.description) {
     copy.append(createElement("p", "", item.description));
   }
 
-  const price = createElement("p", "price", formatPrice(variant?.price ?? item.price));
+  const variants = createElement("div", "pizza-size-grid");
+  item.variants.forEach((variant) => {
+    const option = createElement("div", "pizza-size-option");
+    const size = createElement("span", "pizza-size-option__size", variant.label);
+    const price = createElement("strong", "", formatPrice(variant.price));
+    const button = createVariantButton(category, item, variant);
+    option.append(size, price, button);
+    variants.append(option);
+  });
+
+  card.append(copy, variants);
+  return card;
+}
+
+function createMenuRow(category, item) {
+  const row = createElement("article", "menu-row");
+  const copy = document.createElement("div");
+  const title = createElement("h4", "", item.name);
+  copy.append(title);
+
+  if (item.description) {
+    copy.append(createElement("p", "", item.description));
+  }
+
+  const price = createElement("p", "price", formatPrice(item.price));
   const button = createOrderButton();
-  applyCartData(button, getCartPayload(category, item, variant));
+  applyCartData(button, getCartPayload(category, item));
 
   row.append(copy, price, button);
   return row;
@@ -106,7 +137,7 @@ function renderCategory(category, menu) {
   const list = createElement("div", "menu-list");
   category.items.forEach((item) => {
     if (item.variants) {
-      item.variants.forEach((variant) => list.append(createMenuRow(category, item, variant)));
+      list.append(createPizzaCard(category, item));
     } else {
       list.append(createMenuRow(category, item));
     }
@@ -118,7 +149,12 @@ function renderCategory(category, menu) {
 
 function renderDrinkGroup(category, group) {
   const section = createElement("section", "drink-group");
-  const title = createElement("h4", "", group.price ? `${group.title} - ${formatPrice(group.price)}` : group.title);
+  const header = createElement("div", "drink-group__header");
+  const title = createElement("h4", "", group.title);
+  header.append(title);
+  if (group.price) {
+    header.append(createElement("span", "drink-group__price", formatPrice(group.price)));
+  }
   const list = createElement("ul", "drink-list");
 
   group.items.forEach((entry) => {
@@ -143,7 +179,7 @@ function renderDrinkGroup(category, group) {
     list.append(row);
   });
 
-  section.append(title, list);
+  section.append(header, list);
   return section;
 }
 

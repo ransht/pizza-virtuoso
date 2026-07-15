@@ -1,14 +1,15 @@
 :root {
-  --color-background: #fff8ef;
-  --color-surface: #fffdf8;
-  --color-surface-warm: #fff1df;
-  --color-text: #241812;
-  --color-text-muted: #6f584d;
-  --color-primary: #c9281c;
-  --color-primary-dark: #9e1d14;
-  --color-green: #276b3a;
-  --color-border: rgba(90, 55, 38, .16);
-  --color-border-strong: rgba(90, 55, 38, .26);
+  --color-background: #fff5e8;
+  --color-surface: #fffdfa;
+  --color-surface-warm: #ffe3c7;
+  --color-text: #24140e;
+  --color-text-muted: #705247;
+  --color-primary: #d82116;
+  --color-primary-dark: #9f160e;
+  --color-primary-hot: #ff5a1f;
+  --color-green: #167445;
+  --color-border: rgba(88, 43, 24, .16);
+  --color-border-strong: rgba(88, 43, 24, .30);
   --font-heading: "Rubik", "Assistant", "Heebo", Arial, sans-serif;
   --font-body: "Assistant", "Heebo", Arial, sans-serif;
   --container-width: 1180px;
@@ -18,8 +19,8 @@
   --radius-small: .5rem;
   --radius-medium: .75rem;
   --radius-large: 1rem;
-  --shadow-soft: 0 16px 42px rgba(74, 42, 28, .10);
-  --shadow-card: 0 10px 28px rgba(74, 42, 28, .08);
+  --shadow-soft: 0 18px 48px rgba(74, 42, 28, .14);
+  --shadow-card: 0 12px 30px rgba(74, 42, 28, .10);
   --transition-fast: 160ms ease;
   --transition-normal: 260ms ease;
   --z-header: 20;

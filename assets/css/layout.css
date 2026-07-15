@@ -4,7 +4,10 @@
 }
 
 .section:nth-of-type(even) {
-  background: rgba(255, 253, 248, .66);
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, .82), rgba(255, 238, 218, .62)),
+    radial-gradient(circle at 12% 20%, rgba(216, 33, 22, .08), transparent 28%),
+    radial-gradient(circle at 86% 12%, rgba(22, 116, 69, .07), transparent 28%);
 }
 
 .section-heading {
@@ -25,9 +28,9 @@
 .hero {
   padding-block: calc(var(--header-height) + clamp(2rem, 6vw, 5rem)) clamp(3rem, 6vw, 5rem);
   background:
-    linear-gradient(180deg, rgba(255, 253, 248, .96), rgba(255, 248, 239, .98)),
-    radial-gradient(circle at 18% 26%, rgba(201, 40, 28, .10), transparent 28%),
-    radial-gradient(circle at 88% 22%, rgba(39, 107, 58, .08), transparent 30%);
+    linear-gradient(180deg, rgba(255, 253, 248, .96), rgba(255, 245, 232, .98)),
+    radial-gradient(circle at 18% 26%, rgba(216, 33, 22, .13), transparent 30%),
+    radial-gradient(circle at 88% 22%, rgba(22, 116, 69, .10), transparent 32%);
 }
 
 .hero__grid {
