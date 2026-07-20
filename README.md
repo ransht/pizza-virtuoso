@@ -15,12 +15,6 @@ pnpm preview
 
 Set `PUBLIC_SITE_URL` to the production origin before building so canonical, hreflang, sitemap, robots and sharing links use the real domain. Set `PUBLIC_ORDER_URL` when the external ordering system is ready. With no ordering URL, the interface shows a disabled “coming soon” state and emits no `OrderAction` schema.
 
-### Live Google reviews
-
-The reviews section uses Places API (New) through `functions/api/reviews.ts`, keeping the API key out of browser code. On Cloudflare Pages, enable Places API (New) and add `GOOGLE_PLACES_API_KEY` as an encrypted environment variable. `GOOGLE_PLACE_ID` is optional but recommended; without it, the endpoint identifies the business by its exact name and address.
-
-The static site remains usable without the function and links directly to the Google Business Profile. GitHub Pages cannot execute the reviews function, so live reviews require Cloudflare Pages or another host with an equivalent serverless endpoint.
-
 ## Updating the site
 
 - **Business details:** edit `src/content/business/config.json`. Empty fields are intentionally omitted from structured data and shown as pending in the UI. Do not add ratings, hours, certifications or links until verified.

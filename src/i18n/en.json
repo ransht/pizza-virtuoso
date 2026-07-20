@@ -83,7 +83,6 @@
   },
   "sauce": { "eyebrow": "A little something from us", "title": "Want a little extra sauce on the side?", "body": "Gladly. Just ask — there's no extra charge." },
   "clean": { "kicker": "A kitchen you can trust", "title": "We don't compromise on flavor. Or cleanliness.", "body": "We keep our work surfaces clean, our kitchen organized, our ingredients handled properly and every order carefully prepared." },
-  "reviews": { "kicker": "Word around the neighborhood", "title": "What people say on Google", "body": "Real ratings and reviews from our Google Maps Business Profile, updated directly from the source.", "loading": "Loading current reviews from Google Maps…", "basedOn": "Based on {count} reviews", "allReviews": "See all reviews on Google Maps", "reviewBy": "Review by {name}", "viewReview": "View review on Google Maps", "translated": "Translated by Google", "orderNotice": "Reviews are shown in Google's relevance order.", "cta": "Open our business profile and reviews on Google", "unavailable": "Live reviews are temporarily unavailable. You can still see them directly on Google Maps." },
   "contact": {
     "kicker": "Come by",
     "title": "Good pizza is closer than you think",

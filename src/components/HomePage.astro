@@ -3,7 +3,6 @@ import business from '../content/business/config.json';
 import menu from '../content/menu/menu.json';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
-import GoogleReviews from './GoogleReviews.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import type { Language, Messages } from '../lib/i18n';
 interface Props { lang: Language; t: Messages; }
@@ -130,7 +129,6 @@ const contactCards = [
         <h2 id="clean-title">{t.clean.title}</h2>
         <p>{t.clean.body}</p>
       </div>
-      <div class="reviews reveal"><GoogleReviews {lang} t={t.reviews} businessUrl={business.googleBusinessUrl} /></div>
     </div>
   </section>
 
