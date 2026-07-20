@@ -66,7 +66,7 @@
     "currency": "₪",
     "included": "No extra charge",
     "items": {
-      "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative pizza with mozzarella, pesto, cherry tomatoes and mushrooms" },
+      "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative Margherita pizza with mozzarella, green olives and cherry tomatoes" },
       "alfredo": { "name": "Alfredo Pizza", "description": "" },
       "rose": { "name": "Rosé Pizza", "description": "" },
       "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." },
