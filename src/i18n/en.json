@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "title": "Pizza Virtuoso | Fresh Pizza in Rishon LeZion",
+    "description": "Freshly baked pizza with 24-hour fermented dough, house-made sauce, quality cheese and carefully selected toppings. Explore the Pizza Virtuoso menu.",
+    "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
+  },
+  "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
+  "nav": { "home": "Home", "story": "Our story", "difference": "Why we're different", "menu": "Menu", "contact": "Contact", "order": "Order online", "orderSoon": "Online ordering — coming soon", "langLabel": "עברית", "langCode": "עב" },
+  "hero": {
+    "eyebrow": "Under new management",
+    "brand": "Pizza Virtuoso",
+    "title": "Pizza, done properly.",
+    "body": "24-hour fermented dough, sauce made in-house, generous quality cheese and fresh toppings chosen without shortcuts.",
+    "primary": "Explore the menu",
+    "secondary": "How we make it",
+    "trust": "Baked here • Served hot • No shortcuts"
+  },
+  "story": {
+    "kicker": "Our story",
+    "title": "You can taste the difference from the first bite",
+    "lead": "Great pizza begins long before it reaches the oven.",
+    "paragraphs": [
+      "It starts with the ingredients, the time we give the dough and attention to every small detail. Our dough ferments for 24 hours for balanced texture, airy edges and deeper flavor.",
+      "We make our tomato sauce in-house and cover every pizza with generous, quality cheese — because cheese is never where we choose to cut back.",
+      "We take the same approach to toppings. Order mushrooms and you get fresh mushrooms, not something from a can. Every order is prepared carefully and baked on the spot.",
+      "We work cleanly, stay organized, handle ingredients with care and treat people with respect. Our goal is simple: every pizza leaving our kitchen should be one we'd be proud to serve our own family."
+    ],
+    "imageAlt": "Hands gently opening fermented pizza dough on a flour-dusted counter"
+  },
+  "principles": {
+    "kicker": "No secrets. Just principles.",
+    "title": "Four small decisions that make a big difference",
+    "items": [
+      { "number": "01", "title": "24 hours of patience", "body": "We give the dough time to develop flavor, texture and a beautifully airy crust." },
+      { "number": "02", "title": "Sauce made here", "body": "Our pizza sauce is made in-house with a balanced flavor that complements the dough and cheese." },
+      { "number": "03", "title": "Cheese, generously", "body": "We use quality cheese and add it as generously as we'd want it on our own pizza." },
+      { "number": "04", "title": "Fresh over shortcuts", "body": "Fresh mushrooms, good vegetables and carefully chosen toppings — never cheap canned substitutes." }
+    ],
+    "supplier": { "label": "Gad Dairy · Our cheese supplier", "alt": "Gad Dairy logo, Pizza Virtuoso's cheese supplier" }
+  },
+  "process": {
+    "kicker": "From dough to oven",
+    "title": "Simple, precise, in the right order",
+    "steps": ["Make the dough", "Let it develop for 24 hours", "Open each base to order", "Spread our house-made sauce", "Add cheese and toppings generously", "Bake and serve hot"]
+  },
+  "menu": {
+    "kicker": "The menu",
+    "title": "What are you craving?",
+    "intro": "Every price in one place, organized by category and size. Choose what sounds good and message us on WhatsApp to order.",
+    "categories": { "pizzas": "Pizza", "pastas": "Pasta", "salads": "Salads", "bakes": "Bakes", "drinks": "Drinks" },
+    "categoryNotes": { "pizzas": "Three sizes, toppings and slices", "pastas": "Penne and ravioli", "salads": "Small or large, with your choice of toppings", "bakes": "From the oven and alongside your pizza", "drinks": "Cold, fizzy and ready for the table" },
+    "priceLabels": { "M": "M", "L": "L", "XL": "XL", "unit": "Price", "withTopping": "With topping" },
+    "currency": "₪",
+    "included": "No extra charge",
+    "items": {
+      "margherita": { "name": "Margherita Pizza", "description": "" },
+      "alfredo": { "name": "Alfredo Pizza", "description": "" },
+      "rose": { "name": "Rosé Pizza", "description": "" },
+      "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." },
+      "regularTopping": { "name": "Regular Topping", "description": "Green olives, black olives, corn, hot pepper, red onion, tomato, mushrooms or hard-boiled egg." },
+      "specialTopping": { "name": "Special Topping", "description": "Extra cheese, tuna or Bulgarian cheese." },
+      "penne": { "name": "Penne", "description": "" },
+      "sweetPotatoRavioli": { "name": "Sweet Potato Ravioli", "description": "" },
+      "mushroomRavioli": { "name": "Mushroom Ravioli", "description": "" },
+      "cheeseRavioli": { "name": "Cheese Ravioli", "description": "" },
+      "customSaladSmall": { "name": "Build-your-own Salad · Small", "description": "" },
+      "customSaladLarge": { "name": "Build-your-own Salad · Large", "description": "" },
+      "greekSaladSmall": { "name": "Greek Salad · Small", "description": "" },
+      "greekSaladLarge": { "name": "Greek Salad · Large", "description": "" },
+      "saladToppings": { "name": "Salad Toppings", "description": "Cucumber, tomato, black or green olives, pepper, mushrooms, yellow cheese, corn, onion, lettuce, sprouts, hot pepper, hard-boiled egg, Bulgarian cheese and fresh mushrooms." },
+      "ziva": { "name": "Ziva", "description": "" },
+      "garlicBread": { "name": "Garlic Bread", "description": "" },
+      "bagelToast": { "name": "Toasted Bagel", "description": "" },
+      "malawachPizza": { "name": "Malawach Pizza", "description": "" },
+      "cans": { "name": "Cans", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero or Fanta." },
+      "energyDrink": { "name": "Energy Drink", "description": "Regular XL." },
+      "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water." },
+      "waterSoda": { "name": "Water & Soda", "description": "San Benedetto mineral water or soda." }
+    },
+    "order": "Order on WhatsApp",
+    "orderHint": "Final price is confirmed by the restaurant",
+    "share": "Share with a friend who loves pizza"
+  },
+  "sauce": { "eyebrow": "A little something from us", "title": "Want a little extra sauce on the side?", "body": "Gladly. Just ask — there's no extra charge." },
+  "clean": { "kicker": "A kitchen you can trust", "title": "We don't compromise on flavor. Or cleanliness.", "body": "We keep our work surfaces clean, our kitchen organized, our ingredients handled properly and every order carefully prepared." },
+  "reviews": { "kicker": "Word around the neighborhood", "title": "What people say on Google", "body": "Real ratings and reviews from our Google Maps Business Profile, updated directly from the source.", "loading": "Loading current reviews from Google Maps…", "basedOn": "Based on {count} reviews", "allReviews": "See all reviews on Google Maps", "reviewBy": "Review by {name}", "viewReview": "View review on Google Maps", "translated": "Translated by Google", "orderNotice": "Reviews are shown in Google's relevance order.", "cta": "Open our business profile and reviews on Google", "unavailable": "Live reviews are temporarily unavailable. You can still see them directly on Google Maps." },
+  "contact": {
+    "kicker": "Come by",
+    "title": "Good pizza is closer than you think",
+    "intro": "Find us at 16 Jabotinsky Street, Rishon LeZion, directly across from the Performing Arts Center.",
+    "labels": { "address": "Address", "hours": "Opening hours", "phone": "Restaurant phone", "social": "WhatsApp" },
+    "addressValue": "16 Jabotinsky St., Rishon LeZion · Across from the Performing Arts Center",
+    "hoursValue": "Sunday–Thursday · 17:00–23:00",
+    "directionsKicker": "Your choice",
+    "directionsTitle": "How would you like to navigate?",
+    "directionsHint": "Open directions to 16 Jabotinsky Street in the navigation app you prefer.",
+    "waze": "Waze",
+    "googleMaps": "Google Maps",
+    "pending": "Coming soon",
+    "navigate": "Navigate",
+    "call": "Call us",
+    "whatsapp": "WhatsApp"
+  },
+  "final": { "eyebrow": "The dough is resting", "title": "All that's left is to choose your pizza", "body": "We'll make it here, generously and without shortcuts.", "menu": "See the menu", "navigate": "Navigate", "order": "Order online", "orderSoon": "Ordering — coming soon" },
+  "footer": { "tagline": "Fresh pizza in Rishon LeZion. Made patiently, served generously.", "rights": "All rights reserved.", "photoNote": "Website photography is temporary and will be replaced with photos of the pizzeria." },
+  "mobile": { "menu": "Menu", "navigate": "Navigate", "call": "Call", "order": "Order", "soon": "Soon" },
+  "analytics": { "title": "Cookies and usage measurement", "body": "With your permission, we use Google Analytics to understand how the site is used and improve it. You can decline and continue using the site normally.", "accept": "Accept", "reject": "No thanks", "settings": "Privacy settings" },
+  "shareText": "I found pizza in Rishon LeZion that's made properly — Pizza Virtuoso"
+}

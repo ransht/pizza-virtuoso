@@ -1,0 +1,9 @@
+{
+  "name": "Pizza Virtuoso",
+  "short_name": "Virtuoso",
+  "start_url": "/he/",
+  "display": "standalone",
+  "background_color": "#f4ecde",
+  "theme_color": "#9f261c",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

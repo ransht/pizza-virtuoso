@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Design"
+  short_description: "Design polished, production-ready frontend experiences."
+  default_prompt: "Use frontend-design to improve this interface with production-quality layout, visual hierarchy, responsive behavior, and interaction details."

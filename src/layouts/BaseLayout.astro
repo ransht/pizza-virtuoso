@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import business from '../content/business/config.json';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import { direction, locale, type Language, type Messages } from '../lib/i18n';
+
+interface Props { lang: Language; t: Messages; }
+const { lang, t } = Astro.props;
+const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
+const canonical = new URL(`/${lang}/`, origin);
+const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: lang === 'he' ? business.name : business.alternateName,
+  alternateName: lang === 'he' ? business.alternateName : business.name,
+  url: canonical.href,
+  image: new URL('/images/hero-pizza.webp', origin).href,
+  logo: new URL('/favicon.svg', origin).href,
+  servesCuisine: ['Pizza', 'Italian', 'Israeli'],
+  menu: new URL(`/${lang}/#menu`, origin).href,
+};
+if (business.telephone) jsonLd.telephone = business.telephone;
+if (business.address.streetAddress) jsonLd.address = { '@type': 'PostalAddress', ...business.address };
+if (business.geo.latitude && business.geo.longitude) jsonLd.geo = { '@type': 'GeoCoordinates', ...business.geo };
+if (business.openingHours.length) jsonLd.openingHoursSpecification = business.openingHours;
+if (business.priceRange) jsonLd.priceRange = business.priceRange;
+const sameAs = [business.googleBusinessUrl, business.instagramUrl, business.tiktokUrl, business.facebookUrl].filter(Boolean);
+if (sameAs.length) jsonLd.sameAs = sameAs;
+if (business.googleMapsUrl) jsonLd.hasMap = business.googleMapsUrl;
+if (orderUrl) jsonLd.potentialAction = { '@type': 'OrderAction', target: orderUrl };
+---
+<!doctype html>
+<html lang={lang} dir={direction(lang)}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#9f261c" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="he" href={new URL('/he/', origin)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', origin)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/he/', origin)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" as="image" href="/images/hero-pizza.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/noto-serif-hebrew.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/images/og-pizza.jpg', origin)} />
+    <meta property="og:image:alt" content={t.meta.ogAlt} />
+    <meta property="og:locale" content={locale(lang)} />
+    <meta property="og:locale:alternate" content={locale(lang === 'he' ? 'en' : 'he')} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={t.meta.title} />
+    <meta name="twitter:description" content={t.meta.description} />
+    <meta name="twitter:image" content={new URL('/images/og-pizza.jpg', origin)} />
+    <title>{t.meta.title}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <slot />
+    <GoogleAnalytics t={t.analytics} />
+  </body>
+</html>

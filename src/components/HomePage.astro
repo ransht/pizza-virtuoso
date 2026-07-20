@@ -1,0 +1,236 @@
+---
+import business from '../content/business/config.json';
+import menu from '../content/menu/menu.json';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import GoogleReviews from './GoogleReviews.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import type { Language, Messages } from '../lib/i18n';
+interface Props { lang: Language; t: Messages; }
+const { lang, t } = Astro.props;
+const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
+const shareUrl = new URL(`https://wa.me/?text=${encodeURIComponent(`${t.shareText} ${new URL(`/${lang}/`, Astro.site || Astro.url).href}`)}`);
+const menuItems = t.menu.items as Record<string, { name: string; description: string }>;
+const priceLabels = t.menu.priceLabels as Record<string, string>;
+const contactCards = [
+  ['address', t.contact.addressValue, business.googleMapsUrl],
+  ['hours', t.contact.hoursValue, ''],
+  ['phone', business.telephoneDisplay, `tel:${business.telephone}`],
+  ['social', business.whatsappDisplay, business.orderUrl],
+] as const;
+---
+<Header {lang} {t} />
+<main id="main">
+  <Hero {t} />
+
+  <section class="story section" id="story" aria-labelledby="story-title">
+    <div class="page-shell story-grid">
+      <div class="story-copy reveal">
+        <p class="section-kicker">{t.story.kicker}</p>
+        <h2 id="story-title">{t.story.title}</h2>
+        <p class="story-lead">{t.story.lead}</p>
+        {t.story.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <figure class="story-figure reveal">
+        <img src="/images/dough-story.webp" width="820" height="1024" loading="lazy" decoding="async" alt={t.story.imageAlt} />
+        <figcaption><strong>24</strong><span>hours<br />of patience</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="principles section" id="principles" aria-labelledby="principles-title">
+    <div class="page-shell">
+      <header class="section-heading reveal">
+        <p class="section-kicker">{t.principles.kicker}</p>
+        <h2 id="principles-title">{t.principles.title}</h2>
+      </header>
+      <div class="principle-list">
+        {t.principles.items.map((item) => (
+          <article class="principle reveal">
+            <span class="principle-number">{item.number}</span>
+            <h3>{item.title}</h3>
+            <div class="principle-body">
+              <p>{item.body}</p>
+              {item.number === '03' && <div class="supplier-lockup"><img src="/images/gad-logo.png" width="578" height="480" loading="lazy" decoding="async" alt={t.principles.supplier.alt} /><span>{t.principles.supplier.label}</span></div>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process section" id="process" aria-labelledby="process-title">
+    <div class="page-shell process-grid">
+      <header class="process-heading reveal">
+        <p class="section-kicker">{t.process.kicker}</p>
+        <h2 id="process-title">{t.process.title}</h2>
+      </header>
+      <ol class="process-list">
+        {t.process.steps.map((step, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="menu-section section" id="menu" aria-labelledby="menu-title">
+    <div class="page-shell">
+      <header class="menu-heading reveal">
+        <div><p class="section-kicker">{t.menu.kicker}</p><h2 id="menu-title">{t.menu.title}</h2></div>
+        <p>{t.menu.intro}</p>
+      </header>
+      <nav class="category-nav" aria-label={t.menu.kicker}>
+        {menu.categories.map((category, index) => <a class={index === 0 ? 'active' : ''} aria-current={index === 0 ? 'true' : undefined} href={`#category-${category.id}`}>{t.menu.categories[category.id as keyof typeof t.menu.categories]}</a>)}
+      </nav>
+      <div class="menu-catalog">
+        {menu.categories.map((category, categoryIndex) => (
+          <section class="menu-category reveal" id={`category-${category.id}`} aria-labelledby={`category-title-${category.id}`}>
+            <header class="menu-category-heading">
+              <div><span>0{categoryIndex + 1}</span><h3 id={`category-title-${category.id}`}>{t.menu.categories[category.id as keyof typeof t.menu.categories]}</h3></div>
+              <p>{t.menu.categoryNotes[category.id as keyof typeof t.menu.categoryNotes]}</p>
+            </header>
+            <div class={`menu-items menu-items-${category.id}`}>
+              {category.items.map((item) => (
+                <article class:list={['menu-item', `menu-item-${item.kind}`]}>
+                  <div class="menu-item-copy">
+                    <h4>{menuItems[item.id].name}</h4>
+                    {menuItems[item.id].description && <p>{menuItems[item.id].description}</p>}
+                    {item.kind === 'included' && <span class="included-label">{t.menu.included}</span>}
+                  </div>
+                  {item.prices.length > 0 && (
+                    <dl class="price-list">
+                      {item.prices.map((price) => <div><dt>{priceLabels[price.label]}</dt><dd><bdi>{price.price}</bdi> {t.menu.currency}</dd></div>)}
+                    </dl>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <div class="menu-order-bar reveal">
+        <p>{t.menu.orderHint}</p>
+        <a class="button button-primary" href={orderUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.menu.order}</a>
+      </div>
+      <a class="share-link" href={shareUrl} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span>{t.menu.share}</a>
+    </div>
+  </section>
+
+  <aside class="sauce-moment" aria-labelledby="sauce-title">
+    <div class="page-shell sauce-inner reveal">
+      <span class="sauce-orbit" aria-hidden="true"></span>
+      <p class="section-kicker">{t.sauce.eyebrow}</p>
+      <h2 id="sauce-title">{t.sauce.title}</h2>
+      <p>{t.sauce.body}</p>
+    </div>
+  </aside>
+
+  <section class="trust-section section" aria-labelledby="clean-title">
+    <div class="page-shell trust-grid">
+      <div class="trust-statement reveal">
+        <p class="section-kicker">{t.clean.kicker}</p>
+        <h2 id="clean-title">{t.clean.title}</h2>
+        <p>{t.clean.body}</p>
+      </div>
+      <div class="reviews reveal"><GoogleReviews {lang} t={t.reviews} businessUrl={business.googleBusinessUrl} /></div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contact" aria-labelledby="contact-title">
+    <div class="page-shell">
+      <header class="contact-heading reveal"><p class="section-kicker">{t.contact.kicker}</p><h2 id="contact-title">{t.contact.title}</h2><p>{t.contact.intro}</p></header>
+      <dl class="contact-details reveal">
+        {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <WhatsAppIcon />}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
+      </dl>
+      <div class="directions-panel reveal" id="directions">
+        <div><p class="section-kicker">{t.contact.directionsKicker}</p><h3>{t.contact.directionsTitle}</h3><p>{t.contact.directionsHint}</p></div>
+        <div class="directions-actions">
+          <a class="button button-primary" href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}<span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" aria-labelledby="final-title">
+    <div class="final-media" aria-hidden="true"></div>
+    <div class="final-scrim" aria-hidden="true"></div>
+    <div class="page-shell final-content reveal">
+      <p class="section-kicker">{t.final.eyebrow}</p>
+      <h2 id="final-title">{t.final.title}</h2>
+      <p>{t.final.body}</p>
+      <div class="final-actions">
+        <a class="button button-primary" href="#menu">{t.final.menu}</a>
+        <a class="button button-ghost" href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}</a>
+        <a class="button button-ghost" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}</a>
+        {orderUrl ? <a class="button button-ghost" href={orderUrl}><WhatsAppIcon />{t.final.order}</a> : <span class="button button-ghost is-disabled">{t.final.orderSoon}</span>}
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="page-shell footer-grid">
+    <div><p class="footer-brand">{t.hero.brand}</p><p>{t.footer.tagline}</p></div>
+    <p>{t.footer.photoNote}</p>
+    <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}</p>
+  </div>
+</footer>
+
+<nav class="mobile-action-bar" aria-label={t.a11y.mainNav}>
+  <a href="#menu"><span aria-hidden="true">☰</span>{t.mobile.menu}</a>
+  <details class="mobile-directions">
+    <summary><span aria-hidden="true">⌁</span>{t.mobile.navigate}</summary>
+    <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}</a><a href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}</a></div>
+  </details>
+  {business.telephone ? <a href={`tel:${business.telephone}`}><span aria-hidden="true">◡</span>{t.mobile.call}</a> : <span aria-disabled="true"><span aria-hidden="true">◡</span>{t.mobile.soon}</span>}
+  {orderUrl ? <a class="mobile-order" href={orderUrl}><WhatsAppIcon />{t.mobile.order}</a> : <span class="mobile-order" aria-disabled="true"><span aria-hidden="true">↗</span>{t.mobile.soon}</span>}
+</nav>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  const toggleHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+  toggleHeader();
+  addEventListener('scroll', toggleHeader, { passive: true });
+
+  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const closeMenu = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+      document.body.classList.remove('nav-open');
+      toggle.focus();
+    };
+    toggle.addEventListener('click', () => {
+      const opening = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(opening));
+      menu.hidden = !opening;
+      document.body.classList.toggle('nav-open', opening);
+      if (opening) menu.querySelector<HTMLElement>('a')?.focus();
+    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) closeMenu();
+      if (event.key === 'Tab' && !menu.hidden) {
+        const focusable = [...menu.querySelectorAll<HTMLElement>('a, button')];
+        const first = focusable[0]; const last = focusable.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    });
+  }
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const categoryLinks = document.querySelectorAll<HTMLAnchorElement>('.category-nav a');
+  categoryLinks.forEach((link) => link.addEventListener('click', () => {
+    categoryLinks.forEach((item) => { item.classList.remove('active'); item.removeAttribute('aria-current'); });
+    link.classList.add('active'); link.setAttribute('aria-current', 'true');
+  }));
+  if (!reduced && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }), { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    const hero = document.querySelector<HTMLElement>('.hero-media');
+    addEventListener('scroll', () => { if (hero && scrollY < innerHeight) hero.style.transform = `scale(1.04) translateY(${scrollY * 0.035}px)`; }, { passive: true });
+  } else document.querySelectorAll('.reveal').forEach((element) => element.classList.add('is-visible'));
+</script>

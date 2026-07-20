@@ -1,0 +1,75 @@
+---
+import business from '../content/business/config.json';
+import type { Messages } from '../lib/i18n';
+
+interface Props { t: Messages['analytics']; }
+const { t } = Astro.props;
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || business.analyticsId;
+const enabled = /^G-[A-Z0-9]+$/i.test(measurementId);
+---
+
+{enabled && (
+  <div class="analytics-consent" data-analytics-consent data-measurement-id={measurementId} data-copy={JSON.stringify(t)} hidden>
+    <div class="analytics-consent-copy">
+      <strong>{t.title}</strong>
+      <p>{t.body}</p>
+    </div>
+    <div class="analytics-consent-actions">
+      <button class="button button-primary button-small" type="button" data-analytics-accept>{t.accept}</button>
+      <button class="button button-outline button-small" type="button" data-analytics-reject>{t.reject}</button>
+    </div>
+  </div>
+)}
+
+{enabled && <button class="analytics-settings" type="button" data-analytics-settings hidden>{t.settings}</button>}
+
+{enabled && (
+  <script is:inline define:vars={{ measurementId }}>
+    (() => {
+      const storageKey = 'pizza-virtuoso-analytics-consent';
+      const panel = document.querySelector('[data-analytics-consent]');
+      const settings = document.querySelector('[data-analytics-settings]');
+      if (!(panel instanceof HTMLElement) || !(settings instanceof HTMLButtonElement)) return;
+
+      const loadAnalytics = () => {
+        if (document.querySelector(`script[data-google-tag="${measurementId}"]`)) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', measurementId, { anonymize_ip: true });
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+        script.dataset.googleTag = measurementId;
+        document.head.append(script);
+      };
+
+      const applyChoice = (choice) => {
+        panel.hidden = true;
+        settings.hidden = false;
+        if (choice === 'granted') loadAnalytics();
+      };
+
+      const saved = localStorage.getItem(storageKey);
+      if (saved === 'granted' || saved === 'denied') applyChoice(saved);
+      else panel.hidden = false;
+
+      panel.querySelector('[data-analytics-accept]')?.addEventListener('click', () => {
+        localStorage.setItem(storageKey, 'granted');
+        applyChoice('granted');
+      });
+      panel.querySelector('[data-analytics-reject]')?.addEventListener('click', () => {
+        localStorage.setItem(storageKey, 'denied');
+        applyChoice('denied');
+      });
+      settings.addEventListener('click', () => {
+        panel.hidden = false;
+        settings.hidden = true;
+      });
+    })();
+  </script>
+)}
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+</script>

@@ -1,0 +1,20 @@
+---
+import type { Messages } from '../lib/i18n';
+const { t } = Astro.props as { t: Messages };
+---
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-content page-shell">
+    <p class="eyebrow hero-reveal">{t.hero.eyebrow}</p>
+    <p class="hero-brand hero-reveal">{t.hero.brand}</p>
+    <h1 id="hero-title" class="hero-reveal">{t.hero.title}</h1>
+    <p class="hero-copy hero-reveal">{t.hero.body}</p>
+    <div class="hero-buttons hero-reveal">
+      <a class="button button-primary" href="#menu">{t.hero.primary}</a>
+      <a class="button button-ghost" href="#process">{t.hero.secondary}<span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="hero-trust hero-reveal">{t.hero.trust}</p>
+  </div>
+  <div class="hero-side" aria-hidden="true"><span>24H</span><span>Slow fermented dough</span></div>
+</section>

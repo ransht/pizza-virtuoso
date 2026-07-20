@@ -1,0 +1,16 @@
+---
+const destination = '/he/';
+---
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <link rel="canonical" href={new URL(destination, Astro.site || Astro.url)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(destination, Astro.site || Astro.url)} />
+    <title>Pizza Virtuoso</title>
+  </head>
+  <body><p><a href={destination}>מעבר לאתר פיצה וירטואוז</a></p></body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "currency": "ILS",
+  "categories": [
+    {
+      "id": "pizzas",
+      "items": [
+        { "id": "margherita", "kind": "pizza", "prices": [{ "label": "M", "price": 35 }, { "label": "L", "price": 49 }, { "label": "XL", "price": 67 }] },
+        { "id": "alfredo", "kind": "pizza", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 77 }] },
+        { "id": "rose", "kind": "pizza", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 75 }] },
+        { "id": "slice", "kind": "standard", "prices": [{ "label": "unit", "price": 12 }, { "label": "withTopping", "price": 13 }] },
+        { "id": "regularTopping", "kind": "topping", "prices": [{ "label": "M", "price": 4 }, { "label": "L", "price": 6 }, { "label": "XL", "price": 8 }] },
+        { "id": "specialTopping", "kind": "topping", "prices": [{ "label": "M", "price": 8 }, { "label": "L", "price": 10 }, { "label": "XL", "price": 12 }] }
+      ]
+    },
+    {
+      "id": "pastas",
+      "items": [
+        { "id": "penne", "kind": "standard", "prices": [{ "label": "unit", "price": 42 }] },
+        { "id": "sweetPotatoRavioli", "kind": "standard", "prices": [{ "label": "unit", "price": 55 }] },
+        { "id": "mushroomRavioli", "kind": "standard", "prices": [{ "label": "unit", "price": 55 }] },
+        { "id": "cheeseRavioli", "kind": "standard", "prices": [{ "label": "unit", "price": 55 }] }
+      ]
+    },
+    {
+      "id": "salads",
+      "items": [
+        { "id": "customSaladSmall", "kind": "standard", "prices": [{ "label": "unit", "price": 38 }] },
+        { "id": "customSaladLarge", "kind": "standard", "prices": [{ "label": "unit", "price": 49 }] },
+        { "id": "greekSaladSmall", "kind": "standard", "prices": [{ "label": "unit", "price": 38 }] },
+        { "id": "greekSaladLarge", "kind": "standard", "prices": [{ "label": "unit", "price": 49 }] },
+        { "id": "saladToppings", "kind": "included", "prices": [] }
+      ]
+    },
+    {
+      "id": "bakes",
+      "items": [
+        { "id": "ziva", "kind": "standard", "prices": [{ "label": "unit", "price": 32 }] },
+        { "id": "garlicBread", "kind": "standard", "prices": [{ "label": "unit", "price": 5 }] },
+        { "id": "bagelToast", "kind": "standard", "prices": [{ "label": "unit", "price": 35 }] },
+        { "id": "malawachPizza", "kind": "standard", "prices": [{ "label": "unit", "price": 30 }] }
+      ]
+    },
+    {
+      "id": "drinks",
+      "items": [
+        { "id": "cans", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] },
+        { "id": "energyDrink", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] },
+        { "id": "smallBottles", "kind": "group", "prices": [{ "label": "unit", "price": 12 }] },
+        { "id": "waterSoda", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] }
+      ]
+    }
+  ]
+}

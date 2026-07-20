@@ -1,0 +1,36 @@
+---
+import business from '../content/business/config.json';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import type { Language, Messages } from '../lib/i18n';
+interface Props { lang: Language; t: Messages; }
+const { lang, t } = Astro.props;
+const otherLang = lang === 'he' ? 'en' : 'he';
+const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
+const links = [
+  ['home', '#top'], ['story', '#story'], ['difference', '#principles'], ['menu', '#menu'], ['contact', '#contact'],
+] as const;
+---
+<a class="skip-link" href="#main">{t.a11y.skip}</a>
+<header class="site-header" data-header>
+  <a class="brand" href={`/${lang}/`}>
+    <span class="brand-mark" aria-hidden="true">V</span>
+    <span class="brand-name"><strong>{t.hero.brand}</strong><small>Pizza · Pizzeria</small></span>
+  </a>
+  <nav class="desktop-nav" aria-label={t.a11y.mainNav}>
+    {links.map(([key, href]) => <a href={href}>{t.nav[key]}</a>)}
+  </nav>
+  <div class="header-actions">
+    <a class="language-link" href={`/${otherLang}/`} lang={otherLang} hreflang={otherLang} aria-label={`${t.a11y.language}: ${t.nav.langLabel}`}>{t.nav.langCode}</a>
+    {orderUrl ? <a class="button button-small button-light" href={orderUrl}><WhatsAppIcon />{t.nav.order}</a> : <span class="button button-small button-light is-disabled" aria-disabled="true">{t.nav.orderSoon}</span>}
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={t.a11y.openMenu} data-menu-toggle>
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+    <nav aria-label={t.a11y.mainNav}>
+      {links.map(([key, href], index) => <a href={href}><span>0{index + 1}</span>{t.nav[key]}</a>)}
+    </nav>
+    <a class="mobile-language" href={`/${otherLang}/`} lang={otherLang}>{t.nav.langLabel}</a>
+    {orderUrl ? <a class="button button-primary" href={orderUrl}><WhatsAppIcon />{t.nav.order}</a> : <span class="button button-primary is-disabled">{t.nav.orderSoon}</span>}
+  </div>
+</header>
