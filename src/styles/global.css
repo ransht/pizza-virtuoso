@@ -119,8 +119,8 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .principle h3 { margin: 0; }
 .principle p { margin: 0; color: rgba(255,255,255,.68); max-width: 520px; }
 .principle-body { min-width: 0; }
-.supplier-lockup { width: fit-content; margin-block-start: 22px; display: flex; align-items: center; gap: 16px; padding: 9px 16px 9px 10px; border: 1px solid rgba(241,217,144,.34); border-radius: 12px; background: rgba(255,255,255,.06); color: #f1d990; font-size: .82rem; font-weight: 800; letter-spacing: .02em; }
-.supplier-lockup img { inline-size: 92px; block-size: 68px; object-fit: contain; object-position: center; padding: 7px; background: var(--white); border-radius: 8px; }
+.supplier-lockup { width: fit-content; margin-block-start: 24px; }
+.supplier-lockup img { display: block; inline-size: 132px; block-size: auto; object-fit: contain; }
 .mozzarella-story { margin-block-start: clamp(55px, 8vw, 105px); padding-block-start: clamp(42px, 6vw, 72px); border-block-start: 1px solid rgba(255,255,255,.22); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: clamp(40px, 8vw, 110px); align-items: start; }
 .mozzarella-story .section-kicker { color: #d4b86e; }
 .mozzarella-story h3 { font-size: clamp(2rem, 4vw, 3.7rem); text-wrap: balance; }

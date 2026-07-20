@@ -36,7 +36,7 @@
       { "number": "03", "title": "100% Gad mozzarella. Only.", "body": "Every pizza is topped exclusively with 100% mozzarella from Gad Dairy, as generously as we'd want it on our own pizza." },
       { "number": "04", "title": "Fresh over shortcuts", "body": "Fresh mushrooms, good vegetables and carefully chosen toppings — never cheap canned substitutes." }
     ],
-    "supplier": { "label": "Exclusively 100% Gad mozzarella", "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" },
+    "supplier": { "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" },
     "mozzarella": {
       "kicker": "Why mozzarella?",
       "title": "The cheese has to work with the oven",
