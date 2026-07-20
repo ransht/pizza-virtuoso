@@ -9,8 +9,8 @@
         { "id": "alfredo", "kind": "pizza", "image": "/images/alfredo-menu.webp", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 77 }] },
         { "id": "rose", "kind": "pizza", "image": "/images/rose-menu.webp", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 75 }] },
         { "id": "slice", "kind": "standard", "prices": [{ "label": "unit", "price": 12 }, { "label": "withTopping", "price": 13 }] },
-        { "id": "regularTopping", "kind": "topping", "prices": [{ "label": "M", "price": 4 }, { "label": "L", "price": 6 }, { "label": "XL", "price": 8 }] },
-        { "id": "specialTopping", "kind": "topping", "prices": [{ "label": "M", "price": 8 }, { "label": "L", "price": 10 }, { "label": "XL", "price": 12 }] }
+        { "id": "regularTopping", "kind": "topping", "image": "/images/regular-toppings-menu.webp", "prices": [{ "label": "M", "price": 4 }, { "label": "L", "price": 6 }, { "label": "XL", "price": 8 }] },
+        { "id": "specialTopping", "kind": "topping", "image": "/images/special-toppings-menu.webp", "prices": [{ "label": "M", "price": 8 }, { "label": "L", "price": 10 }, { "label": "XL", "price": 12 }] }
       ]
     },
     {
@@ -44,10 +44,10 @@
     {
       "id": "drinks",
       "items": [
-        { "id": "cans", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] },
-        { "id": "energyDrink", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] },
-        { "id": "smallBottles", "kind": "group", "prices": [{ "label": "unit", "price": 12 }] },
-        { "id": "waterSoda", "kind": "group", "prices": [{ "label": "unit", "price": 10 }] }
+        { "id": "cans", "kind": "group", "image": "/images/drink-cans-menu.webp", "prices": [{ "label": "unit", "price": 10 }] },
+        { "id": "energyDrink", "kind": "group", "image": "/images/energy-drink-menu.webp", "prices": [{ "label": "unit", "price": 10 }] },
+        { "id": "smallBottles", "kind": "group", "image": "/images/small-bottles-menu.webp", "prices": [{ "label": "unit", "price": 12 }] },
+        { "id": "waterSoda", "kind": "group", "image": "/images/san-benedetto-menu.webp", "prices": [{ "label": "unit", "price": 10 }] }
       ]
     }
   ]
