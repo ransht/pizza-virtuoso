@@ -7,6 +7,7 @@ import WhatsAppIcon from './WhatsAppIcon.astro';
 import WazeIcon from './WazeIcon.astro';
 import GoogleMapsIcon from './GoogleMapsIcon.astro';
 import TikTokIcon from './TikTokIcon.astro';
+import FacebookIcon from './FacebookIcon.astro';
 import type { Language, Messages } from '../lib/i18n';
 interface Props { lang: Language; t: Messages; }
 const { lang, t } = Astro.props;
@@ -156,17 +157,22 @@ const contactCards = [
       <dl class="contact-details reveal">
         {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <WhatsAppIcon />}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
       </dl>
-      {business.tiktokUrl && (
-        <a class="tiktok-card reveal" href={business.tiktokUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.contact.tiktokAction} — TikTok`}>
-          <span class="tiktok-card-icon"><TikTokIcon /></span>
-          <span class="tiktok-card-copy">
-            <small>{t.contact.tiktokKicker}</small>
-            <strong>{t.contact.tiktokTitle}</strong>
-            <span>{t.contact.tiktokBody}</span>
-          </span>
-          <span class="tiktok-card-action">{t.contact.tiktokAction}<span aria-hidden="true">↗</span></span>
-        </a>
-      )}
+      <div class="social-cards">
+        {business.tiktokUrl && (
+          <a class="social-card social-card-tiktok reveal" href={business.tiktokUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.contact.tiktokAction} — TikTok`}>
+            <span class="social-card-icon"><TikTokIcon /></span>
+            <span class="social-card-copy"><small>{t.contact.tiktokKicker}</small><strong>{t.contact.tiktokTitle}</strong><span>{t.contact.tiktokBody}</span></span>
+            <span class="social-card-action">{t.contact.tiktokAction}<span aria-hidden="true">↗</span></span>
+          </a>
+        )}
+        {business.facebookUrl && (
+          <a class="social-card social-card-facebook reveal" href={business.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.contact.facebookAction} — Facebook`}>
+            <span class="social-card-icon"><FacebookIcon /></span>
+            <span class="social-card-copy"><small>{t.contact.facebookKicker}</small><strong>{t.contact.facebookTitle}</strong><span>{t.contact.facebookBody}</span></span>
+            <span class="social-card-action">{t.contact.facebookAction}<span aria-hidden="true">↗</span></span>
+          </a>
+        )}
+      </div>
       <div class="directions-panel reveal" id="directions">
         <div><p class="section-kicker">{t.contact.directionsKicker}</p><h3>{t.contact.directionsTitle}</h3><p>{t.contact.directionsHint}</p></div>
         <div class="directions-actions">
