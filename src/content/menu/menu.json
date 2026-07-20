@@ -4,7 +4,7 @@
     {
       "id": "pizzas",
       "items": [
-        { "id": "margherita", "kind": "pizza", "prices": [{ "label": "M", "price": 35 }, { "label": "L", "price": 49 }, { "label": "XL", "price": 67 }] },
+        { "id": "margherita", "kind": "pizza", "image": "/images/margherita-menu.webp", "prices": [{ "label": "M", "price": 35 }, { "label": "L", "price": 49 }, { "label": "XL", "price": 67 }] },
         { "id": "alfredo", "kind": "pizza", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 77 }] },
         { "id": "rose", "kind": "pizza", "prices": [{ "label": "M", "price": 40 }, { "label": "L", "price": 59 }, { "label": "XL", "price": 75 }] },
         { "id": "slice", "kind": "standard", "prices": [{ "label": "unit", "price": 12 }, { "label": "withTopping", "price": 13 }] },

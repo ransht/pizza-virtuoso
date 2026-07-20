@@ -11,7 +11,7 @@ interface Props { lang: Language; t: Messages; }
 const { lang, t } = Astro.props;
 const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
 const shareUrl = new URL(`https://wa.me/?text=${encodeURIComponent(`${t.shareText} ${new URL(`/${lang}/`, Astro.site || Astro.url).href}`)}`);
-const menuItems = t.menu.items as Record<string, { name: string; description: string }>;
+const menuItems = t.menu.items as Record<string, { name: string; description: string; imageAlt?: string }>;
 const priceLabels = t.menu.priceLabels as Record<string, string>;
 const contactCards = [
   ['address', t.contact.addressValue, business.googleMapsUrl],
@@ -104,7 +104,8 @@ const contactCards = [
             </header>
             <div class={`menu-items menu-items-${category.id}`}>
               {category.items.map((item) => (
-                <article class:list={['menu-item', `menu-item-${item.kind}`]}>
+                <article class:list={['menu-item', `menu-item-${item.kind}`, 'image' in item && item.image && 'menu-item-has-image']}>
+                  {'image' in item && item.image && <div class="menu-item-media"><img src={item.image} width="1122" height="1402" loading="lazy" decoding="async" alt={menuItems[item.id].imageAlt || menuItems[item.id].name} /></div>}
                   <div class="menu-item-copy">
                     <h4>{menuItems[item.id].name}</h4>
                     {menuItems[item.id].description && <p>{menuItems[item.id].description}</p>}

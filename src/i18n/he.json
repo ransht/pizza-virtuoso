@@ -66,7 +66,7 @@
     "currency": "₪",
     "included": "ללא תוספת תשלום",
     "items": {
-      "margherita": { "name": "פיצה מרגריטה", "description": "" },
+      "margherita": { "name": "פיצה מרגריטה", "description": "רוטב עגבניות שמוכן במקום ומוצרלה 22% שומן של גד בנדיבות.", "imageAlt": "תמונת המחשה של פיצה עם מוצרלה, פסטו, עגבניות שרי ופטריות" },
       "alfredo": { "name": "פיצה אלפרדו", "description": "" },
       "rose": { "name": "פיצה רוזה", "description": "" },
       "slice": { "name": "משולש פיצה", "description": "משולש יחיד או משולש עם תוספת." },
