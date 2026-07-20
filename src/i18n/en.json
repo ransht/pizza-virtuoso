@@ -36,7 +36,20 @@
       { "number": "03", "title": "100% Gad mozzarella. Only.", "body": "Every pizza is topped exclusively with 100% mozzarella from Gad Dairy, as generously as we'd want it on our own pizza." },
       { "number": "04", "title": "Fresh over shortcuts", "body": "Fresh mushrooms, good vegetables and carefully chosen toppings — never cheap canned substitutes." }
     ],
-    "supplier": { "label": "Exclusively 100% Gad mozzarella", "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" }
+    "supplier": { "label": "Exclusively 100% Gad mozzarella", "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" },
+    "mozzarella": {
+      "kicker": "Why mozzarella?",
+      "title": "The cheese has to work with the oven",
+      "paragraphs": [
+        "Mozzarella belongs to the pasta-filata family: its curd is heated and stretched to create an elastic, fibrous structure. That is why it can melt, stretch and come together with the sauce and dough without overpowering them. A standard yellow cheese may be excellent in a sandwich, but it behaves differently in a hot pizza oven — in flavor, oil release, browning and texture.",
+        "Mozzarellas are not all alike, either. Milk type, moisture, fat, salt, age and protein structure all influence melt, stretch and browning. We consistently use 100% Gad mozzarella only, so every pizza gets a balanced milky flavor, even coverage and the stretch a pizza should have."
+      ],
+      "storyKicker": "A short story from Italy",
+      "storyTitle": "A name born from a hand movement",
+      "story": "The word mozzarella comes from the Italian verb mozzare — to cut or separate. For generations, cheesemakers stretched warm curd and pinched off individual portions by hand. The ancient stretch that gave the cheese its name is also one of the qualities that made it pizza's natural partner.",
+      "sourceLabel": "Read the origin story from the Italian consortium",
+      "sourceUrl": "https://www.mozzarelladop.it/bufala-campana/produzione"
+    }
   },
   "process": {
     "kicker": "From dough to oven",

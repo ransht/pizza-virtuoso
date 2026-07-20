@@ -121,6 +121,16 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .principle-body { min-width: 0; }
 .supplier-lockup { width: fit-content; margin-block-start: 22px; display: flex; align-items: center; gap: 16px; padding: 9px 16px 9px 10px; border: 1px solid rgba(241,217,144,.34); border-radius: 12px; background: rgba(255,255,255,.06); color: #f1d990; font-size: .82rem; font-weight: 800; letter-spacing: .02em; }
 .supplier-lockup img { inline-size: 92px; block-size: 68px; object-fit: contain; object-position: center; padding: 7px; background: var(--white); border-radius: 8px; }
+.mozzarella-story { margin-block-start: clamp(55px, 8vw, 105px); padding-block-start: clamp(42px, 6vw, 72px); border-block-start: 1px solid rgba(255,255,255,.22); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: clamp(40px, 8vw, 110px); align-items: start; }
+.mozzarella-story .section-kicker { color: #d4b86e; }
+.mozzarella-story h3 { font-size: clamp(2rem, 4vw, 3.7rem); text-wrap: balance; }
+.mozzarella-explainer > p:not(.section-kicker) { max-width: 720px; color: rgba(255,255,255,.72); }
+.mozzarella-origin { position: relative; padding: clamp(28px, 4vw, 46px); overflow: hidden; background: #f1d990; color: var(--charcoal); }
+.mozzarella-origin > span:first-child { position: absolute; inset-inline-end: -14px; inset-block-start: -38px; color: rgba(143,42,28,.1); font-family: var(--font-display); font-size: 12rem; line-height: 1; }
+.mozzarella-origin .section-kicker { position: relative; color: var(--tomato); }
+.mozzarella-origin h3 { position: relative; margin-block-end: 18px; font-size: clamp(1.8rem, 3vw, 2.8rem); }
+.mozzarella-origin p:not(.section-kicker) { position: relative; color: rgba(36,32,27,.78); }
+.mozzarella-origin a { position: relative; display: inline-flex; align-items: center; gap: 8px; margin-block-start: 12px; color: var(--tomato); font-size: .78rem; font-weight: 800; text-underline-offset: 4px; }
 
 .process { background: var(--olive); color: var(--white); }
 .process .section-kicker { color: #f1d990; }
@@ -260,6 +270,7 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
   .section-heading .section-kicker { margin-block-end: 24px; }
   .principle { grid-template-columns: 48px 1fr; gap: 10px 18px; }
   .principle-body { grid-column: 2; }
+  .mozzarella-story { grid-template-columns: 1fr; }
   .process-heading { position: static; }
   .process-list li { min-height: 78px; grid-template-columns: 46px 1fr; }
   .menu-heading { gap: 20px; }

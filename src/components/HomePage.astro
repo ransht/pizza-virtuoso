@@ -55,6 +55,20 @@ const contactCards = [
           </article>
         ))}
       </div>
+      <aside class="mozzarella-story reveal" aria-labelledby="mozzarella-title">
+        <div class="mozzarella-explainer">
+          <p class="section-kicker">{t.principles.mozzarella.kicker}</p>
+          <h3 id="mozzarella-title">{t.principles.mozzarella.title}</h3>
+          {t.principles.mozzarella.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <div class="mozzarella-origin">
+          <span aria-hidden="true">M</span>
+          <p class="section-kicker">{t.principles.mozzarella.storyKicker}</p>
+          <h3>{t.principles.mozzarella.storyTitle}</h3>
+          <p>{t.principles.mozzarella.story}</p>
+          <a href={t.principles.mozzarella.sourceUrl} target="_blank" rel="noopener noreferrer">{t.principles.mozzarella.sourceLabel}<span aria-hidden="true">↗</span></a>
+        </div>
+      </aside>
     </div>
   </section>
 
