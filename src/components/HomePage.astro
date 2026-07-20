@@ -4,6 +4,8 @@ import menu from '../content/menu/menu.json';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
+import WazeIcon from './WazeIcon.astro';
+import GoogleMapsIcon from './GoogleMapsIcon.astro';
 import type { Language, Messages } from '../lib/i18n';
 interface Props { lang: Language; t: Messages; }
 const { lang, t } = Astro.props;
@@ -155,8 +157,8 @@ const contactCards = [
       <div class="directions-panel reveal" id="directions">
         <div><p class="section-kicker">{t.contact.directionsKicker}</p><h3>{t.contact.directionsTitle}</h3><p>{t.contact.directionsHint}</p></div>
         <div class="directions-actions">
-          <a class="button button-primary" href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}<span aria-hidden="true">↗</span></a>
-          <a class="button button-outline" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}<span aria-hidden="true">↗</span></a>
+          <a class="navigation-button navigation-button-waze" href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a>
+          <a class="navigation-button navigation-button-maps" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
         </div>
       </div>
     </div>
@@ -171,8 +173,8 @@ const contactCards = [
       <p>{t.final.body}</p>
       <div class="final-actions">
         <a class="button button-primary" href="#menu">{t.final.menu}</a>
-        <a class="button button-ghost" href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}</a>
-        <a class="button button-ghost" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}</a>
+        <a class="navigation-button navigation-button-dark" href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a>
+        <a class="navigation-button navigation-button-dark" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
         {orderUrl ? <a class="button button-ghost" href={orderUrl}><WhatsAppIcon />{t.final.order}</a> : <span class="button button-ghost is-disabled">{t.final.orderSoon}</span>}
       </div>
     </div>
@@ -191,7 +193,7 @@ const contactCards = [
   <a href="#menu"><span aria-hidden="true">☰</span>{t.mobile.menu}</a>
   <details class="mobile-directions">
     <summary><span aria-hidden="true">⌁</span>{t.mobile.navigate}</summary>
-    <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer">{t.contact.waze}</a><a href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.googleMaps}</a></div>
+    <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a><a href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a></div>
   </details>
   {business.telephone ? <a href={`tel:${business.telephone}`}><span aria-hidden="true">◡</span>{t.mobile.call}</a> : <span aria-disabled="true"><span aria-hidden="true">◡</span>{t.mobile.soon}</span>}
   {orderUrl ? <a class="mobile-order" href={orderUrl}><WhatsAppIcon />{t.mobile.order}</a> : <span class="mobile-order" aria-disabled="true"><span aria-hidden="true">↗</span>{t.mobile.soon}</span>}
