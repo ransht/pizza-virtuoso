@@ -1,13 +1,14 @@
 # Pizza Virtuoso Static Website
 
-Premium Hebrew RTL marketing website for Pizza Virtuoso in Rishon LeZion. It is a static, SEO-first site built with semantic HTML, modular CSS, and vanilla JavaScript ES modules. There is no cart, checkout, backend, database, or required build process.
+Premium Hebrew RTL ordering website for Pizza Virtuoso in Rishon LeZion. It is a static, SEO-first site built with semantic HTML, modular CSS, and vanilla JavaScript ES modules. The menu is rendered from JSON and the persistent cart prepares a structured WhatsApp order; there is no backend, database, or required build process.
 
 ## Structure
 
 - `index.html` - primary Hebrew SEO page with crawlable content.
 - `404.html`, `robots.txt`, `sitemap.xml`, `site.webmanifest` - deployment support.
 - `assets/css/` - reset, tokens, base, layout, components, animations, utilities, print.
-- `assets/js/` - configuration, navigation, menu navigation, animation, analytics, accessibility modules.
+- `assets/data/menu.json` - menu categories, products, sizes, toppings, prices, and product imagery.
+- `assets/js/` - configuration, JSON menu rendering, persistent cart, navigation, animation, analytics, and accessibility modules.
 - `assets/images/` - local logo, hero, menu, gallery, and placeholder assets.
 - `locales/` - future multilingual preparation only; the live page does not depend on JSON.
 
@@ -23,7 +24,7 @@ Then open `http://localhost:8080`.
 
 ## Deployment
 
-Upload the `pizza-virtuoso/` folder to GitHub Pages, Cloudflare Pages, Netlify, Vercel static hosting, or any regular web server. The current canonical URL is configured for `https://ransht.github.io/pizza-virtuoso/`.
+The site is published through GitHub Pages with the custom domain `https://pizzavirtuoso.co.il/`.
 
 ## Updating Business Data
 
@@ -33,7 +34,7 @@ Google Analytics 4 is supported through `googleAnalyticsMeasurementId` in `asset
 
 ## Menu Prices
 
-Edit the menu cards in `index.html`. Keep descriptions natural and avoid inventing offers, fake urgency, ratings, or delivery areas.
+Edit `assets/data/menu.json`. Keep descriptions natural and avoid inventing offers, fake urgency, ratings, or delivery areas.
 
 ## Images
 

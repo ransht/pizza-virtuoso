@@ -57,7 +57,20 @@ function createVariantButton(category, item, variant) {
 
 function createPizzaCard(category, item) {
   const card = createElement("article", "menu-product menu-product--pizza");
-  const copy = document.createElement("div");
+
+  if (item.image) {
+    const media = createElement("div", "menu-product__media");
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.width = 720;
+    image.height = 405;
+    image.loading = "lazy";
+    image.alt = item.imageAlt || item.name;
+    media.append(image);
+    card.append(media);
+  }
+
+  const copy = createElement("div", "menu-product__copy");
   const title = createElement("h4", "", item.name);
   copy.append(title);
 
@@ -117,7 +130,7 @@ function renderCategory(category, menu) {
   section.id = category.id;
   section.setAttribute("aria-labelledby", `${category.id}-title`);
 
-  const title = createElement("h3", "", `${category.emoji ? `${category.emoji} ` : ""}${category.title}`);
+  const title = createElement("h3", "", category.title);
   title.id = `${category.id}-title`;
   section.append(title);
 

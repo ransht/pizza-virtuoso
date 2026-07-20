@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ransht.github.io/pizza-virtuoso/sitemap.xml
+Sitemap: https://pizzavirtuoso.co.il/sitemap.xml

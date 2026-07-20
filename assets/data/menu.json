@@ -73,6 +73,8 @@
           "name": "פיצה רגילה",
           "description": "רוטב עגבניות, גבינת גד ובצק טרי.",
           "type": "pizza",
+          "image": "assets/images/gallery/full-pizza.webp",
+          "imageAlt": "פיצה רגילה חמה עם גבינת גד",
           "variants": [
             { "id": "regular-pizza-m", "label": "M", "price": 35, "size": "M" },
             { "id": "regular-pizza-l", "label": "L", "price": 49, "size": "L" },
@@ -84,6 +86,8 @@
           "name": "פיצה אלפרדו",
           "description": "בסיס אלפרדו קרמי, גבינה טובה ובצק טרי.",
           "type": "pizza",
+          "image": "assets/images/gallery/pizza-cheese-closeup.webp",
+          "imageAlt": "פיצה אלפרדו חמה עם גבינה נמתחת",
           "variants": [
             { "id": "alfredo-pizza-m", "label": "M", "price": 40, "size": "M" },
             { "id": "alfredo-pizza-l", "label": "L", "price": 59, "size": "L" },
@@ -95,6 +99,8 @@
           "name": "פיצה רוזה",
           "description": "רוטב רוזה עדין, גבינת גד ובצק שנפתח במקום.",
           "type": "pizza",
+          "image": "assets/images/gallery/pizza-from-oven.webp",
+          "imageAlt": "פיצה רוזה חמה ישר מהתנור",
           "variants": [
             { "id": "rosa-pizza-m", "label": "M", "price": 40, "size": "M" },
             { "id": "rosa-pizza-l", "label": "L", "price": 59, "size": "L" },
