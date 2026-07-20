@@ -67,6 +67,7 @@
     "included": "No extra charge",
     "items": {
       "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative Margherita pizza with mozzarella, green olives and cherry tomatoes" },
+      "pesto": { "name": "Pesto Pizza", "description": "Pesto sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative Pesto pizza with mozzarella, cherry tomatoes and mushrooms" },
       "alfredo": { "name": "Alfredo Pizza", "description": "" },
       "rose": { "name": "Rosé Pizza", "description": "" },
       "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." },
