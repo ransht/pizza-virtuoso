@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Pizza Virtuoso | Fresh Pizza in Rishon LeZion",
-    "description": "Freshly baked pizza with 24-hour fermented dough, house-made sauce, quality cheese and carefully selected toppings. Explore the Pizza Virtuoso menu.",
+    "description": "Freshly baked pizza with 24-hour fermented dough, house-made sauce, exclusively 100% Gad mozzarella and carefully selected toppings. Explore the Pizza Virtuoso menu.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
@@ -10,7 +10,7 @@
     "eyebrow": "Under new management",
     "brand": "Pizza Virtuoso",
     "title": "Pizza, done properly.",
-    "body": "24-hour fermented dough, sauce made in-house, generous quality cheese and fresh toppings chosen without shortcuts.",
+    "body": "24-hour fermented dough, sauce made in-house, exclusively 100% Gad mozzarella and fresh toppings chosen without shortcuts.",
     "primary": "Explore the menu",
     "secondary": "How we make it",
     "trust": "Baked here • Served hot • No shortcuts"
@@ -21,7 +21,7 @@
     "lead": "Great pizza begins long before it reaches the oven.",
     "paragraphs": [
       "It starts with the ingredients, the time we give the dough and attention to every small detail. Our dough ferments for 24 hours for balanced texture, airy edges and deeper flavor.",
-      "We make our tomato sauce in-house and cover every pizza with generous, quality cheese — because cheese is never where we choose to cut back.",
+      "We make our tomato sauce in-house and top every pizza exclusively with 100% Gad mozzarella, generously — because cheese is never where we choose to cut back.",
       "We take the same approach to toppings. Order mushrooms and you get fresh mushrooms, not something from a can. Every order is prepared carefully and baked on the spot.",
       "We work cleanly, stay organized, handle ingredients with care and treat people with respect. Our goal is simple: every pizza leaving our kitchen should be one we'd be proud to serve our own family."
     ],
@@ -33,15 +33,15 @@
     "items": [
       { "number": "01", "title": "24 hours of patience", "body": "We give the dough time to develop flavor, texture and a beautifully airy crust." },
       { "number": "02", "title": "Sauce made here", "body": "Our pizza sauce is made in-house with a balanced flavor that complements the dough and cheese." },
-      { "number": "03", "title": "Cheese, generously", "body": "We use quality cheese and add it as generously as we'd want it on our own pizza." },
+      { "number": "03", "title": "100% Gad mozzarella. Only.", "body": "Every pizza is topped exclusively with 100% mozzarella from Gad Dairy, as generously as we'd want it on our own pizza." },
       { "number": "04", "title": "Fresh over shortcuts", "body": "Fresh mushrooms, good vegetables and carefully chosen toppings — never cheap canned substitutes." }
     ],
-    "supplier": { "label": "Gad Dairy · Our cheese supplier", "alt": "Gad Dairy logo, Pizza Virtuoso's cheese supplier" }
+    "supplier": { "label": "Exclusively 100% Gad mozzarella", "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" }
   },
   "process": {
     "kicker": "From dough to oven",
     "title": "Simple, precise, in the right order",
-    "steps": ["Make the dough", "Let it develop for 24 hours", "Open each base to order", "Spread our house-made sauce", "Add cheese and toppings generously", "Bake and serve hot"]
+    "steps": ["Make the dough", "Let it develop for 24 hours", "Open each base to order", "Spread our house-made sauce", "Add 100% Gad mozzarella and toppings generously", "Bake and serve hot"]
   },
   "menu": {
     "kicker": "The menu",
