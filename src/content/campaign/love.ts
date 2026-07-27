@@ -5,6 +5,7 @@ export type Promotion = {
   size: 'MEDIUM' | 'LARGE';
   price: number;
   regularPrice: number;
+  pizzas: number;
   copy: string[];
   popular?: boolean;
 };
@@ -17,6 +18,7 @@ export const lovePromotions: Promotion[] = [
     size: 'MEDIUM',
     regularPrice: 35,
     price: 29,
+    pizzas: 1,
     copy: ['יש דייטים שמתחילים בקטן', 'את ההמשך נשאיר לכם'],
   },
   {
@@ -26,6 +28,7 @@ export const lovePromotions: Promotion[] = [
     size: 'LARGE',
     regularPrice: 49,
     price: 39,
+    pizzas: 1,
     copy: ['גדול יותר', 'חם יותר', 'והשאר כבר ביניכם'],
     popular: true,
   },
@@ -36,6 +39,7 @@ export const lovePromotions: Promotion[] = [
     size: 'LARGE',
     regularPrice: 118,
     price: 89,
+    pizzas: 2,
     copy: ['שני לבבות', 'כי על המשולש האחרון לא בונים זוגיות'],
   },
 ];

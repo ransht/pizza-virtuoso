@@ -1,10 +1,11 @@
 ---
 import business from '../content/business/config.json';
 import { lovePromotions } from '../content/campaign/love';
+import { campaignToppings } from '../content/campaign/toppings';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 
 const phoneHref = `tel:${business.telephone}`;
-const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('היי פיצה וירטואוז ❤️ אני רוצה לשמוע על מבצעי יום האהבה')}`;
+const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('היי פיצה וירטואוז, אני רוצה לשמוע על מבצעי יום האהבה')}`;
 ---
 <main class="love-page" id="main">
   <section class="love-hero" aria-labelledby="love-title">
@@ -27,7 +28,7 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
           <a class="love-button love-button-primary" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-track="whatsapp_hero_click"><WhatsAppIcon />להזמנה ב־WhatsApp</a>
           <a class="love-button love-button-secondary" href={phoneHref} data-track="phone_call_click">התקשרו <bdi>03-9504888</bdi></a>
         </div>
-        <p class="terms-line">איסוף עצמי או משלוח בתשלום · דמי המשלוח יאושרו ב־WhatsApp · בכפוף למלאי</p>
+        <p class="terms-line">איסוף עצמי או משלוח ב־25 ₪ · בכפוף למלאי</p>
       </div>
 
       <div class="pizza-stage">
@@ -51,7 +52,7 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
       <header class="offers-heading">
         <p class="section-label">שלושה דייטים. לב אחד רעב.</p>
         <h2 id="offers-title">תבחרו כמה<br /><em>אתם בעניין</em></h2>
-        <p>כל הפיצות במבצע הן מרגריטה בצורת לב ונאפות חם לפי ההזמנה, לאיסוף עצמי או למשלוח בתשלום.</p>
+        <p>כל הפיצות במבצע הן מרגריטה בצורת לב ונאפות חם לפי ההזמנה, לאיסוף עצמי או למשלוח ב־25 ₪.</p>
       </header>
 
       <div class="offer-editorial">
@@ -105,7 +106,7 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
     <div class="campaign-shell faq-grid">
       <header><p class="section-label">רגע לפני שמזמינים</p><h2 id="faq-title">שאלות<br /><em>טובות</em></h2></header>
       <div class="faq-list">
-        <details><summary>האם אפשר לקבל משלוח?<span aria-hidden="true">+</span></summary><p>כן. אפשר להזמין משלוח בתשלום; המחיר והזמינות יאושרו מולנו ב־WhatsApp.</p></details>
+        <details><summary>האם אפשר לקבל משלוח?<span aria-hidden="true">+</span></summary><p>כן. אפשר להזמין משלוח בתוספת 25 ₪.</p></details>
         <details><summary>אפשר להזמין מראש?<span aria-hidden="true">+</span></summary><p>כן, ואפילו מומלץ.</p></details>
         <details><summary>אפשר להוסיף תוספות?<span aria-hidden="true">+</span></summary><p>כן, לפי התפריט ומחירי התוספות הרגילים.</p></details>
         <details><summary>עד מתי המבצע?<span aria-hidden="true">+</span></summary><p>לזמן מוגבל ובכפוף למלאי.</p></details>
@@ -117,7 +118,7 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
     <div class="campaign-shell footer-love-grid">
       <div><p class="footer-love-brand">פיצה וירטואוז</p><p>אהבה ממבט ראשון. פיצה מהביס הראשון.</p></div>
       <address>ז׳בוטינסקי 16, ראשון לציון<br /><a href={phoneHref}><bdi>03-9504888</bdi></a><br /><a href="https://wa.me/972542537257" target="_blank" rel="noopener noreferrer">WhatsApp: <bdi>054-2537257</bdi></a></address>
-      <p class="footer-fine">איסוף עצמי או משלוח בתשלום<br />דמי המשלוח יאושרו ב־WhatsApp · בכפוף למלאי</p>
+      <p class="footer-fine">איסוף עצמי או משלוח בתוספת 25 ₪<br />בכפוף למלאי</p>
     </div>
   </footer>
 </main>
@@ -131,15 +132,68 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
   <div class="cart-panel">
     <header class="cart-header">
       <div><p>ההזמנה שלכם</p><h2 id="cart-title">עגלת האהבה</h2></div>
-      <button type="button" data-cart-close aria-label="סגירת העגלה">×</button>
+      <div class="cart-header-actions">
+        <button class="clear-cart-header" type="button" data-clear-cart>ריקון העגלה</button>
+        <button type="button" data-cart-close aria-label="סגירת העגלה">×</button>
+      </div>
     </header>
     <div class="cart-empty" data-cart-empty tabindex="-1"><strong>העגלה עדיין ריקה.</strong><span>גם הלב?</span></div>
     <ul class="cart-list" data-cart-list></ul>
+    <fieldset class="fulfillment-picker">
+      <legend>איך תרצו לקבל?</legend>
+      <div>
+        <label><input type="radio" name="fulfillment" value="pickup" checked /><span><b>איסוף עצמי</b><small>ללא תשלום נוסף</small></span></label>
+        <label><input type="radio" name="fulfillment" value="delivery" /><span><b>משלוח</b><small>+25 ₪</small></span></label>
+      </div>
+    </fieldset>
+    <label class="delivery-address" data-delivery-address hidden>כתובת למשלוח
+      <input type="text" data-address maxlength="180" autocomplete="street-address" placeholder="רחוב, מספר, עיר וקומה" />
+      <span data-address-error hidden>נא להזין כתובת למשלוח</span>
+    </label>
     <label class="cart-notes">הערות להזמנה <span>(לא חובה)</span><textarea data-cart-notes maxlength="500" rows="3" placeholder="תוספות, רגישויות או כל מה שכדאי שנדע"></textarea></label>
-    <div class="cart-summary"><span>סה״כ פריטים · לא כולל משלוח</span><strong data-cart-total>0 ₪</strong></div>
+    <dl class="cart-totals">
+      <div><dt>פריטים ותוספות</dt><dd data-items-subtotal>0 ₪</dd></div>
+      <div data-delivery-row hidden><dt>משלוח</dt><dd>25 ₪</dd></div>
+      <div class="cart-summary"><dt>סה״כ</dt><dd data-cart-total>0 ₪</dd></div>
+    </dl>
     <button class="checkout-button" type="button" data-checkout><WhatsAppIcon />שליחת ההזמנה ב־WhatsApp</button>
-    <button class="clear-cart" type="button" data-clear-cart>ניקוי העגלה</button>
   </div>
+</dialog>
+
+<dialog class="customizer-dialog" data-customizer-dialog aria-labelledby="customizer-title">
+  <form class="customizer-panel" method="dialog">
+    <header class="customizer-header">
+      <div><p>מרכיבים בדיוק כמו שאוהבים</p><h2 id="customizer-title" data-customizer-title>בחירת תוספות</h2><span data-customizer-product></span></div>
+      <button type="button" data-customizer-close aria-label="סגירת בחירת התוספות">×</button>
+    </header>
+    <p class="customizer-multi" data-customizer-multi hidden>הבחירה תחול על שתי הפיצות במבצע.</p>
+    <div class="toppings-groups">
+      {(['regular', 'special'] as const).map((kind) => (
+        <fieldset class="topping-group">
+          <legend>{kind === 'regular' ? 'תוספות רגילות' : 'תוספות מיוחדות'} <small data-price-label={kind}></small></legend>
+          {campaignToppings.filter((topping) => topping.kind === kind).map((topping) => (
+            <div class="topping-option" data-topping-option={topping.id}>
+              <label class="topping-check">
+                <input type="checkbox" value={topping.id} data-topping-check />
+                <span class="check-mark" aria-hidden="true">✓</span>
+                <b>{topping.name}</b>
+                <small data-topping-price={topping.id}></small>
+              </label>
+              <div class="placement-picker" data-placement-picker={topping.id} hidden aria-label={`מיקום ${topping.name}`}>
+                <button type="button" data-placement="whole" aria-pressed="true"><i class="pizza-map whole" aria-hidden="true"></i><span>מגש שלם</span></button>
+                <button type="button" data-placement="right" aria-pressed="false"><i class="pizza-map right" aria-hidden="true"></i><span>חצי ימין</span></button>
+                <button type="button" data-placement="left" aria-pressed="false"><i class="pizza-map left" aria-hidden="true"></i><span>חצי שמאל</span></button>
+              </div>
+            </div>
+          ))}
+        </fieldset>
+      ))}
+    </div>
+    <footer class="customizer-footer">
+      <div><span>סה״כ למבצע</span><strong data-customizer-total>0 ₪</strong></div>
+      <button type="button" data-confirm-customization>הוספה לעגלה</button>
+    </footer>
+  </form>
 </dialog>
 
 <nav class="campaign-mobile-bar" aria-label="פעולות מהירות">
@@ -151,6 +205,7 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
 
 <script>
   import { lovePromotions } from '../content/campaign/love';
+  import { campaignToppings } from '../content/campaign/toppings';
   import { initCampaignCart } from '../lib/campaign-cart';
-  initCampaignCart(lovePromotions);
+  initCampaignCart(lovePromotions, campaignToppings);
 </script>
