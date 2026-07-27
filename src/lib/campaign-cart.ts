@@ -110,7 +110,7 @@ export function buildWhatsAppCheckoutUrl(promotions: Promotion[], state: CartSta
   const message = [
     'היי פיצה וירטואוז',
     '',
-    'אני רוצה להזמין ממבצעי יום האהבה:',
+    'אני רוצה להזמין ממבצעי ט״ו באב:',
     '',
     ...lines,
     '',
