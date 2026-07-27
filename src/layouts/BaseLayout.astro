@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import business from '../content/business/config.json';
+import FacebookPixel from '../components/FacebookPixel.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import { direction, locale, type Language, type Messages } from '../lib/i18n';
 
@@ -9,8 +10,9 @@ interface Props {
   t: Messages;
   meta?: { title: string; description: string; image: string; imageAlt: string };
   canonicalPath?: string;
+  facebookPixelId?: string;
 }
-const { lang, t, meta, canonicalPath } = Astro.props;
+const { lang, t, meta, canonicalPath, facebookPixelId } = Astro.props;
 const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
 const canonical = new URL(canonicalPath || `/${lang}/`, origin);
 const metaTitle = meta?.title || t.meta.title;
@@ -77,5 +79,6 @@ if (orderUrl) jsonLd.potentialAction = { '@type': 'OrderAction', target: orderUr
   <body>
     <slot />
     <GoogleAnalytics t={t.analytics} />
+    {facebookPixelId && <FacebookPixel pixelId={facebookPixelId} />}
   </body>
 </html>

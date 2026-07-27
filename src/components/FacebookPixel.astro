@@ -1,0 +1,43 @@
+---
+interface Props {
+  pixelId: string;
+}
+
+const { pixelId } = Astro.props;
+---
+
+<script is:inline define:vars={{ pixelId }}>
+  (() => {
+    const storageKey = 'pizza-virtuoso-analytics-consent';
+    const consentPanel = document.querySelector('[data-analytics-consent]');
+    const consentCopy = consentPanel?.querySelector('.analytics-consent-copy p');
+    if (consentCopy) {
+      consentCopy.textContent = 'בהסכמתכם, נשתמש ב־Google Analytics וב־Meta Pixel כדי להבין כיצד משתמשים באתר ולשפר את הפרסום. אפשר לסרב ולהמשיך להשתמש באתר כרגיל.';
+    }
+
+    const loadPixel = () => {
+      if (document.querySelector(`script[data-facebook-pixel="${pixelId}"]`)) return;
+      !function(f,b,e,v,n,t,s) {
+        if (f.fbq) return;
+        n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', pixelId);
+      window.fbq('track', 'PageView');
+      const script = document.querySelector('script[src="https://connect.facebook.net/en_US/fbevents.js"]');
+      if (script) script.dataset.facebookPixel = pixelId;
+    };
+
+    if (localStorage.getItem(storageKey) === 'granted') loadPixel();
+    document.querySelector('[data-analytics-accept]')?.addEventListener('click', loadPixel);
+  })();
+</script>
