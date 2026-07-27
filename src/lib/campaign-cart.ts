@@ -4,6 +4,7 @@ import type { CampaignTopping, ToppingPlacement } from '../content/campaign/topp
 type SelectedTopping = {
   id: string;
   name: string;
+  pizzaIndex: number;
   placement: ToppingPlacement;
   unitPrice: number;
 };
@@ -19,7 +20,8 @@ export type CartState = {
   address: string;
 };
 
-const STORAGE_KEY = 'pizza-virtuoso-love-cart-v2';
+const STORAGE_KEY = 'pizza-virtuoso-love-cart-v3';
+const PREVIOUS_KEY = 'pizza-virtuoso-love-cart-v2';
 const LEGACY_KEY = 'pizza-virtuoso-love-cart-v1';
 const DELIVERY_PRICE = 25;
 const placementLabels: Record<ToppingPlacement, string> = {
@@ -30,10 +32,15 @@ const placementLabels: Record<ToppingPlacement, string> = {
 
 function readState(promotions: Promotion[]): CartState {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem(PREVIOUS_KEY) || 'null');
     if (saved?.lines && Array.isArray(saved.lines)) {
       return {
-        lines: saved.lines.filter((line: CartLine) => promotions.some((promotion) => promotion.id === line.promotionId) && line.quantity > 0),
+        lines: saved.lines
+          .filter((line: CartLine) => promotions.some((promotion) => promotion.id === line.promotionId) && line.quantity > 0)
+          .map((line: CartLine) => ({
+            ...line,
+            toppings: (line.toppings || []).map((topping) => ({ ...topping, pizzaIndex: topping.pizzaIndex || 1 })),
+          })),
         fulfillment: saved.fulfillment === 'delivery' ? 'delivery' : 'pickup',
         address: typeof saved.address === 'string' ? saved.address : '',
       };
@@ -55,7 +62,7 @@ function track(event: string, parameters: Record<string, string | number> = {}) 
 }
 
 function lineUnitTotal(line: CartLine, promotion: Promotion) {
-  const toppingsTotal = line.toppings.reduce((sum, topping) => sum + topping.unitPrice * promotion.pizzas, 0);
+  const toppingsTotal = line.toppings.reduce((sum, topping) => sum + topping.unitPrice, 0);
   return promotion.price + toppingsTotal;
 }
 
@@ -80,9 +87,17 @@ export function buildWhatsAppCheckoutUrl(promotions: Promotion[], state: CartSta
     const promotion = promotionMap.get(line.promotionId);
     if (!promotion || line.quantity < 1) return [];
     const unitTotal = lineUnitTotal(line, promotion);
-    const toppingText = line.toppings.length
-      ? `\n  תוספות: ${line.toppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]})`).join(', ')}`
-      : '\n  ללא תוספות';
+    const toppingText = promotion.pizzas > 1
+      ? Array.from({ length: promotion.pizzas }, (_, index) => {
+          const pizzaToppings = line.toppings.filter((topping) => topping.pizzaIndex === index + 1);
+          const description = pizzaToppings.length
+            ? pizzaToppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]})`).join(', ')
+            : 'ללא תוספות';
+          return `\n  מגש ${index + 1}: ${description}`;
+        }).join('')
+      : line.toppings.length
+        ? `\n  תוספות: ${line.toppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]})`).join(', ')}`
+        : '\n  ללא תוספות';
     return [`• ${promotion.name} — ${promotion.product}${toppingText}\n  ${line.quantity} × ${unitTotal} ₪ = ${unitTotal * line.quantity} ₪`];
   });
   const cleanNotes = notes.replace(/[<>]/g, '').trim();
@@ -132,6 +147,7 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
   let state = readState(promotions);
   let lastTrigger: HTMLElement | null = null;
   let activePromotion: Promotion | null = null;
+  let activePizzaIndex = 1;
   let selectedToppings = new Map<string, ToppingPlacement>();
 
   if (!cartDialog || !customizerDialog || !list || !empty || !notes || !address || !addressWrap) return;
@@ -139,6 +155,7 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
   const persist = () => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.removeItem(PREVIOUS_KEY);
       localStorage.removeItem(LEGACY_KEY);
     } catch {}
   };
@@ -192,7 +209,7 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
       item.className = `cart-line${line.key === enteringKey ? ' is-entering' : ''}`;
       item.dataset.lineKey = line.key;
       const toppingsMarkup = line.toppings.length
-        ? `<ul>${line.toppings.map((topping) => `<li>${topping.name} · ${placementLabels[topping.placement]}</li>`).join('')}</ul>`
+        ? `<ul>${line.toppings.map((topping) => `<li>${promotion.pizzas > 1 ? `מגש ${topping.pizzaIndex} · ` : ''}${topping.name} · ${placementLabels[topping.placement]}</li>`).join('')}</ul>`
         : '<small>ללא תוספות</small>';
       item.innerHTML = `
         <div class="cart-line-copy">
@@ -232,11 +249,14 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
 
   const customizerTotal = () => {
     if (!activePromotion) return 0;
-    return activePromotion.price + [...selectedToppings.keys()].reduce((sum, id) => {
+    return activePromotion.price + [...selectedToppings.keys()].reduce((sum, selectionKey) => {
+      const id = selectionKey.split(':').slice(1).join(':');
       const topping = toppingMap.get(id);
-      return sum + (topping?.prices[activePromotion!.size] || 0) * activePromotion!.pizzas;
+      return sum + (topping?.prices[activePromotion!.size] || 0);
     }, 0);
   };
+
+  const selectionKey = (toppingId: string, pizzaIndex = activePizzaIndex) => `${pizzaIndex}:${toppingId}`;
 
   const updateCustomizer = () => {
     if (!activePromotion) return;
@@ -245,31 +265,42 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
     toppings.forEach((topping) => {
       const checkbox = customizerDialog.querySelector<HTMLInputElement>(`[data-topping-check][value="${topping.id}"]`);
       const picker = customizerDialog.querySelector<HTMLElement>(`[data-placement-picker="${topping.id}"]`);
-      const price = topping.prices[activePromotion!.size] * activePromotion!.pizzas;
+      const key = selectionKey(topping.id);
+      const price = topping.prices[activePromotion!.size];
       const priceNode = customizerDialog.querySelector<HTMLElement>(`[data-topping-price="${topping.id}"]`);
       if (priceNode) priceNode.textContent = `+${price} ₪`;
-      if (checkbox) checkbox.checked = selectedToppings.has(topping.id);
-      if (picker) picker.hidden = !selectedToppings.has(topping.id);
+      if (checkbox) checkbox.checked = selectedToppings.has(key);
+      if (picker) picker.hidden = !selectedToppings.has(key);
       picker?.querySelectorAll<HTMLButtonElement>('[data-placement]').forEach((button) => {
-        button.setAttribute('aria-pressed', String((selectedToppings.get(topping.id) || 'whole') === button.dataset.placement));
+        button.setAttribute('aria-pressed', String((selectedToppings.get(key) || 'whole') === button.dataset.placement));
       });
+    });
+    customizerDialog.querySelectorAll<HTMLButtonElement>('[data-pizza-index]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.pizzaIndex) === activePizzaIndex));
+    });
+    customizerDialog.querySelectorAll<HTMLElement>('[data-pizza-summary]').forEach((summary) => {
+      const pizzaIndex = Number(summary.dataset.pizzaSummary);
+      const count = [...selectedToppings.keys()].filter((key) => key.startsWith(`${pizzaIndex}:`)).length;
+      summary.textContent =
+        count === 0 ? 'ללא תוספות' : count === 1 ? 'תוספת אחת' : `${count} תוספות`;
     });
   };
 
   const openCustomizer = (promotion: Promotion, trigger: HTMLElement) => {
     activePromotion = promotion;
+    activePizzaIndex = 1;
     lastTrigger = trigger;
     selectedToppings = new Map();
     const title = customizerDialog.querySelector<HTMLElement>('[data-customizer-title]');
     const product = customizerDialog.querySelector<HTMLElement>('[data-customizer-product]');
-    const multi = customizerDialog.querySelector<HTMLElement>('[data-customizer-multi]');
+    const pizzaSelector = customizerDialog.querySelector<HTMLElement>('[data-pizza-selector]');
     if (title) title.textContent = promotion.name;
     if (product) product.textContent = promotion.product;
-    if (multi) multi.hidden = promotion.pizzas < 2;
+    if (pizzaSelector) pizzaSelector.hidden = promotion.pizzas < 2;
     customizerDialog.querySelectorAll<HTMLElement>('[data-price-label]').forEach((label) => {
       const first = toppings.find((topping) => topping.kind === label.dataset.priceLabel);
       const price = first?.prices[promotion.size] || 0;
-      label.textContent = promotion.pizzas > 1 ? `· ${price} ₪ לכל פיצה` : `· ${price} ₪`;
+      label.textContent = promotion.pizzas > 1 ? `· ${price} ₪ למגש` : `· ${price} ₪`;
     });
     updateCustomizer();
     customizerDialog.showModal();
@@ -294,8 +325,9 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
 
   customizerDialog.querySelectorAll<HTMLInputElement>('[data-topping-check]').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
-      if (checkbox.checked) selectedToppings.set(checkbox.value, 'whole');
-      else selectedToppings.delete(checkbox.value);
+      const key = selectionKey(checkbox.value);
+      if (checkbox.checked) selectedToppings.set(key, 'whole');
+      else selectedToppings.delete(key);
       updateCustomizer();
     });
   });
@@ -306,10 +338,19 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
       const option = placementButton.closest<HTMLElement>('[data-topping-option]');
       const id = option?.dataset.toppingOption;
       const placement = placementButton.dataset.placement as ToppingPlacement;
-      if (id && selectedToppings.has(id)) {
-        selectedToppings.set(id, placement);
+      const key = id ? selectionKey(id) : '';
+      if (id && selectedToppings.has(key)) {
+        selectedToppings.set(key, placement);
         updateCustomizer();
       }
+      return;
+    }
+    const pizzaButton = (event.target as Element).closest<HTMLButtonElement>('[data-pizza-index]');
+    if (pizzaButton) {
+      activePizzaIndex = Number(pizzaButton.dataset.pizzaIndex) || 1;
+      customizerDialog.querySelector<HTMLElement>('.toppings-groups')?.classList.remove('is-switching');
+      requestAnimationFrame(() => customizerDialog.querySelector<HTMLElement>('.toppings-groups')?.classList.add('is-switching'));
+      updateCustomizer();
       return;
     }
     if (event.target === customizerDialog) closeCustomizer();
@@ -323,11 +364,13 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
 
   customizerDialog.querySelector<HTMLButtonElement>('[data-confirm-customization]')?.addEventListener('click', (event) => {
     if (!activePromotion) return;
-    const configuredToppings = [...selectedToppings.entries()].map(([id, placement]) => {
+    const configuredToppings = [...selectedToppings.entries()].map(([selection, placement]) => {
+      const [pizzaIndexText, ...idParts] = selection.split(':');
+      const id = idParts.join(':');
       const topping = toppingMap.get(id)!;
-      return { id, name: topping.name, placement, unitPrice: topping.prices[activePromotion!.size] };
-    }).sort((a, b) => a.id.localeCompare(b.id));
-    const signature = configuredToppings.map((topping) => `${topping.id}:${topping.placement}`).join('|');
+      return { id, name: topping.name, pizzaIndex: Number(pizzaIndexText), placement, unitPrice: topping.prices[activePromotion!.size] };
+    }).sort((a, b) => a.pizzaIndex - b.pizzaIndex || a.id.localeCompare(b.id));
+    const signature = configuredToppings.map((topping) => `${topping.pizzaIndex}:${topping.id}:${topping.placement}`).join('|');
     const key = `${activePromotion.id}::${signature}`;
     const existing = state.lines.find((line) => line.key === key);
     if (existing) existing.quantity += 1;

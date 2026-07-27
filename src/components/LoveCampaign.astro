@@ -166,7 +166,13 @@ const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('הי
       <div><p>מרכיבים בדיוק כמו שאוהבים</p><h2 id="customizer-title" data-customizer-title>בחירת תוספות</h2><span data-customizer-product></span></div>
       <button type="button" data-customizer-close aria-label="סגירת בחירת התוספות">×</button>
     </header>
-    <p class="customizer-multi" data-customizer-multi hidden>הבחירה תחול על שתי הפיצות במבצע.</p>
+    <div class="pizza-customizer-nav" data-pizza-selector hidden>
+      <p>התאימו כל מגש בנפרד</p>
+      <div aria-label="בחירת מגש להתאמה">
+        <button type="button" data-pizza-index="1" aria-pressed="true"><b>מגש 1</b><small data-pizza-summary="1">ללא תוספות</small></button>
+        <button type="button" data-pizza-index="2" aria-pressed="false"><b>מגש 2</b><small data-pizza-summary="2">ללא תוספות</small></button>
+      </div>
+    </div>
     <div class="toppings-groups">
       {(['regular', 'special'] as const).map((kind) => (
         <fieldset class="topping-group">
