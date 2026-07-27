@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LoveCampaign from '../../components/LoveCampaign.astro';
+import { dictionaries } from '../../lib/i18n';
+
+const lang = 'he';
+const t = dictionaries.he;
+const campaignMeta = {
+  title: 'יום האהבה בפיצה וירטואוז | פיצות לב ומבצעים זוגיים',
+  description: 'חוגגים ט״ו באב עם פיצות לב ב־MEDIUM וב־LARGE, מבצעים זוגיים והזמנה מהירה ב־WhatsApp.',
+  image: '/images/og-love-campaign.jpg',
+  imageAlt: 'פיצת מרגריטה בצורת לב של פיצה וירטואוז',
+};
+---
+<BaseLayout {lang} {t} meta={campaignMeta} canonicalPath="/love/">
+  <LoveCampaign />
+</BaseLayout>

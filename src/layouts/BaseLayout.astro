@@ -8,10 +8,11 @@ interface Props {
   lang: Language;
   t: Messages;
   meta?: { title: string; description: string; image: string; imageAlt: string };
+  canonicalPath?: string;
 }
-const { lang, t, meta } = Astro.props;
+const { lang, t, meta, canonicalPath } = Astro.props;
 const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
-const canonical = new URL(`/${lang}/`, origin);
+const canonical = new URL(canonicalPath || `/${lang}/`, origin);
 const metaTitle = meta?.title || t.meta.title;
 const metaDescription = meta?.description || t.meta.description;
 const metaImage = meta?.image || '/images/og-pizza.jpg';
