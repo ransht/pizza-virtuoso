@@ -22,7 +22,7 @@ export const lovePromotions: Promotion[] = [
   {
     id: 'big-heart',
     name: 'הלב הגדול',
-    product: 'פיצה מרגריטה LARGE בצורת לב',
+    product: 'פיצה מרגריטה LARGE בצורת לב + פחית שתייה לחלוק יחד',
     size: 'LARGE',
     regularPrice: 49,
     price: 39,

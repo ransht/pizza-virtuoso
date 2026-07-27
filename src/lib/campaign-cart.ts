@@ -25,7 +25,7 @@ export function buildWhatsAppCheckoutUrl(promotions: Promotion[], cart: Cart, no
     if (!promotion || quantity < 1) return [];
     const lineTotal = promotion.price * quantity;
     total += lineTotal;
-    return [`• ${promotion.name} — ${promotion.size} × ${quantity} — ${lineTotal} ₪`];
+    return [`• ${promotion.name} — ${promotion.product} × ${quantity} — ${lineTotal} ₪`];
   });
   const cleanNotes = notes.replace(/[<>]/g, '').trim();
   const message = [
