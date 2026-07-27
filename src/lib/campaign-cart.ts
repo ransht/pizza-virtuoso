@@ -62,8 +62,12 @@ function track(event: string, parameters: Record<string, string | number> = {}) 
 }
 
 function lineUnitTotal(line: CartLine, promotion: Promotion) {
-  const toppingsTotal = line.toppings.reduce((sum, topping) => sum + topping.unitPrice, 0);
+  const toppingsTotal = line.toppings.reduce((sum, topping) => sum + toppingSelectionPrice(topping), 0);
   return promotion.price + toppingsTotal;
+}
+
+function toppingSelectionPrice(topping: Pick<SelectedTopping, 'placement' | 'unitPrice'>) {
+  return topping.placement === 'whole' ? topping.unitPrice : topping.unitPrice / 2;
 }
 
 function stateSummary(promotions: Promotion[], state: CartState) {
@@ -91,12 +95,12 @@ export function buildWhatsAppCheckoutUrl(promotions: Promotion[], state: CartSta
       ? Array.from({ length: promotion.pizzas }, (_, index) => {
           const pizzaToppings = line.toppings.filter((topping) => topping.pizzaIndex === index + 1);
           const description = pizzaToppings.length
-            ? pizzaToppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]})`).join(', ')
+            ? pizzaToppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]}, ${toppingSelectionPrice(topping)} ₪)`).join(', ')
             : 'ללא תוספות';
           return `\n  מגש ${index + 1}: ${description}`;
         }).join('')
       : line.toppings.length
-        ? `\n  תוספות: ${line.toppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]})`).join(', ')}`
+        ? `\n  תוספות: ${line.toppings.map((topping) => `${topping.name} (${placementLabels[topping.placement]}, ${toppingSelectionPrice(topping)} ₪)`).join(', ')}`
         : '\n  ללא תוספות';
     return [`• ${promotion.name} — ${promotion.product}${toppingText}\n  ${line.quantity} × ${unitTotal} ₪ = ${unitTotal * line.quantity} ₪`];
   });
@@ -209,7 +213,7 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
       item.className = `cart-line${line.key === enteringKey ? ' is-entering' : ''}`;
       item.dataset.lineKey = line.key;
       const toppingsMarkup = line.toppings.length
-        ? `<ul>${line.toppings.map((topping) => `<li>${promotion.pizzas > 1 ? `מגש ${topping.pizzaIndex} · ` : ''}${topping.name} · ${placementLabels[topping.placement]}</li>`).join('')}</ul>`
+        ? `<ul>${line.toppings.map((topping) => `<li>${promotion.pizzas > 1 ? `מגש ${topping.pizzaIndex} · ` : ''}${topping.name} · ${placementLabels[topping.placement]} · ${toppingSelectionPrice(topping)} ₪</li>`).join('')}</ul>`
         : '<small>ללא תוספות</small>';
       item.innerHTML = `
         <div class="cart-line-copy">
@@ -249,10 +253,11 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
 
   const customizerTotal = () => {
     if (!activePromotion) return 0;
-    return activePromotion.price + [...selectedToppings.keys()].reduce((sum, selectionKey) => {
+    return activePromotion.price + [...selectedToppings.entries()].reduce((sum, [selectionKey, placement]) => {
       const id = selectionKey.split(':').slice(1).join(':');
       const topping = toppingMap.get(id);
-      return sum + (topping?.prices[activePromotion!.size] || 0);
+      const unitPrice = topping?.prices[activePromotion!.size] || 0;
+      return sum + toppingSelectionPrice({ placement, unitPrice });
     }, 0);
   };
 
@@ -273,6 +278,13 @@ export function initCampaignCart(promotions: Promotion[], toppings: CampaignTopp
       if (picker) picker.hidden = !selectedToppings.has(key);
       picker?.querySelectorAll<HTMLButtonElement>('[data-placement]').forEach((button) => {
         button.setAttribute('aria-pressed', String((selectedToppings.get(key) || 'whole') === button.dataset.placement));
+        const placement = button.dataset.placement as ToppingPlacement;
+        const label = button.querySelector<HTMLElement>('span');
+        if (label) {
+          const placementName = placementLabels[placement];
+          const placementPrice = toppingSelectionPrice({ placement, unitPrice: price });
+          label.textContent = `${placementName} · ${placementPrice} ₪`;
+        }
       });
     });
     customizerDialog.querySelectorAll<HTMLButtonElement>('[data-pizza-index]').forEach((button) => {
