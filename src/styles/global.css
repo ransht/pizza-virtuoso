@@ -710,6 +710,7 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .delivery-address { padding-block-start: 14px; color: var(--love-red-dark); font-size: .76rem; font-weight: 800; }
 .delivery-address input { width: 100%; min-height: 46px; margin-block-start: 7px; padding: 10px 12px; border: 1px solid rgba(36,29,25,.2); background: #fffaf1; color: var(--love-ink); font: 500 .82rem var(--font-ui); }
 .delivery-address > span { display: block; margin-block-start: 5px; color: #b51919; font-size: .66rem; }
+.delivery-address > span[hidden] { display: none; }
 .cart-notes { padding-block-start: 14px; font-size: .78rem; font-weight: 800; }
 .cart-notes span { color: rgba(36,29,25,.5); font-weight: 500; }
 .cart-notes textarea { width: 100%; margin-block-start: 8px; padding: 13px; resize: vertical; border: 1px solid rgba(36,29,25,.18); border-radius: 2px; background: #fffaf1; color: inherit; font: inherit; font-weight: 500; }
