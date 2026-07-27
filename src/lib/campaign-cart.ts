@@ -41,7 +41,9 @@ export function buildWhatsAppCheckoutUrl(promotions: Promotion[], cart: Cart, no
     cleanNotes || 'ללא',
     '',
     'שם:',
-    'שעת איסוף מועדפת:',
+    'איסוף עצמי / משלוח בתשלום:',
+    'כתובת למשלוח (אם רלוונטי):',
+    'שעה מועדפת:',
     '',
     'תודה ❤️',
   ].join('\n');
