@@ -22,6 +22,7 @@ Set `PUBLIC_SITE_URL` to the production origin before building so canonical, hre
 - **Menu:** add records to the relevant category in `src/content/menu/menu.json`. Each item has a stable `id`, a presentation `kind`, and a `prices` array whose labels can represent sizes or a unit price. Add the matching translated name and description under `menu.items` in both language dictionaries.
 - **Online ordering:** set `PUBLIC_ORDER_URL` in the deployment environment, or set `orderUrl` in `src/content/business/config.json`.
 - **Photos:** replace `public/images/hero-pizza.webp`, `public/images/dough-story.webp` and `public/images/og-pizza.jpg` while preserving the filenames, dimensions/aspect ratios and descriptive alt translations. Current imagery is AI-generated production placeholder material, clearly disclosed in the footer.
+- **Love campaign assets:** `public/images/heart-pizza.png` is the transparent hero product image. `public/images/og-love-campaign.jpg` is the required 1200×630 Facebook/WhatsApp preview. Regenerate the preview after replacing the pizza by running `node scripts/generate-love-og.mjs` with `sharp` available.
 - **Analytics:** set `PUBLIC_GA_MEASUREMENT_ID` to the GA4 Measurement ID (`G-...`). The Google tag loads only after the visitor accepts the bilingual analytics consent prompt. `analyticsId` in the business config is available as a fallback.
 
 ## Adding a language

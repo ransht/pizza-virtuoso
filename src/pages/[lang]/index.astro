@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HomePage from '../../components/HomePage.astro';
+import LoveCampaign from '../../components/LoveCampaign.astro';
 import { dictionaries, isLanguage, languages } from '../../lib/i18n';
 
 export function getStaticPaths() {
@@ -11,7 +12,13 @@ const langParam = Astro.params.lang;
 if (!isLanguage(langParam)) return Astro.redirect('/he/');
 const lang = langParam;
 const t = dictionaries[lang];
+const campaignMeta = lang === 'he' ? {
+  title: 'יום האהבה בפיצה וירטואוז | פיצות לב ומבצעים זוגיים',
+  description: 'חוגגים ט״ו באב עם פיצות לב ב־MEDIUM וב־LARGE, מבצעים זוגיים והזמנה מהירה ב־WhatsApp.',
+  image: '/images/og-love-campaign.jpg',
+  imageAlt: 'פיצת מרגריטה בצורת לב של פיצה וירטואוז',
+} : undefined;
 ---
-<BaseLayout {lang} {t}>
-  <HomePage {lang} {t} />
+<BaseLayout {lang} {t} meta={campaignMeta}>
+  {lang === 'he' ? <LoveCampaign /> : <HomePage {lang} {t} />}
 </BaseLayout>

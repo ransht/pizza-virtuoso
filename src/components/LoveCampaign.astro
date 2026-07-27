@@ -1,0 +1,156 @@
+---
+import business from '../content/business/config.json';
+import { lovePromotions } from '../content/campaign/love';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+const phoneHref = `tel:${business.telephone}`;
+const whatsappHref = `https://wa.me/972542537257?text=${encodeURIComponent('היי פיצה וירטואוז ❤️ אני רוצה לשמוע על מבצעי יום האהבה')}`;
+---
+<main class="love-page" id="main">
+  <section class="love-hero" aria-labelledby="love-title">
+    <div class="love-grain" aria-hidden="true"></div>
+    <header class="campaign-header campaign-shell">
+      <a class="campaign-brand" href="#main" data-track="navigation_click">
+        <span>פיצה וירטואוז</span>
+        <small>Pizza Virtuoso · Rishon LeZion</small>
+      </a>
+      <a class="header-phone" href={phoneHref} data-track="phone_call_click"><span>להזמנות</span><bdi>03-9504888</bdi></a>
+    </header>
+
+    <div class="love-hero-grid campaign-shell">
+      <div class="hero-campaign-copy">
+        <p class="campaign-date">יום האהבה <span>בפיצה וירטואוז</span></p>
+        <h1 id="love-title">אהבה ממבט ראשון.<br /><em>פיצה מהביס הראשון.</em></h1>
+        <p class="hero-lead">פיצות לב ב־<bdi>MEDIUM</bdi> וב־<bdi>LARGE</bdi><br />מבצעים זוגיים וטעם שמעלה את הטמפרטורה.</p>
+        <p class="flirty-line">חם. עגול. נמס.<br /><span>וקשה להישאר אדישים.</span></p>
+        <div class="hero-actions">
+          <a class="love-button love-button-primary" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-track="whatsapp_hero_click"><WhatsAppIcon />להזמנה ב־WhatsApp</a>
+          <a class="love-button love-button-secondary" href={phoneHref} data-track="phone_call_click">התקשרו <bdi>03-9504888</bdi></a>
+        </div>
+        <p class="terms-line">איסוף עצמי בלבד · לא כולל משלוח · בכפוף למלאי</p>
+      </div>
+
+      <div class="pizza-stage">
+        <span class="pizza-stamp" aria-hidden="true">AMORE<br /><b>29–89</b><small>₪</small></span>
+        <span class="steam steam-one" aria-hidden="true"></span>
+        <span class="steam steam-two" aria-hidden="true"></span>
+        <button class="pizza-interaction" type="button" data-pizza aria-label="סובבו את פיצת הלב">
+          <span class="pizza-float">
+            <span class="pizza-shadow" aria-hidden="true"></span>
+            <span class="pizza-rotor"><img src="/images/heart-pizza.png" width="1254" height="1254" alt="פיצת מרגריטה טרייה בצורת לב" fetchpriority="high" /></span>
+          </span>
+        </button>
+        <p class="pizza-hint">נגיעה קטנה והיא מסתובבת</p>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#offers" data-track="navigation_click">המבצעים מחכים למטה <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <section class="offers-section" id="offers" aria-labelledby="offers-title">
+    <div class="campaign-shell">
+      <header class="offers-heading">
+        <p class="section-label">שלושה דייטים. לב אחד רעב.</p>
+        <h2 id="offers-title">תבחרו כמה<br /><em>אתם בעניין</em></h2>
+        <p>כל הפיצות במבצע הן מרגריטה בצורת לב, נאפות חם לפי ההזמנה ומחכות לאיסוף בראשון לציון.</p>
+      </header>
+
+      <div class="offer-editorial">
+        {lovePromotions.map((promotion) => (
+          <article class:list={['offer', promotion.popular && 'offer-featured']} id={`offer-${promotion.id}`}>
+            {promotion.popular && <span class="popular-ribbon">הכי פופולרי</span>}
+            <div class="offer-index" aria-hidden="true">0{lovePromotions.indexOf(promotion) + 1}</div>
+            <div class="offer-copy">
+              <p class="offer-size">{promotion.size}</p>
+              <h3>{promotion.name}</h3>
+              <p class="offer-product">{promotion.product}</p>
+              <p class="offer-voice">{promotion.copy.map((line) => <span>{line}</span>)}</p>
+            </div>
+            <div class="offer-buy">
+              <p class="price-lockup"><del><bdi>{promotion.regularPrice} ₪</bdi></del><strong><bdi>{promotion.price}</bdi><small>₪</small></strong></p>
+              <button class="add-offer" type="button" data-add-promotion={promotion.id}>
+                <span>להוסיף לעגלה</span><b aria-hidden="true">+</b>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="toppings-note">אפשר להוסיף תוספות לפי מחירי התפריט</p>
+    </div>
+  </section>
+
+  <section class="hot-night" aria-labelledby="hot-title">
+    <div class="campaign-shell hot-night-grid">
+      <div class="hot-night-copy">
+        <p class="section-label">לערב שכולו טעם טוב</p>
+        <h2 id="hot-title">הערב הזה הולך<br />להיות <em>חם</em></h2>
+        <p>לא חייבים זר פרחים.<br />אפשר להגיע עם לב חם, גבינה נמסה וריח של פיצה שעושה את כל העבודה.</p>
+      </div>
+      <div class="editorial-quote">
+        <span aria-hidden="true">“</span>
+        <p>יש דברים<br />שעדיף לחלוק.</p>
+        <small>המשולש האחרון על אחריותכם בלבד.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label="למה להזמין מפיצה וירטואוז">
+    <div class="campaign-shell">
+      {['בצק שנפתח במקום', 'גבינה איכותית', 'נאפה חם לפי ההזמנה', 'איסוף מהיר מראשון לציון'].map((item, index) => (
+        <div><span>0{index + 1}</span><p>{item}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="love-faq" aria-labelledby="faq-title">
+    <div class="campaign-shell faq-grid">
+      <header><p class="section-label">רגע לפני שמזמינים</p><h2 id="faq-title">שאלות<br /><em>טובות</em></h2></header>
+      <div class="faq-list">
+        <details><summary>האם המבצע כולל משלוח?<span aria-hidden="true">+</span></summary><p>לא, המבצעים מיועדים לאיסוף עצמי.</p></details>
+        <details><summary>אפשר להזמין מראש?<span aria-hidden="true">+</span></summary><p>כן, ואפילו מומלץ.</p></details>
+        <details><summary>אפשר להוסיף תוספות?<span aria-hidden="true">+</span></summary><p>כן, לפי התפריט ומחירי התוספות הרגילים.</p></details>
+        <details><summary>עד מתי המבצע?<span aria-hidden="true">+</span></summary><p>לזמן מוגבל ובכפוף למלאי.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="campaign-footer">
+    <div class="campaign-shell footer-love-grid">
+      <div><p class="footer-love-brand">פיצה וירטואוז</p><p>אהבה ממבט ראשון. פיצה מהביס הראשון.</p></div>
+      <address>ז׳בוטינסקי 16, ראשון לציון<br /><a href={phoneHref}><bdi>03-9504888</bdi></a><br /><a href="https://wa.me/972542537257" target="_blank" rel="noopener noreferrer">WhatsApp: <bdi>054-2537257</bdi></a></address>
+      <p class="footer-fine">איסוף עצמי בלבד · לא כולל משלוח<br />התמונות להמחשה · בכפוף למלאי</p>
+    </div>
+  </footer>
+</main>
+
+<button class="floating-cart" type="button" data-open-cart aria-label="פתיחת עגלת ההזמנה">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 7H7M10 20a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm9 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+  <span><b>עגלה · <i data-cart-count>0</i></b><small data-cart-total>0 ₪</small></span>
+</button>
+
+<dialog class="cart-dialog" data-cart-dialog aria-labelledby="cart-title">
+  <div class="cart-panel">
+    <header class="cart-header">
+      <div><p>ההזמנה שלכם</p><h2 id="cart-title">עגלת האהבה</h2></div>
+      <button type="button" data-cart-close aria-label="סגירת העגלה">×</button>
+    </header>
+    <div class="cart-empty" data-cart-empty tabindex="-1"><strong>העגלה עדיין ריקה.</strong><span>גם הלב?</span></div>
+    <ul class="cart-list" data-cart-list></ul>
+    <label class="cart-notes">הערות להזמנה <span>(לא חובה)</span><textarea data-cart-notes maxlength="500" rows="3" placeholder="תוספות, רגישויות או כל מה שכדאי שנדע"></textarea></label>
+    <div class="cart-summary"><span>סה״כ לאיסוף</span><strong data-cart-total>0 ₪</strong></div>
+    <button class="checkout-button" type="button" data-checkout><WhatsAppIcon />שליחת ההזמנה ב־WhatsApp</button>
+    <button class="clear-cart" type="button" data-clear-cart>ניקוי העגלה</button>
+  </div>
+</dialog>
+
+<nav class="campaign-mobile-bar" aria-label="פעולות מהירות">
+  <button type="button" data-open-cart><span>עגלת ההזמנה <b data-cart-count>0</b></span><small data-cart-total>0 ₪</small></button>
+  <a href="https://wa.me/972542537257" target="_blank" rel="noopener noreferrer" data-track="whatsapp_navigation_click"><WhatsAppIcon /><span>WhatsApp</span></a>
+  <a href={phoneHref} data-track="phone_call_click"><span aria-hidden="true">☎</span><span>חייגו <bdi>03-9504888</bdi></span></a>
+</nav>
+<p class="sr-only" aria-live="polite" aria-atomic="true" data-cart-live></p>
+
+<script>
+  import { lovePromotions } from '../content/campaign/love';
+  import { initCampaignCart } from '../lib/campaign-cart';
+  initCampaignCart(lovePromotions);
+</script>
