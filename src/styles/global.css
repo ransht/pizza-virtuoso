@@ -604,6 +604,13 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .popular-ribbon { position: absolute; inset-inline-end: 40px; inset-block-start: 0; padding: 7px 13px; background: var(--love-pink); color: var(--love-red-dark); font-size: .66rem; font-weight: 900; }
 .toppings-note { margin: 24px 0 0; color: rgba(36,29,25,.61); font-size: .78rem; }
 
+.campaign-redemption { padding-block: clamp(55px, 7vw, 90px); background: var(--love-pink); }
+.redemption-grid { display: grid; grid-template-columns: .75fr 1.25fr; align-items: center; gap: clamp(40px, 8vw, 110px); }
+.campaign-redemption .section-label { margin-block-end: 12px; }
+.campaign-redemption h2 { max-width: 520px; margin: 0; color: var(--love-red-dark); font: 800 clamp(2.3rem, 4.5vw, 4.8rem)/.98 var(--font-display); letter-spacing: -.04em; }
+.redemption-copy > p:first-child { max-width: 720px; margin: 0; color: var(--love-ink); font-size: clamp(1.05rem, 1.7vw, 1.35rem); font-weight: 750; line-height: 1.7; }
+.redemption-terms { margin: 24px 0 0; padding-block-start: 18px; border-block-start: 1px solid rgba(114,21,16,.2); color: rgba(36,29,25,.7); font-size: .74rem; font-weight: 700; line-height: 1.9; }
+
 .hot-night { padding-block: clamp(90px, 12vw, 150px); background: var(--love-red-dark); color: #fff; }
 .hot-night-grid { display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: clamp(60px, 10vw, 150px); }
 .hot-night .section-label { color: var(--love-pink); margin-block-end: 25px; }
@@ -837,6 +844,9 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
   .add-offer { width: 100%; min-width: 0; }
   .offer-featured { margin-inline: -16px; padding-inline: 16px; }
   .popular-ribbon { inset-inline-end: 16px; }
+  .redemption-grid { grid-template-columns: 1fr; gap: 26px; text-align: center; }
+  .campaign-redemption h2, .redemption-copy > p:first-child { margin-inline: auto; }
+  .redemption-terms { font-size: .7rem; }
   .hot-night-grid, .faq-grid { grid-template-columns: 1fr; }
   .hot-night-copy { text-align: center; }
   .hot-night-copy > p:last-child { font-size: 1.05rem; }
