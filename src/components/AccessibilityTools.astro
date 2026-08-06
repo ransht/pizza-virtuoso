@@ -1,0 +1,62 @@
+---
+import business from '../content/business/config.json';
+import type { Language } from '../lib/i18n';
+
+interface Props { lang: Language }
+const { lang } = Astro.props;
+const statementUrl = `/${lang}/accessibility/`;
+const statementData = {
+  orgName: lang === 'he' ? business.name : business.alternateName,
+  orgPhone: business.telephoneDisplay,
+  lastAuditDate: '2026-08-06',
+};
+---
+
+<script is:inline define:vars={{ lang, statementUrl, statementData }}>
+  window.OpenNagishConfig = {
+    lang,
+    position: 'bottom-left',
+    bottomOffset: 18,
+    mobileBottomOffset: 76,
+    statementUrl,
+    statementData,
+  };
+</script>
+<script>
+  const loadAccessibilityTools = async () => {
+    await import('open-nagish');
+
+    requestAnimationFrame(() => {
+      const host = [...document.body.children].find((element) => element.shadowRoot?.querySelector('.anid-trigger'));
+      if (!host?.shadowRoot) return;
+
+      const brandStyles = document.createElement('style');
+      brandStyles.textContent = `
+        .anid-trigger,
+        .anid-trigger[aria-expanded="true"],
+        .anid-panel-header,
+        .anid-toggle input:checked + .anid-toggle-slider,
+        .anid-btn.anid-active {
+          background: #9f261c !important;
+          border-color: #9f261c !important;
+        }
+        .anid-slider::-webkit-slider-thumb,
+        .anid-slider::-moz-range-thumb {
+          background: #9f261c !important;
+        }
+        .anid-trigger:focus-visible,
+        .anid-slider:focus-visible,
+        .anid-toggle input:focus-visible + .anid-toggle-slider {
+          outline-color: #b69a58 !important;
+        }
+      `;
+      host.shadowRoot.append(brandStyles);
+    });
+  };
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => void loadAccessibilityTools(), { timeout: 1200 });
+  } else {
+    setTimeout(() => void loadAccessibilityTools(), 300);
+  }
+</script>

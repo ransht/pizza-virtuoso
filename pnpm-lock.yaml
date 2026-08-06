@@ -11,6 +11,9 @@ importers:
       astro:
         specifier: 7.1.1
         version: 7.1.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(yaml@2.9.0)
+      open-nagish:
+        specifier: 1.1.5
+        version: 1.1.5
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.4
@@ -1236,6 +1239,9 @@ packages:
 
   oniguruma-to-es@4.3.6:
     resolution: {integrity: sha512-csuQ9x3Yr0cEIs/Zgx/OEt9iBw9vqIunAPQkx19R/fiMq2oGVTgcMqO/V3Ybqefr1TBvosI6jU539ksaBULJyA==}
+
+  open-nagish@1.1.5:
+    resolution: {integrity: sha512-/601elsYmSv+I32hPtm3yn8W2d+7idPGF4Nitsf/rU+iUt6NURGeqnOZNON7NzCDMXu/XJYEG/Hs1f8ijO3+mw==}
 
   p-limit@7.3.0:
     resolution: {integrity: sha512-7cIXg/Z0M5WZRblrsOla88S4wAK+zOQQWeBYfV3qJuJXMr+LnbYjaadrFaS0JILfEDPVqHyKnZ1Z/1d6J9VVUw==}
@@ -2888,6 +2894,8 @@ snapshots:
       oniguruma-parser: 0.12.2
       regex: 6.1.0
       regex-recursion: 6.0.2
+
+  open-nagish@1.1.5: {}
 
   p-limit@7.3.0:
     dependencies:

@@ -204,7 +204,7 @@ const contactCards = [
   <div class="page-shell footer-grid">
     <div><p class="footer-brand">{t.hero.brand}</p><p>{t.footer.tagline}</p></div>
     <p>{t.footer.photoNote}</p>
-    <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}</p>
+    <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}<br /><a class="footer-accessibility" href={`/${lang}/accessibility/`}>{lang === 'he' ? 'הצהרת נגישות' : 'Accessibility statement'}</a></p>
   </div>
 </footer>
 

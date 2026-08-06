@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import business from '../../content/business/config.json';
+import { dictionaries, isLanguage, languages } from '../../lib/i18n';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+if (!isLanguage(langParam)) return Astro.redirect('/he/accessibility/');
+const lang = langParam;
+const t = dictionaries[lang];
+const isHe = lang === 'he';
+const otherLang = isHe ? 'en' : 'he';
+const phoneHref = `tel:${business.telephone}`;
+const whatsappHref = `https://wa.me/${business.whatsapp.replace('+', '')}`;
+const copy = isHe ? {
+  title: 'הצהרת נגישות',
+  eyebrow: 'אתר פתוח לכולם',
+  intro: 'בפיצה וירטואוז אנו פועלים כדי לאפשר לכל אדם להשתמש באתר בנוחות, בכבוד ובעצמאות. הנגישות היא תהליך מתמשך, ואנו ממשיכים לבדוק ולשפר את האתר ככל שנדרש.',
+  standardTitle: 'התאמות שבוצעו באתר',
+  features: [
+    'מבנה סמנטי, כותרות ואזורים המסייעים להתמצאות עם טכנולוגיות מסייעות.',
+    'אפשרות ניווט והפעלה באמצעות מקלדת, קישור דילוג לתוכן וסימון ברור של מיקוד.',
+    'טקסטים חלופיים לתמונות תוכן ושמות נגישים לכפתורים ולאייקונים.',
+    'תמיכה בעברית ובאנגלית, כולל כיוון קריאה מתאים לכל שפה.',
+    'התאמה למסכים בגדלים שונים וכיבוד העדפת מערכת להפחתת תנועה.',
+    'תפריט נגישות חינמי המאפשר התאמות תצוגה, טקסט, ניגודיות, קריאה וניווט.',
+  ],
+  limitsTitle: 'מגבלות ויישומי צד שלישי',
+  limits: 'חלק מהפעולות באתר מפנות לשירותים חיצוניים כגון WhatsApp, Waze ו-Google Maps, שהנגישות בהם נמצאת באחריות מפעיליהם. אם נתקלתם בקושי באחד מחלקי האתר או בתהליך ההזמנה, נשמח לספק סיוע או חלופה נגישה.',
+  placeTitle: 'נגישות בסניף',
+  place: 'לקבלת מידע עדכני על הסדרי הנגישות הפיזיים בסניף שברחוב ז׳בוטינסקי 16, ראשון לציון, אנא צרו איתנו קשר לפני ההגעה. נשמח לסייע ולתאם את השירות המתאים.',
+  contactTitle: 'נתקלתם בבעיה? ספרו לנו',
+  contact: 'כדי שנוכל לטפל במהירות, מומלץ לציין את העמוד שבו נתקלתם בקושי, הפעולה שניסיתם לבצע, סוג המכשיר והדפדפן, וטכנולוגיה מסייעת אם נעשה בה שימוש.',
+  call: 'טלפון',
+  whatsapp: 'WhatsApp',
+  updated: 'הצהרה זו עודכנה לאחרונה ב־6 באוגוסט 2026.',
+  back: 'חזרה לאתר',
+  language: 'English',
+} : {
+  title: 'Accessibility statement',
+  eyebrow: 'A website open to everyone',
+  intro: 'Pizza Virtuoso works to let every person use this website comfortably, respectfully and independently. Accessibility is an ongoing process, and we continue to review and improve the website as needed.',
+  standardTitle: 'Accessibility measures on this website',
+  features: [
+    'Semantic structure, headings and landmarks that support orientation with assistive technologies.',
+    'Keyboard operation, a skip link and clearly visible focus indicators.',
+    'Alternative text for content images and accessible names for buttons and icons.',
+    'Hebrew and English support with the appropriate reading direction for each language.',
+    'Responsive layouts and support for the reduced-motion system preference.',
+    'A free accessibility menu with display, text, contrast, reading and navigation adjustments.',
+  ],
+  limitsTitle: 'Limitations and third-party services',
+  limits: 'Some actions lead to third-party services such as WhatsApp, Waze and Google Maps, whose accessibility is controlled by their respective operators. If you encounter difficulty using any part of this website or placing an order, we will be happy to provide assistance or an accessible alternative.',
+  placeTitle: 'Accessibility at the pizzeria',
+  place: 'For current information about physical accessibility arrangements at 16 Jabotinsky Street, Rishon LeZion, please contact us before your visit. We will be happy to assist and coordinate suitable service.',
+  contactTitle: 'Found a problem? Tell us',
+  contact: 'To help us resolve the issue quickly, please include the page, the action you attempted, your device and browser, and any assistive technology you were using.',
+  call: 'Phone',
+  whatsapp: 'WhatsApp',
+  updated: 'This statement was last updated on August 6, 2026.',
+  back: 'Back to the website',
+  language: 'עברית',
+};
+---
+
+<BaseLayout {lang} {t} canonicalPath={`/${lang}/accessibility/`} meta={{
+  title: `${copy.title} | ${isHe ? business.name : business.alternateName}`,
+  description: copy.intro,
+  image: '/images/og-pizza.jpg',
+  imageAlt: isHe ? 'פיצה וירטואוז' : 'Pizza Virtuoso',
+}}>
+  <main class="accessibility-page" id="main">
+    <header class="statement-topbar">
+      <a class="statement-brand" href={`/${lang}/`}>{isHe ? business.name : business.alternateName}</a>
+      <nav aria-label={isHe ? 'ניווט הצהרת נגישות' : 'Accessibility statement navigation'}>
+        <a href={`/${otherLang}/accessibility/`} lang={otherLang} hreflang={otherLang}>{copy.language}</a>
+        <a href={`/${lang}/`}>{copy.back}</a>
+      </nav>
+    </header>
+
+    <article class="statement-shell">
+      <header class="statement-intro">
+        <p class="section-kicker">{copy.eyebrow}</p>
+        <h1>{copy.title}</h1>
+        <p>{copy.intro}</p>
+      </header>
+
+      <section aria-labelledby="statement-measures">
+        <h2 id="statement-measures">{copy.standardTitle}</h2>
+        <ul>{copy.features.map((feature) => <li>{feature}</li>)}</ul>
+      </section>
+
+      <div class="statement-grid">
+        <section aria-labelledby="statement-limits">
+          <h2 id="statement-limits">{copy.limitsTitle}</h2>
+          <p>{copy.limits}</p>
+        </section>
+        <section aria-labelledby="statement-place">
+          <h2 id="statement-place">{copy.placeTitle}</h2>
+          <p>{copy.place}</p>
+        </section>
+      </div>
+
+      <section class="statement-contact" aria-labelledby="statement-contact">
+        <div>
+          <h2 id="statement-contact">{copy.contactTitle}</h2>
+          <p>{copy.contact}</p>
+        </div>
+        <div class="statement-actions">
+          <a class="button button-primary" href={phoneHref}>{copy.call}: <bdi>{business.telephoneDisplay}</bdi></a>
+          <a class="button button-outline" href={whatsappHref} target="_blank" rel="noopener noreferrer">{copy.whatsapp}: <bdi>{business.whatsappDisplay}</bdi></a>
+        </div>
+      </section>
+
+      <p class="statement-updated">{copy.updated}</p>
+    </article>
+  </main>
+</BaseLayout>

@@ -3,6 +3,7 @@ import '../styles/global.css';
 import business from '../content/business/config.json';
 import FacebookPixel from '../components/FacebookPixel.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import AccessibilityTools from '../components/AccessibilityTools.astro';
 import { direction, locale, type Language, type Messages } from '../lib/i18n';
 
 interface Props {
@@ -78,6 +79,7 @@ if (orderUrl) jsonLd.potentialAction = { '@type': 'OrderAction', target: orderUr
   </head>
   <body>
     <slot />
+    <AccessibilityTools {lang} />
     <GoogleAnalytics t={t.analytics} />
     {facebookPixelId && <FacebookPixel pixelId={facebookPixelId} />}
   </body>
