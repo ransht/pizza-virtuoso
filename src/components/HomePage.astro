@@ -15,6 +15,9 @@ const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
 const shareUrl = new URL(`https://wa.me/?text=${encodeURIComponent(`${t.shareText} ${new URL(`/${lang}/`, Astro.site || Astro.url).href}`)}`);
 const menuItems = t.menu.items as Record<string, { name: string; description: string; imageAlt?: string }>;
 const priceLabels = t.menu.priceLabels as Record<string, string>;
+const menuImageDimensions = (image: string) => image.includes('-menu.webp') && ['margherita', 'pesto', 'alfredo', 'rose'].some((name) => image.includes(name))
+  ? { width: 1122, height: 1402 }
+  : { width: 1122, height: 842 };
 const contactCards = [
   ['address', t.contact.addressValue, business.googleMapsUrl],
   ['hours', t.contact.hoursValue, ''],
@@ -35,7 +38,7 @@ const contactCards = [
         {t.story.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
       <figure class="story-figure reveal">
-        <img src="/images/dough-story.webp" width="820" height="1024" loading="lazy" decoding="async" alt={t.story.imageAlt} />
+        <img src="/images/dough-story.webp" width="820" height="1025" loading="lazy" decoding="async" alt={t.story.imageAlt} />
         <figcaption><strong>24</strong><span>hours<br />of patience</span></figcaption>
       </figure>
     </div>
@@ -107,7 +110,7 @@ const contactCards = [
             <div class={`menu-items menu-items-${category.id}`}>
               {category.items.map((item) => (
                 <article class:list={['menu-item', `menu-item-${item.kind}`, 'image' in item && item.image && 'menu-item-has-image']}>
-                  {'image' in item && item.image && <div class="menu-item-media"><img src={item.image} width="1122" height="1402" loading="lazy" decoding="async" alt={menuItems[item.id].imageAlt || menuItems[item.id].name} /></div>}
+                  {'image' in item && item.image && <div class="menu-item-media"><img src={item.image} {...menuImageDimensions(item.image)} loading="lazy" decoding="async" alt={menuItems[item.id].imageAlt || menuItems[item.id].name} /></div>}
                   <div class="menu-item-copy">
                     <h4>{menuItems[item.id].name}</h4>
                     {menuItems[item.id].description && <p>{menuItems[item.id].description}</p>}
@@ -151,11 +154,33 @@ const contactCards = [
     </div>
   </section>
 
+  <section class="local-section section" id="location" aria-labelledby="location-title">
+    <div class="page-shell local-grid">
+      <article class="local-panel reveal">
+        <p class="section-kicker">{t.local.kicker}</p>
+        <h2 id="location-title">{t.local.title}</h2>
+        <p>{t.local.body}</p>
+        <div class="local-actions">
+          <a class="button button-primary" href={orderUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.local.order}</a>
+          <a class="button button-outline" href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer"><GoogleMapsIcon />{t.local.navigate}</a>
+          <a class="text-action" href={`tel:${business.telephone}`}>{t.local.call}: <bdi>{business.telephoneDisplay}</bdi></a>
+        </div>
+      </article>
+      <article class="kosher-panel reveal" aria-labelledby="kosher-title">
+        <p class="section-kicker">{t.kosher.kicker}</p>
+        <h2 id="kosher-title">{t.kosher.title}</h2>
+        <p>{t.kosher.body}</p>
+        <!-- TODO(owner): Verify and add the official kosher supervising authority, certification details and an accessible certificate image. -->
+        {!business.kosherSupervision && <p class="verification-note">{t.kosher.supervisionPending}</p>}
+      </article>
+    </div>
+  </section>
+
   <section class="contact section" id="contact" aria-labelledby="contact-title">
     <div class="page-shell">
       <header class="contact-heading reveal"><p class="section-kicker">{t.contact.kicker}</p><h2 id="contact-title">{t.contact.title}</h2><p>{t.contact.intro}</p></header>
       <dl class="contact-details reveal">
-        {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <WhatsAppIcon />}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
+        {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{key === 'address' ? <address><a href={business.googleBusinessUrl || href} target="_blank" rel="noopener noreferrer">{value}</a></address> : href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <WhatsAppIcon />}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
       </dl>
       <div class="social-cards">
         {business.tiktokUrl && (
@@ -177,7 +202,7 @@ const contactCards = [
         <div><p class="section-kicker">{t.contact.directionsKicker}</p><h3>{t.contact.directionsTitle}</h3><p>{t.contact.directionsHint}</p></div>
         <div class="directions-actions">
           <a class="navigation-button navigation-button-waze" href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a>
-          <a class="navigation-button navigation-button-maps" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
+          <a class="navigation-button navigation-button-maps" href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
         </div>
       </div>
     </div>
@@ -193,7 +218,7 @@ const contactCards = [
       <div class="final-actions">
         <a class="button button-primary" href="#menu">{t.final.menu}</a>
         <a class="navigation-button navigation-button-dark" href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a>
-        <a class="navigation-button navigation-button-dark" href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
+        <a class="navigation-button navigation-button-dark" href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
         {orderUrl ? <a class="button button-ghost" href={orderUrl}><WhatsAppIcon />{t.final.order}</a> : <span class="button button-ghost is-disabled">{t.final.orderSoon}</span>}
       </div>
     </div>
@@ -202,7 +227,7 @@ const contactCards = [
 
 <footer class="site-footer">
   <div class="page-shell footer-grid">
-    <div><p class="footer-brand">{t.hero.brand}</p><p>{t.footer.tagline}</p></div>
+    <div><p class="footer-brand">{t.hero.brand}</p><address><a href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer">{t.contact.addressValue}</a><br /><a href={`tel:${business.telephone}`}><bdi>{business.telephoneDisplay}</bdi></a></address><p>{t.footer.tagline}</p></div>
     <p>{t.footer.photoNote}</p>
     <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}<br /><a class="footer-accessibility" href={`/${lang}/accessibility/`}>{lang === 'he' ? 'הצהרת נגישות' : 'Accessibility statement'}</a></p>
   </div>
@@ -212,7 +237,7 @@ const contactCards = [
   <a href="#menu"><span aria-hidden="true">☰</span>{t.mobile.menu}</a>
   <details class="mobile-directions">
     <summary><span aria-hidden="true">⌁</span>{t.mobile.navigate}</summary>
-    <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a><a href={business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a></div>
+    <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a><a href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a></div>
   </details>
   {business.telephone ? <a href={`tel:${business.telephone}`}><span aria-hidden="true">◡</span>{t.mobile.call}</a> : <span aria-disabled="true"><span aria-hidden="true">◡</span>{t.mobile.soon}</span>}
   {orderUrl ? <a class="mobile-order" href={orderUrl}><WhatsAppIcon />{t.mobile.order}</a> : <span class="mobile-order" aria-disabled="true"><span aria-hidden="true">↗</span>{t.mobile.soon}</span>}

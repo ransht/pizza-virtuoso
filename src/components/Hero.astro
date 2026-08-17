@@ -3,7 +3,7 @@ import type { Messages } from '../lib/i18n';
 const { t } = Astro.props as { t: Messages };
 ---
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero-media" aria-hidden="true"></div>
+  <div class="hero-media"><img src="/images/hero-pizza.webp" width="1672" height="941" loading="eager" fetchpriority="high" decoding="async" alt={t.meta.ogAlt} /></div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-content page-shell">
     <p class="eyebrow hero-reveal">{t.hero.eyebrow}</p>

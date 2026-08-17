@@ -12,35 +12,55 @@ interface Props {
   meta?: { title: string; description: string; image: string; imageAlt: string };
   canonicalPath?: string;
   facebookPixelId?: string;
+  preloadImage?: string;
 }
-const { lang, t, meta, canonicalPath, facebookPixelId } = Astro.props;
+const { lang, t, meta, canonicalPath, facebookPixelId, preloadImage } = Astro.props;
 const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
-const canonical = new URL(canonicalPath || `/${lang}/`, origin);
+const localizedPath = canonicalPath || `/${lang}/`;
+const canonical = new URL(localizedPath, origin);
 const metaTitle = meta?.title || t.meta.title;
 const metaDescription = meta?.description || t.meta.description;
 const metaImage = meta?.image || '/images/og-pizza.jpg';
 const metaImageAlt = meta?.imageAlt || t.meta.ogAlt;
 const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
-const jsonLd: Record<string, unknown> = {
-  '@context': 'https://schema.org',
+const isHomePage = localizedPath === `/${lang}/`;
+const hasLanguageAlternative = localizedPath.startsWith(`/${lang}/`) && (lang === 'he' || lang === 'en');
+const alternatePath = (targetLang: Language) => localizedPath.replace(`/${lang}/`, `/${targetLang}/`);
+const restaurant: Record<string, unknown> = {
   '@type': 'Restaurant',
-  name: lang === 'he' ? business.name : business.alternateName,
-  alternateName: lang === 'he' ? business.alternateName : business.name,
-  url: canonical.href,
-  image: new URL('/images/hero-pizza.webp', origin).href,
+  '@id': new URL('/#restaurant', origin).href,
+  name: business.name,
+  alternateName: business.alternateName,
+  url: new URL('/he/', origin).href,
+  image: [new URL('/images/hero-pizza.webp', origin).href, new URL('/images/og-pizza.jpg', origin).href],
   logo: new URL('/favicon.svg', origin).href,
-  servesCuisine: ['Pizza', 'Italian', 'Israeli'],
-  menu: new URL(`/${lang}/#menu`, origin).href,
+  servesCuisine: ['Pizza', 'Italian', 'Dairy'],
+  menu: new URL('/he/#menu', origin).href,
 };
-if (business.telephone) jsonLd.telephone = business.telephone;
-if (business.address.streetAddress) jsonLd.address = { '@type': 'PostalAddress', ...business.address };
-if (business.geo.latitude && business.geo.longitude) jsonLd.geo = { '@type': 'GeoCoordinates', ...business.geo };
-if (business.openingHours.length) jsonLd.openingHoursSpecification = business.openingHours;
-if (business.priceRange) jsonLd.priceRange = business.priceRange;
+if (business.telephone) restaurant.telephone = business.telephone;
+if (business.address.streetAddress) restaurant.address = {
+  '@type': 'PostalAddress',
+  streetAddress: business.address.streetAddress,
+  addressLocality: business.address.addressLocality,
+  addressCountry: business.address.addressCountry,
+};
+if (business.geo.latitude && business.geo.longitude) restaurant.geo = { '@type': 'GeoCoordinates', ...business.geo };
+// Hours are intentionally excluded until the owner resolves conflicting current listings.
+if (business.openingHoursVerified && business.openingHours.length) restaurant.openingHoursSpecification = business.openingHours;
+if (business.priceRange) restaurant.priceRange = business.priceRange;
 const sameAs = [business.googleBusinessUrl, business.instagramUrl, business.tiktokUrl, business.facebookUrl].filter(Boolean);
-if (sameAs.length) jsonLd.sameAs = sameAs;
-if (business.googleMapsUrl) jsonLd.hasMap = business.googleMapsUrl;
-if (orderUrl) jsonLd.potentialAction = { '@type': 'OrderAction', target: orderUrl };
+if (sameAs.length) restaurant.sameAs = sameAs;
+if (business.googleBusinessUrl || business.googleMapsUrl) restaurant.hasMap = business.googleBusinessUrl || business.googleMapsUrl;
+if (orderUrl) restaurant.potentialAction = { '@type': 'OrderAction', target: orderUrl };
+const website = {
+  '@type': 'WebSite',
+  '@id': new URL('/#website', origin).href,
+  url: new URL('/', origin).href,
+  name: business.name,
+  alternateName: business.alternateName,
+  inLanguage: ['he-IL', 'en'],
+};
+const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website] : [website] };
 ---
 <!doctype html>
 <html lang={lang} dir={direction(lang)}>
@@ -51,12 +71,12 @@ if (orderUrl) jsonLd.potentialAction = { '@type': 'OrderAction', target: orderUr
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="he" href={new URL('/he/', origin)} />
-    <link rel="alternate" hreflang="en" href={new URL('/en/', origin)} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/he/', origin)} />
+    {hasLanguageAlternative && <link rel="alternate" hreflang="he-IL" href={new URL(alternatePath('he'), origin)} />}
+    {hasLanguageAlternative && <link rel="alternate" hreflang="en" href={new URL(alternatePath('en'), origin)} />}
+    {hasLanguageAlternative && <link rel="alternate" hreflang="x-default" href={new URL(alternatePath('he'), origin)} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="preload" as="image" href={meta ? '/images/heart-pizza.png' : '/images/hero-pizza.webp'} fetchpriority="high" />
+    {(preloadImage || isHomePage) && <link rel="preload" as="image" href={preloadImage || '/images/hero-pizza.webp'} fetchpriority="high" />}
     <link rel="preload" href="/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/noto-serif-hebrew.woff2" as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />

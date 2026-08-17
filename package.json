@@ -11,7 +11,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "validate:seo": "node scripts/validate-seo.mjs"
   },
   "dependencies": {
     "astro": "7.1.1",

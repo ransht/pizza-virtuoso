@@ -15,6 +15,7 @@
     "addressCountry": "IL"
   },
   "geo": { "latitude": null, "longitude": null },
+  "openingHoursVerified": false,
   "openingHours": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "17:00", "closes": "23:00" }
   ],
@@ -25,5 +26,6 @@
   "tiktokUrl": "https://www.tiktok.com/@pizzavirtuoso.il",
   "facebookUrl": "https://www.facebook.com/share/1G6n6VNhCR/",
   "priceRange": "",
+  "kosherSupervision": "",
   "analyticsId": "G-ECSLPEJEB6"
 }

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Pizza Virtuoso | Fresh Pizza in Rishon LeZion",
-    "description": "Freshly baked pizza with 24-hour fermented dough, house-made sauce, exclusively Gad 22% fat mozzarella and carefully selected toppings. Explore the Pizza Virtuoso menu.",
+    "title": "Kosher Pizza in Rishon LeZion | Pizza Virtuoso",
+    "description": "Pizza Virtuoso is a kosher pizzeria in Rishon LeZion, opposite the Performing Arts Center. 24-hour dough, house-made sauce, Gad mozzarella, pasta and salads.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
@@ -9,11 +9,25 @@
   "hero": {
     "eyebrow": "Under new management",
     "brand": "Pizza Virtuoso",
-    "title": "Pizza as an art form.",
-    "body": "Pizza the way pizza should be. Freshness you can smell, quality you can taste, and real mozzarella that makes all the difference.",
+    "title": "Kosher pizza in Rishon LeZion — Pizza Virtuoso",
+    "body": "Find us at 16 Jabotinsky Street, opposite the Rishon LeZion Performing Arts Center, with 24-hour fermented dough, house-made sauce and exclusively Gad 22% fat mozzarella.",
     "primary": "Explore the menu",
     "secondary": "How we make it",
-    "trust": "Baked here • Served hot • No shortcuts"
+    "trust": "Pizza as an art form • Baked here • Served hot"
+  },
+  "local": {
+    "kicker": "Central Rishon LeZion",
+    "title": "Kosher pizza opposite the Rishon LeZion Performing Arts Center",
+    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order on WhatsApp for pickup, or open directions straight to Pizza Virtuoso.",
+    "order": "Order on WhatsApp",
+    "navigate": "Navigate to Pizza Virtuoso",
+    "call": "Call the restaurant"
+  },
+  "kosher": {
+    "kicker": "Kosher and fresh",
+    "title": "Kosher pizza in Rishon LeZion",
+    "body": "Pizza Virtuoso is a kosher pizzeria in Rishon LeZion. We prepare pizza, pasta, ravioli, salads and baked dishes on site, with fresh ingredients and careful preparation.",
+    "supervisionPending": "Supervision details and the kosher certificate will be added after the owner verifies them."
   },
   "story": {
     "kicker": "Our story",
