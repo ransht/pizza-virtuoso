@@ -1,6 +1,6 @@
 ---
 import type { Messages } from '../lib/i18n';
-const { t } = Astro.props as { t: Messages };
+const { t, orderUrl } = Astro.props as { t: Messages; orderUrl: string };
 ---
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero-media"><img src="/images/hero-pizza.webp" width="1672" height="941" loading="eager" fetchpriority="high" decoding="async" alt={t.meta.ogAlt} /></div>
@@ -11,8 +11,8 @@ const { t } = Astro.props as { t: Messages };
     <h1 id="hero-title" class="hero-reveal">{t.hero.title}</h1>
     <p class="hero-copy hero-reveal">{t.hero.body}</p>
     <div class="hero-buttons hero-reveal">
-      <a class="button button-primary" href="#menu">{t.hero.primary}</a>
-      <a class="button button-ghost" href="#process">{t.hero.secondary}<span aria-hidden="true">↓</span></a>
+      <a class="button button-order hero-order" href={orderUrl} target="_blank" rel="noopener noreferrer"><span class="order-button-icon" aria-hidden="true">↗</span>{t.hero.order}</a>
+      <a class="button button-ghost" href="#menu">{t.hero.primary}<span aria-hidden="true">↓</span></a>
     </div>
     <p class="hero-trust hero-reveal">{t.hero.trust}</p>
   </div>

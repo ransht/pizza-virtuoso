@@ -3,7 +3,6 @@ import business from '../content/business/config.json';
 import menu from '../content/menu/menu.json';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
-import WhatsAppIcon from './WhatsAppIcon.astro';
 import WazeIcon from './WazeIcon.astro';
 import GoogleMapsIcon from './GoogleMapsIcon.astro';
 import TikTokIcon from './TikTokIcon.astro';
@@ -22,12 +21,12 @@ const contactCards = [
   ['address', t.contact.addressValue, business.googleMapsUrl],
   ['hours', t.contact.hoursValue, ''],
   ['phone', business.telephoneDisplay, `tel:${business.telephone}`],
-  ['social', business.whatsappDisplay, business.orderUrl],
+  ['social', t.contact.whatsapp, orderUrl],
 ] as const;
 ---
 <Header {lang} {t} />
 <main id="main">
-  <Hero {t} />
+  <Hero {t} {orderUrl} />
 
   <section class="story section" id="story" aria-labelledby="story-title">
     <div class="page-shell story-grid">
@@ -129,7 +128,7 @@ const contactCards = [
       </div>
       <div class="menu-order-bar reveal">
         <p>{t.menu.orderHint}</p>
-        <a class="button button-primary" href={orderUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.menu.order}</a>
+        <a class="button button-order" href={orderUrl} target="_blank" rel="noopener noreferrer"><span class="order-button-icon" aria-hidden="true">↗</span>{t.menu.order}</a>
       </div>
       <a class="share-link" href={shareUrl} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span>{t.menu.share}</a>
     </div>
@@ -161,7 +160,7 @@ const contactCards = [
         <h2 id="location-title">{t.local.title}</h2>
         <p>{t.local.body}</p>
         <div class="local-actions">
-          <a class="button button-primary" href={orderUrl} target="_blank" rel="noopener noreferrer"><WhatsAppIcon />{t.local.order}</a>
+          <a class="button button-order" href={orderUrl} target="_blank" rel="noopener noreferrer"><span class="order-button-icon" aria-hidden="true">↗</span>{t.local.order}</a>
           <a class="button button-outline" href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer"><GoogleMapsIcon />{t.local.navigate}</a>
           <a class="text-action" href={`tel:${business.telephone}`}>{t.local.call}: <bdi>{business.telephoneDisplay}</bdi></a>
         </div>
@@ -180,7 +179,7 @@ const contactCards = [
     <div class="page-shell">
       <header class="contact-heading reveal"><p class="section-kicker">{t.contact.kicker}</p><h2 id="contact-title">{t.contact.title}</h2><p>{t.contact.intro}</p></header>
       <dl class="contact-details reveal">
-        {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{key === 'address' ? <address><a href={business.googleBusinessUrl || href} target="_blank" rel="noopener noreferrer">{value}</a></address> : href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <WhatsAppIcon />}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
+        {contactCards.map(([key, value, href]) => <div><dt>{t.contact.labels[key]}</dt><dd>{key === 'address' ? <address><a href={business.googleBusinessUrl || href} target="_blank" rel="noopener noreferrer">{value}</a></address> : href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{key === 'social' && <span class="order-button-icon" aria-hidden="true">↗</span>}{value || t.contact.pending}</a> : value || t.contact.pending}</dd></div>)}
       </dl>
       <div class="social-cards">
         {business.tiktokUrl && (
@@ -219,7 +218,7 @@ const contactCards = [
         <a class="button button-primary" href="#menu">{t.final.menu}</a>
         <a class="navigation-button navigation-button-dark" href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a>
         <a class="navigation-button navigation-button-dark" href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a>
-        {orderUrl ? <a class="button button-ghost" href={orderUrl}><WhatsAppIcon />{t.final.order}</a> : <span class="button button-ghost is-disabled">{t.final.orderSoon}</span>}
+        {orderUrl ? <a class="button button-ghost button-order" href={orderUrl} target="_blank" rel="noopener noreferrer"><span class="order-button-icon" aria-hidden="true">↗</span>{t.final.order}</a> : <span class="button button-ghost is-disabled">{t.final.orderSoon}</span>}
       </div>
     </div>
   </section>
@@ -240,7 +239,7 @@ const contactCards = [
     <div><a href={business.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.waze} title={t.contact.waze}><WazeIcon /></a><a href={business.googleBusinessUrl || business.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.googleMaps} title={t.contact.googleMaps}><GoogleMapsIcon /></a></div>
   </details>
   {business.telephone ? <a href={`tel:${business.telephone}`}><span aria-hidden="true">◡</span>{t.mobile.call}</a> : <span aria-disabled="true"><span aria-hidden="true">◡</span>{t.mobile.soon}</span>}
-  {orderUrl ? <a class="mobile-order" href={orderUrl}><WhatsAppIcon />{t.mobile.order}</a> : <span class="mobile-order" aria-disabled="true"><span aria-hidden="true">↗</span>{t.mobile.soon}</span>}
+  {orderUrl ? <a class="mobile-order" href={orderUrl} target="_blank" rel="noopener noreferrer"><span class="order-button-icon" aria-hidden="true">↗</span>{t.mobile.order}</a> : <span class="mobile-order" aria-disabled="true"><span aria-hidden="true">↗</span>{t.mobile.soon}</span>}
 </nav>
 
 <script>
