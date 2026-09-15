@@ -5,21 +5,22 @@
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
-  "nav": { "home": "Home", "story": "Our story", "difference": "Why we're different", "menu": "Menu", "contact": "Contact", "order": "Order online", "orderSoon": "Online ordering — coming soon", "langLabel": "עברית", "langCode": "עב" },
+  "nav": { "home": "Home", "story": "Our story", "difference": "Why we're different", "menu": "Menu", "contact": "Contact", "order": "Order now", "orderSoon": "Online ordering — coming soon", "langLabel": "עברית", "langCode": "עב" },
   "hero": {
     "eyebrow": "Under new management",
     "brand": "Pizza Virtuoso",
     "title": "Kosher pizza in Rishon LeZion — Pizza Virtuoso",
     "body": "Find us at 16 Jabotinsky Street, opposite the Rishon LeZion Performing Arts Center, with 24-hour fermented dough, house-made sauce and exclusively Gad 22% fat mozzarella.",
     "primary": "Explore the menu",
+    "order": "Order online",
     "secondary": "How we make it",
     "trust": "Pizza as an art form • Baked here • Served hot"
   },
   "local": {
     "kicker": "Central Rishon LeZion",
     "title": "Kosher pizza opposite the Rishon LeZion Performing Arts Center",
-    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order on WhatsApp for pickup, or open directions straight to Pizza Virtuoso.",
-    "order": "Order on WhatsApp",
+    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order online for pickup, or open directions straight to Pizza Virtuoso.",
+    "order": "Order online",
     "navigate": "Navigate to Pizza Virtuoso",
     "call": "Call the restaurant"
   },
@@ -73,7 +74,7 @@
   "menu": {
     "kicker": "The menu",
     "title": "What are you craving?",
-    "intro": "Every price in one place, organized by category and size. Choose what sounds good and message us on WhatsApp to order.",
+    "intro": "Every price in one place, organized by category and size. Choose what sounds good and order online in a few clicks.",
     "categories": { "pizzas": "Pizza", "pastas": "Pasta", "salads": "Salads", "bakes": "Bakes", "drinks": "Drinks" },
     "categoryNotes": { "pizzas": "Three sizes, toppings and slices", "pastas": "Penne and ravioli", "salads": "Small or large, with your choice of toppings", "bakes": "From the oven and alongside your pizza", "drinks": "Cold, fizzy and ready for the table" },
     "priceLabels": { "M": "M", "L": "L", "XL": "XL", "unit": "Price", "withTopping": "With topping" },
@@ -105,7 +106,7 @@
       "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water.", "imageAlt": "Selection of chilled small drink bottles" },
       "waterSoda": { "name": "San Benedetto Water & Soda", "description": "San Benedetto mineral water or soda.", "imageAlt": "San Benedetto mineral water and soda bottles" }
     },
-    "order": "Order on WhatsApp",
+    "order": "Order online",
     "orderHint": "Final price is confirmed by the restaurant",
     "share": "Share with a friend who loves pizza"
   },
@@ -115,7 +116,7 @@
     "kicker": "Come by",
     "title": "Good pizza is closer than you think",
     "intro": "Find us at 16 Jabotinsky Street, Rishon LeZion, directly across from the Performing Arts Center.",
-    "labels": { "address": "Address", "hours": "Opening hours", "phone": "Restaurant phone", "social": "WhatsApp" },
+    "labels": { "address": "Address", "hours": "Opening hours", "phone": "Restaurant phone", "social": "Online ordering" },
     "tiktokKicker": "Fresh from the oven",
     "tiktokTitle": "We're now on TikTok",
     "tiktokBody": "Kitchen peeks, dough in motion and delicious moments straight from the oven.",
@@ -134,7 +135,7 @@
     "pending": "Coming soon",
     "navigate": "Navigate",
     "call": "Call us",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "Order online"
   },
   "final": { "eyebrow": "The dough is resting", "title": "All that's left is to choose your pizza", "body": "We'll make it here, generously and without shortcuts.", "menu": "See the menu", "navigate": "Navigate", "order": "Order online", "orderSoon": "Ordering — coming soon" },
   "footer": { "tagline": "Fresh pizza in Rishon LeZion. Made patiently, served generously.", "rights": "All rights reserved.", "photoNote": "Website photography is temporary and will be replaced with photos of the pizzeria." },

@@ -45,6 +45,9 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .button:hover { transform: translateY(-2px); }
 .button-primary { background: var(--tomato); color: var(--white); }
 .button-primary:hover { background: var(--tomato-bright); }
+.button-order { background: #f1c782; color: #291b13; border-color: #f7dba5; box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+.button-order:hover { background: #ffe1a8; color: #20130d; }
+.order-button-icon { display: inline-grid; place-items: center; inline-size: 21px; block-size: 21px; border: 1px solid currentColor; border-radius: 50%; font-size: .86rem; line-height: 1; }
 .button-outline { border-color: var(--charcoal); color: var(--charcoal); }
 .button-outline:hover { background: var(--charcoal); color: var(--white); }
 .button-ghost { border-color: rgba(255,255,255,.5); color: var(--white); }
@@ -92,6 +95,7 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .hero h1 { max-width: 930px; font-size: clamp(3.15rem, 6.2vw, 6.3rem); margin-block-end: 28px; text-wrap: balance; }
 .hero-copy { font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.6; margin-block-end: 34px; }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-block-end: 26px; }
+.hero-order { min-width: 206px; }
 .hero-trust { font-size: .82rem; letter-spacing: .04em; opacity: .78; }
 .hero-side { position: absolute; inset-inline-end: max(22px, 3vw); inset-block-end: 62px; display: flex; align-items: center; gap: 14px; writing-mode: vertical-rl; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
 .hero-side span:first-child { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0; }
