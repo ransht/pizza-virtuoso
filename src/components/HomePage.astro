@@ -169,8 +169,7 @@ const contactCards = [
         <p class="section-kicker">{t.kosher.kicker}</p>
         <h2 id="kosher-title">{t.kosher.title}</h2>
         <p>{t.kosher.body}</p>
-        <!-- TODO(owner): Verify and add the official kosher supervising authority, certification details and an accessible certificate image. -->
-        {!business.kosherSupervision && <p class="verification-note">{t.kosher.supervisionPending}</p>}
+        <p class="verification-note">{t.kosher.supervision}</p>
       </article>
     </div>
   </section>

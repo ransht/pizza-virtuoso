@@ -27,8 +27,8 @@
   "kosher": {
     "kicker": "Kosher and fresh",
     "title": "Kosher pizza in Rishon LeZion",
-    "body": "Pizza Virtuoso is a kosher pizzeria in Rishon LeZion. We prepare pizza, pasta, ravioli, salads and baked dishes on site, with fresh ingredients and careful preparation.",
-    "supervisionPending": "Supervision details and the kosher certificate will be added after the owner verifies them."
+    "body": "Pizza Virtuoso is a kosher pizzeria under the supervision of the Rishon LeZion Rabbinate. We prepare pizza, pasta, ravioli, salads and baked dishes on site, with fresh ingredients and careful preparation.",
+    "supervision": "Kosher under the supervision of the Rishon LeZion Rabbinate"
   },
   "story": {
     "kicker": "Our story",
