@@ -14,10 +14,10 @@
     "postalCode": "",
     "addressCountry": "IL"
   },
-  "geo": { "latitude": null, "longitude": null },
-  "openingHoursVerified": false,
+  "geo": { "latitude": 31.9620529, "longitude": 34.800577 },
+  "openingHoursVerified": true,
   "openingHours": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "17:00", "closes": "23:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "17:00", "closes": "23:30" }
   ],
   "wazeUrl": "https://www.waze.com/ul?q=%D7%96%27%D7%91%D7%95%D7%98%D7%99%D7%A0%D7%A1%D7%A7%D7%99%2016%20%D7%A8%D7%90%D7%A9%D7%95%D7%9F%20%D7%9C%D7%A6%D7%99%D7%95%D7%9F&navigate=yes",
   "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=%D7%96%27%D7%91%D7%95%D7%98%D7%99%D7%A0%D7%A1%D7%A7%D7%99%2016%20%D7%A8%D7%90%D7%A9%D7%95%D7%9F%20%D7%9C%D7%A6%D7%99%D7%95%D7%9F",
@@ -25,7 +25,7 @@
   "instagramUrl": "",
   "tiktokUrl": "https://www.tiktok.com/@pizzavirtuoso.il",
   "facebookUrl": "https://www.facebook.com/share/1G6n6VNhCR/",
-  "priceRange": "",
-  "kosherSupervision": "",
+  "priceRange": "₪",
+  "kosherSupervision": "הרבנות ראשון לציון",
   "analyticsId": "G-ECSLPEJEB6"
 }
