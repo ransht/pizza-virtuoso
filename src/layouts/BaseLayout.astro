@@ -56,6 +56,7 @@ if (business.address.streetAddress) restaurant.address = {
 if (business.geo.latitude && business.geo.longitude) restaurant.geo = { '@type': 'GeoCoordinates', ...business.geo };
 if (business.openingHoursVerified && business.openingHours.length) restaurant.openingHoursSpecification = business.openingHours;
 if (business.priceRange) restaurant.priceRange = business.priceRange;
+if (business.city) restaurant.areaServed = { '@type': 'City', name: business.city };
 const sameAs = [business.googleBusinessUrl, business.instagramUrl, business.tiktokUrl, business.facebookUrl].filter(Boolean);
 if (sameAs.length) restaurant.sameAs = sameAs;
 if (business.googleBusinessUrl || business.googleMapsUrl) restaurant.hasMap = business.googleBusinessUrl || business.googleMapsUrl;

@@ -40,6 +40,7 @@ for (const file of htmlFiles) {
     assert(!/<meta name="robots" content="[^"]*noindex/i.test(html), `${name}: homepage is noindex.`);
     assert(/<meta name="description" content="[^"].+?"/.test(html), `${name}: missing meta description.`);
     assert(/hreflang="he-IL"/.test(html) && /hreflang="en"/.test(html) && /hreflang="x-default"/.test(html), `${name}: incomplete hreflang set.`);
+    assert(/משלוח|[Dd]eliver/.test(html), `${name}: delivery is not mentioned.`);
     assert(/03-9504888/.test(html) && /ז׳בוטינסקי 16|16 Jabotinsky/.test(html), `${name}: NAP details are not visible.`);
   }
 
