@@ -47,6 +47,10 @@ for (const file of htmlFiles) {
   for (const tag of html.match(/<img\b[^>]*>/gi) || []) {
     assert(/\balt="[^"]*"/.test(tag), `${name}: image missing alt attribute.`);
     assert(/\bwidth="\d+"/.test(tag) && /\bheight="\d+"/.test(tag), `${name}: image missing intrinsic dimensions.`);
+    const srcset = tag.match(/\bsrcset="([^"]+)"/)?.[1].split(',').map((entry) => entry.trim().split(' ')[0]) || [];
+    for (const source of [tag.match(/\bsrc="([^"]+)"/)?.[1], ...srcset]) {
+      if (source?.startsWith('/')) assert(existsSync(join(dist, source)), `${name}: missing image file ${source}.`);
+    }
   }
 
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
