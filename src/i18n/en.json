@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Kosher Pizza in Rishon LeZion | Pizza Virtuoso",
-    "description": "Pizza Virtuoso is a kosher pizzeria in Rishon LeZion, opposite the Performing Arts Center. 24-hour dough, house-made sauce, Gad mozzarella, pasta and salads.",
+    "description": "Kosher pizza in Rishon LeZion, opposite the Performing Arts Center. 24-hour dough and Gad mozzarella. Delivery in Rishon LeZion, pickup or dine-in. Sun–Thu 17:00–23:30.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
@@ -19,7 +19,7 @@
   "local": {
     "kicker": "Central Rishon LeZion",
     "title": "Kosher pizza opposite the Rishon LeZion Performing Arts Center",
-    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order online for pickup, or open directions straight to Pizza Virtuoso.",
+    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order online for delivery in Rishon LeZion or for pickup, or open directions straight to Pizza Virtuoso.",
     "order": "Order online",
     "navigate": "Navigate to Pizza Virtuoso",
     "call": "Call the restaurant"
@@ -119,7 +119,8 @@
       { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the Rishon LeZion Rabbinate." },
       { "question": "What are Pizza Virtuoso's opening hours?", "answer": "We are open Sunday to Thursday, 17:00–23:30. We are closed on Friday and Saturday." },
       { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." },
-      { "question": "How do I order pizza?", "answer": "Order online through our ordering site, call 03-9504888, or come and dine in." }
+      { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call 03-9504888, or come and dine in." },
+      { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call 03-9504888." }
     ]
   },
   "contact": {
