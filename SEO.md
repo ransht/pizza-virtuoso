@@ -12,12 +12,20 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 ## Facts awaiting owner verification
 
 - **Menu and prices:** public directory menus conflict with the repository. Confirm the current in-store menu before changing `src/content/menu/menu.json`.
-- **Google destination:** confirm that `googleBusinessUrl` opens the active Pizza Virtuoso profile, not an old listing at the address.
 
 ## Owner-verified facts (October 2026)
 
 - **Kosher supervision:** Rishon LeZion Rabbinate (not mehadrin). Describe it only as "הרבנות ראשון לציון".
 - **Opening hours:** Sunday–Thursday 17:00–23:30; closed Friday and Saturday. The owner plans to open on Saturday night later; update `src/content/business/config.json` and both language dictionaries when that starts.
+
+- **Google and Facebook profiles (checked 5 October 2026):** `googleBusinessUrl` is the permanent Maps URL of the active "פיצה וירטואוז" profile (CID 9467731136455280639) and `facebookUrl` is the permanent page URL. Do not replace them with `share.google` or `facebook.com/share` short links; `pnpm validate:seo` rejects those in structured data.
+
+## Structured data
+
+- The `Restaurant` `@id` is `https://pizzavirtuoso.co.il/#restaurant`. The ordering site references the same `@id`; never change it.
+- The `Menu` node is generated from `src/content/menu/menu.json` and the language dictionaries, the same sources as the visible menu, so prices in schema always equal the prices on the page. `pnpm validate:seo` fails if they diverge.
+- Menu photos are illustrative, so they are deliberately left out of `MenuItem`. Add them once real dish photos replace them.
+- No `AggregateRating` or `Review` markup: Google ignores self-published ratings for local businesses, and none are shown on the page.
 
 ## Google Search Console after deployment
 
@@ -28,7 +36,9 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 5. Monitor Pages/Indexing, Core Web Vitals and Search performance. Review queries, impressions, CTR and average position by page and device.
 6. Check that Google-selected canonicals match the declared canonicals and investigate discrepancies rather than repeatedly requesting indexing.
 
-If the production host supports redirect rules, replace the static root meta refresh with a server-level permanent redirect from `/` to `/he/`. The current root is a GitHub Pages-compatible `200` fallback with `noindex, follow` and a canonical to `/he/`; it is intentionally excluded from the sitemap.
+GitHub Pages cannot return a `301`, so `/` is a `200` page with an instant meta refresh and a canonical to `/he/`, which search engines treat as a permanent redirect. It must not carry `noindex` (that drops the link signals of the URL most external links use) and it stays out of the sitemap. A real `301` needs an edge rule: the domain's DNS is already on Cloudflare, so proxying the record and adding a Redirect Rule for `/` → `/he/` would provide one without moving hosts.
+
+`/love/` is an expired campaign page (valid until 30 July 2026) and is `noindex`. Remove the `noindex` prop in `src/pages/love/index.astro` only if the campaign runs again.
 
 ## Google Business Profile checklist
 

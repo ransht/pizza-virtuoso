@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import business from '../content/business/config.json';
+import menu from '../content/menu/menu.json';
 import FacebookPixel from '../components/FacebookPixel.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import AccessibilityTools from '../components/AccessibilityTools.astro';
@@ -13,8 +14,9 @@ interface Props {
   canonicalPath?: string;
   facebookPixelId?: string;
   preloadImage?: string;
+  noindex?: boolean;
 }
-const { lang, t, meta, canonicalPath, facebookPixelId, preloadImage } = Astro.props;
+const { lang, t, meta, canonicalPath, facebookPixelId, preloadImage, noindex = false } = Astro.props;
 const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
 const localizedPath = canonicalPath || `/${lang}/`;
 const canonical = new URL(localizedPath, origin);
@@ -24,18 +26,25 @@ const metaImage = meta?.image || '/images/og-pizza.jpg';
 const metaImageAlt = meta?.imageAlt || t.meta.ogAlt;
 const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
 const isHomePage = localizedPath === `/${lang}/`;
+const fontSubset = lang === 'he' ? 'hebrew' : 'latin';
+const inLanguage = lang === 'he' ? 'he-IL' : 'en';
+const restaurantId = new URL('/#restaurant', origin).href;
+const websiteId = new URL('/#website', origin).href;
+const menuId = new URL(`/${lang}/#menu`, origin).href;
 const hasLanguageAlternative = localizedPath.startsWith(`/${lang}/`) && (lang === 'he' || lang === 'en');
 const alternatePath = (targetLang: Language) => localizedPath.replace(`/${lang}/`, `/${targetLang}/`);
 const restaurant: Record<string, unknown> = {
   '@type': 'Restaurant',
-  '@id': new URL('/#restaurant', origin).href,
+  '@id': restaurantId,
   name: business.name,
   alternateName: business.alternateName,
+  description: t.meta.description,
   url: new URL('/he/', origin).href,
   image: [new URL('/images/hero-pizza.webp', origin).href, new URL('/images/og-pizza.jpg', origin).href],
   logo: new URL('/favicon.svg', origin).href,
-  servesCuisine: ['Pizza', 'Italian', 'Dairy'],
-  menu: new URL('/he/#menu', origin).href,
+  servesCuisine: ['Pizza', 'Italian', 'Dairy', 'Kosher'],
+  menu: menuId,
+  hasMenu: { '@id': menuId },
 };
 if (business.telephone) restaurant.telephone = business.telephone;
 if (business.address.streetAddress) restaurant.address = {
@@ -53,19 +62,57 @@ if (business.googleBusinessUrl || business.googleMapsUrl) restaurant.hasMap = bu
 if (orderUrl) restaurant.potentialAction = { '@type': 'OrderAction', target: orderUrl };
 const website = {
   '@type': 'WebSite',
-  '@id': new URL('/#website', origin).href,
+  '@id': websiteId,
   url: new URL('/', origin).href,
   name: business.name,
   alternateName: business.alternateName,
   inLanguage: ['he-IL', 'en'],
+  publisher: { '@id': restaurantId },
+};
+const webPage = {
+  '@type': 'WebPage',
+  '@id': new URL(`${localizedPath}#webpage`, origin).href,
+  url: canonical.href,
+  name: metaTitle,
+  description: metaDescription,
+  inLanguage,
+  isPartOf: { '@id': websiteId },
+  about: { '@id': restaurantId },
+  primaryImageOfPage: new URL(metaImage, origin).href,
+};
+// Mirrors the visible #menu section: same items, names and prices, from the same data files.
+const menuItemNames = t.menu.items as Record<string, { name: string; description: string }>;
+const menuPriceLabels = t.menu.priceLabels as Record<string, string>;
+const menuCategoryNames = t.menu.categories as Record<string, string>;
+const menuSchema = {
+  '@type': 'Menu',
+  '@id': menuId,
+  name: `${t.hero.brand} – ${t.nav.menu}`,
+  url: menuId,
+  inLanguage,
+  hasMenuSection: menu.categories.map((category) => ({
+    '@type': 'MenuSection',
+    name: menuCategoryNames[category.id],
+    hasMenuItem: category.items.filter((item) => item.prices.length > 0).map((item) => ({
+      '@type': 'MenuItem',
+      name: menuItemNames[item.id].name,
+      ...(menuItemNames[item.id].description ? { description: menuItemNames[item.id].description } : {}),
+      offers: item.prices.map((price) => ({
+        '@type': 'Offer',
+        ...(price.label === 'unit' ? {} : { name: menuPriceLabels[price.label] }),
+        price: price.price,
+        priceCurrency: menu.currency,
+      })),
+    })),
+  })),
 };
 const faqPage = {
   '@type': 'FAQPage',
   '@id': new URL(`${localizedPath}#faq`, origin).href,
-  inLanguage: lang === 'he' ? 'he-IL' : 'en',
+  inLanguage,
   mainEntity: t.faq.items.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
 };
-const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website, faqPage] : [website] };
+const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website, webPage, menuSchema, faqPage] : [website] };
 ---
 <!doctype html>
 <html lang={lang} dir={direction(lang)}>
@@ -73,7 +120,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [resta
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#9f261c" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonical} />
     {hasLanguageAlternative && <link rel="alternate" hreflang="he-IL" href={new URL(alternatePath('he'), origin)} />}
@@ -82,8 +129,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [resta
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     {(preloadImage || isHomePage) && <link rel="preload" as="image" href={preloadImage || '/images/hero-pizza.webp'} fetchpriority="high" />}
-    <link rel="preload" href="/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/noto-serif-hebrew.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={`/fonts/assistant-${fontSubset}.woff2`} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={`/fonts/noto-serif-${fontSubset}.woff2`} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
