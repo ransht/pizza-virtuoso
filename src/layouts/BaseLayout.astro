@@ -45,7 +45,6 @@ if (business.address.streetAddress) restaurant.address = {
   addressCountry: business.address.addressCountry,
 };
 if (business.geo.latitude && business.geo.longitude) restaurant.geo = { '@type': 'GeoCoordinates', ...business.geo };
-// Hours are intentionally excluded until the owner resolves conflicting current listings.
 if (business.openingHoursVerified && business.openingHours.length) restaurant.openingHoursSpecification = business.openingHours;
 if (business.priceRange) restaurant.priceRange = business.priceRange;
 const sameAs = [business.googleBusinessUrl, business.instagramUrl, business.tiktokUrl, business.facebookUrl].filter(Boolean);
@@ -60,7 +59,13 @@ const website = {
   alternateName: business.alternateName,
   inLanguage: ['he-IL', 'en'],
 };
-const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website] : [website] };
+const faqPage = {
+  '@type': 'FAQPage',
+  '@id': new URL(`${localizedPath}#faq`, origin).href,
+  inLanguage: lang === 'he' ? 'he-IL' : 'en',
+  mainEntity: t.faq.items.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+};
+const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website, faqPage] : [website] };
 ---
 <!doctype html>
 <html lang={lang} dir={direction(lang)}>

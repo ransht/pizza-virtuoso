@@ -219,6 +219,14 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .text-action { padding: 10px 4px; color: var(--tomato); font-weight: 700; text-underline-offset: 5px; }
 .verification-note { margin-block: 30px 0; padding-block-start: 22px; border-block-start: 1px solid rgba(255,255,255,.18); color: #f1d990; font-size: .78rem; }
 
+.faq { background: var(--white); }
+.faq-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.faq-heading h2 { margin: 0; text-wrap: balance; }
+.faq-list details { border-block-end: 1px solid rgba(36,32,27,.14); }
+.faq-list details:first-child { border-block-start: 1px solid rgba(36,32,27,.14); }
+.faq-list summary { cursor: pointer; padding-block: 22px; font-weight: 700; font-size: 1.1rem; }
+.faq-list details p { margin-block: 0 24px; max-width: 640px; color: var(--ink-soft); }
+@media (max-width: 900px) { .faq-inner { grid-template-columns: 1fr; } }
 .contact { background: var(--cream); }
 .contact-heading { display: grid; grid-template-columns: .45fr 1.05fr .7fr; gap: 40px; align-items: start; }
 .contact-heading h2 { margin: 0; }

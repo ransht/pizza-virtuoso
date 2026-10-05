@@ -112,6 +112,16 @@
   },
   "sauce": { "eyebrow": "A little something from us", "title": "Want a little extra sauce on the side?", "body": "Gladly. Just ask — there's no extra charge." },
   "clean": { "kicker": "A kitchen you can trust", "title": "We don't compromise on flavor. Or cleanliness.", "body": "We keep our work surfaces clean, our kitchen organized, our ingredients handled properly and every order carefully prepared." },
+  "faq": {
+    "kicker": "Frequently asked",
+    "title": "Good to know before you order",
+    "items": [
+      { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the Rishon LeZion Rabbinate." },
+      { "question": "What are Pizza Virtuoso's opening hours?", "answer": "We are open Sunday to Thursday, 17:00–23:30. We are closed on Friday and Saturday." },
+      { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." },
+      { "question": "How do I order pizza?", "answer": "Order online through our ordering site, call 03-9504888, or come and dine in." }
+    ]
+  },
   "contact": {
     "kicker": "Come by",
     "title": "Good pizza is closer than you think",
@@ -126,7 +136,7 @@
     "facebookBody": "News, updates and everything delicious at Pizza Virtuoso.",
     "facebookAction": "Visit Facebook",
     "addressValue": "16 Jabotinsky St., Rishon LeZion · Across from the Performing Arts Center",
-    "hoursValue": "Sunday–Thursday · 17:00–23:00",
+    "hoursValue": "Sunday–Thursday · 17:00–23:30 · Closed Friday and Saturday",
     "directionsKicker": "Your choice",
     "directionsTitle": "How would you like to navigate?",
     "directionsHint": "Open directions to 16 Jabotinsky Street in the navigation app you prefer.",

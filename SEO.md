@@ -11,10 +11,13 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 
 ## Facts awaiting owner verification
 
-- **Kosher supervision:** the business is described only as kosher. Add the official supervising authority, certificate details and accessible certificate image only after checking the current certificate. Source TODO: `src/components/HomePage.astro`.
-- **Opening hours:** repository data says Sunday–Thursday, 17:00–23:00, but current public directories show conflicting hours, including noon opening and Saturday service. Confirm directly with the owner, then update `src/content/business/config.json`, both language dictionaries, and set `openingHoursVerified` to `true`. Until then, hours are deliberately omitted from Restaurant JSON-LD.
 - **Menu and prices:** public directory menus conflict with the repository. Confirm the current in-store menu before changing `src/content/menu/menu.json`.
 - **Google destination:** confirm that `googleBusinessUrl` opens the active Pizza Virtuoso profile, not an old listing at the address.
+
+## Owner-verified facts (October 2026)
+
+- **Kosher supervision:** Rishon LeZion Rabbinate (not mehadrin). Describe it only as "הרבנות ראשון לציון".
+- **Opening hours:** Sunday–Thursday 17:00–23:30; closed Friday and Saturday. The owner plans to open on Saturday night later; update `src/content/business/config.json` and both language dictionaries when that starts.
 
 ## Google Search Console after deployment
 

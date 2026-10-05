@@ -174,6 +174,15 @@ const contactCards = [
     </div>
   </section>
 
+  <section class="faq section" id="faq" aria-labelledby="faq-title">
+    <div class="page-shell faq-inner">
+      <header class="faq-heading reveal"><p class="section-kicker">{t.faq.kicker}</p><h2 id="faq-title">{t.faq.title}</h2></header>
+      <div class="faq-list reveal">
+        {t.faq.items.map(({ question, answer }) => <details><summary>{question}</summary><p>{answer}</p></details>)}
+      </div>
+    </div>
+  </section>
+
   <section class="contact section" id="contact" aria-labelledby="contact-title">
     <div class="page-shell">
       <header class="contact-heading reveal"><p class="section-kicker">{t.contact.kicker}</p><h2 id="contact-title">{t.contact.title}</h2><p>{t.contact.intro}</p></header>
