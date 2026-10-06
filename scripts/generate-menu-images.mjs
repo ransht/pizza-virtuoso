@@ -30,3 +30,20 @@ for (const file of readdirSync(sourceDir).filter((name) => name.endsWith('-menu.
 const logo = join(sourceDir, 'gad-logo-264.webp');
 await sharp(join(sourceDir, 'gad-logo.png')).resize({ width: 264 }).webp({ quality: 88 }).toFile(logo);
 console.log(`${logo} ${Math.round(statSync(logo).size / 1024)} KB`);
+
+// Hero: phones get a portrait crop centred on the pizza (the hero is taller than wide there);
+// wider screens get the landscape original in two widths.
+const heroSource = join(sourceDir, 'hero-pizza.webp');
+const heroDir = join(sourceDir, 'hero');
+mkdirSync(heroDir, { recursive: true });
+const hero = await sharp(heroSource).metadata();
+const heroCropWidth = Math.round(hero.height * 3 / 4);
+const heroOutputs = [
+  [join(heroDir, 'hero-pizza-mobile.webp'), sharp(heroSource).extract({ left: Math.round((hero.width - heroCropWidth) * 0.77), top: 0, width: heroCropWidth, height: hero.height }).webp({ quality: 74 })],
+  [join(heroDir, 'hero-pizza-1100.webp'), sharp(heroSource).resize({ width: 1100 }).webp({ quality: 76 })],
+  [join(heroDir, 'hero-pizza-1672.webp'), sharp(heroSource).webp({ quality: 78 })],
+];
+for (const [output, pipeline] of heroOutputs) {
+  await pipeline.toFile(output);
+  console.log(`${output} ${Math.round(statSync(output).size / 1024)} KB`);
+}

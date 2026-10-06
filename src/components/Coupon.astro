@@ -1,0 +1,16 @@
+---
+import business from '../content/business/config.json';
+import type { Messages } from '../lib/i18n';
+interface Props { t: Messages; location: string; }
+const { t, location } = Astro.props;
+const { code } = business.directOrderCoupon;
+---
+<div class="coupon" data-coupon data-track-location={location}>
+  <p class="coupon-title">{t.coupon.title}</p>
+  <div class="coupon-row">
+    <p class="coupon-code"><span>{t.coupon.codeLabel}</span><strong><bdi>{code}</bdi></strong></p>
+    <button class="coupon-copy" type="button" data-copy-code={code} data-copied-label={t.coupon.copied}>{t.coupon.copy}</button>
+  </div>
+  <p class="coupon-hint">{t.coupon.hint}</p>
+  <span class="sr-only" role="status" data-copy-status></span>
+</div>

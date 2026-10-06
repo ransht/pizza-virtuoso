@@ -4,8 +4,8 @@
 
 | Page | Primary intent | Title | H1 |
 | --- | --- | --- | --- |
-| `/he/` | פיצה כשרה בראשון לציון; פיצה / פיצרייה בראשון לציון; פיצה ליד היכל התרבות; פיצה ז׳בוטינסקי ראשון לציון; הזמנת פיצה | פיצה כשרה בראשון לציון \| פיצה וירטואוז | פיצה כשרה בראשון לציון – פיצה וירטואוז |
-| `/en/` | Kosher pizza and pizzeria in Rishon LeZion; local English-language visitors | Kosher Pizza in Rishon LeZion \| Pizza Virtuoso | Kosher pizza in Rishon LeZion — Pizza Virtuoso |
+| `/he/` | פיצה כשרה בראשון לציון; פיצה / פיצרייה בראשון לציון; פיצה ליד היכל התרבות; פיצה ז׳בוטינסקי ראשון לציון; הזמנת פיצה | פיצה וירטואוז ראשון לציון \| פיצה כשרה ומשלוחים | הפיצה המיתולוגית מול היכל התרבות בראשון לציון |
+| `/en/` | Kosher pizza and pizzeria in Rishon LeZion; local English-language visitors | Pizza Virtuoso Rishon LeZion \| Kosher Pizza & Delivery | The legendary pizza opposite the Rishon LeZion Performing Arts Center |
 
 The menu, location, kosher and ordering intents are consolidated on the substantial homepage. Do not create near-duplicate pages for spelling or preposition variants. The crawlable menu section covers pizza, Margherita, pesto, Alfredo, rosa, slices, pasta, ravioli, salads, baked dishes and drinks naturally.
 
@@ -16,7 +16,7 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 ## Owner-verified facts (October 2026)
 
 - **Kosher supervision:** Rishon LeZion Rabbinate (not mehadrin). Describe it only as "הרבנות ראשון לציון".
-- **Opening hours:** Sunday–Thursday 17:00–23:30; closed Friday and Saturday. The owner plans to open on Saturday night later; update `src/content/business/config.json` and both language dictionaries when that starts.
+- **Opening hours:** Sunday–Thursday 17:00–23:30; closed Friday and Saturday. The owner plans to open on Saturday night later; add the Saturday-night slot to `openingHours` in `src/content/business/config.json` when that starts; every visible mention and the structured data follow from it.
 
 - **Google and Facebook profiles (checked 5 October 2026):** `googleBusinessUrl` is the permanent Maps URL of the active "פיצה וירטואוז" profile (CID 9467731136455280639) and `facebookUrl` is the permanent page URL. Do not replace them with `share.google` or `facebook.com/share` short links; `pnpm validate:seo` rejects those in structured data.
 
@@ -25,7 +25,7 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 - The `Restaurant` `@id` is `https://pizzavirtuoso.co.il/#restaurant`. The ordering site references the same `@id`; never change it.
 - The `Menu` node is generated from `src/content/menu/menu.json` and the language dictionaries, the same sources as the visible menu, so prices in schema always equal the prices on the page. `pnpm validate:seo` fails if they diverge.
 - Menu photos are illustrative, so they are deliberately left out of `MenuItem`. Add them once real dish photos replace them.
-- No `AggregateRating` or `Review` markup: Google ignores self-published ratings for local businesses, and none are shown on the page.
+- No `AggregateRating` or `Review` markup: Google ignores self-published ratings for local businesses. The page shows the Google rating as a dated snapshot (`googleRating` in the business config, 4.8 from 107 reviews on 6 October 2026) with a link to the profile, and no review texts are copied onto the site.
 
 ## Google Search Console after deployment
 

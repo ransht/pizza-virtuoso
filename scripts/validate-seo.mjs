@@ -9,6 +9,8 @@ const assert = (condition, message) => { if (!condition) errors.push(message); }
 const read = (path) => readFileSync(path, 'utf8');
 const htmlFiles = [];
 const menuData = JSON.parse(read(join(root, 'src/content/menu/menu.json')));
+const business = JSON.parse(read(join(root, 'src/content/business/config.json')));
+const hasDeals = JSON.parse(read(join(root, 'src/content/deals/deals.json'))).deals.length > 0;
 const expectedOffers = menuData.categories.flatMap((category) => category.items.flatMap((item) => item.prices.map((price) => price.price)));
 
 function walk(directory) {
@@ -42,6 +44,15 @@ for (const file of htmlFiles) {
     assert(/hreflang="he-IL"/.test(html) && /hreflang="en"/.test(html) && /hreflang="x-default"/.test(html), `${name}: incomplete hreflang set.`);
     assert(/משלוח|[Dd]eliver/.test(html), `${name}: delivery is not mentioned.`);
     assert(/03-9504888/.test(html) && /ז׳בוטינסקי 16|16 Jabotinsky/.test(html), `${name}: NAP details are not visible.`);
+    // Missing information is left out, never announced to customers.
+    const visible = html.replace(/<script[\s\S]*?<\/script>/g, '');
+    assert(!/זמני|יוחלפו|המחשה|יעודכן בקרוב|לאחר אימות|temporary|[Ii]llustrative|[Cc]oming soon/.test(visible), `${name}: placeholder wording is visible to customers.`);
+    assert(visible.includes(`<bdi>${business.directOrderCoupon.code}</bdi>`), `${name}: the direct-order coupon is not shown.`);
+    // One destination for every order CTA; only deals may point deeper into the ordering system.
+    const orderLinks = [...html.matchAll(/<a\b[^>]*data-order-link[^>]*>/g)].map(([tag]) => tag.match(/href="([^"]+)"/)?.[1].replaceAll('&amp;', '&'));
+    assert(orderLinks.length >= 5, `${name}: expected order CTAs in the hero, menu, venue, contact and sticky bar.`);
+    for (const href of orderLinks) assert(href?.startsWith(business.orderUrl) && href.includes(`coupon=${business.directOrderCoupon.code}`), `${name}: order CTA points to ${href}.`);
+    if (!hasDeals) assert(new Set(orderLinks).size === 1, `${name}: order CTAs point to different destinations.`);
   }
 
   for (const tag of html.match(/<img\b[^>]*>/gi) || []) {
