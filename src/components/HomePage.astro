@@ -14,9 +14,17 @@ const orderUrl = import.meta.env.PUBLIC_ORDER_URL || business.orderUrl;
 const shareUrl = new URL(`https://wa.me/?text=${encodeURIComponent(`${t.shareText} ${new URL(`/${lang}/`, Astro.site || Astro.url).href}`)}`);
 const menuItems = t.menu.items as Record<string, { name: string; description: string; imageAlt?: string }>;
 const priceLabels = t.menu.priceLabels as Record<string, string>;
-const menuImageDimensions = (image: string) => image.includes('-menu.webp') && ['margherita', 'pesto', 'alfredo', 'rose'].some((name) => image.includes(name))
-  ? { width: 1122, height: 1402 }
-  : { width: 1122, height: 842 };
+// Variants come from scripts/generate-menu-images.mjs; cards are full width up to 720px and at most 220px above it.
+const menuImage = (image: string) => {
+  const base = image.replace('/images/', '/images/menu/').replace('-menu.webp', '');
+  return {
+    src: `${base}-800.webp`,
+    srcset: [480, 800, 1122].map((width) => `${base}-${width}.webp ${width}w`).join(', '),
+    sizes: '(max-width: 720px) calc(100vw - 48px), 220px',
+    width: 1122,
+    height: 842,
+  };
+};
 const contactCards = [
   ['address', t.contact.addressValue, business.googleMapsUrl],
   ['hours', t.contact.hoursValue, ''],
@@ -56,7 +64,7 @@ const contactCards = [
             <h3>{item.title}</h3>
             <div class="principle-body">
               <p>{item.body}</p>
-              {item.number === '03' && <div class="supplier-lockup"><img src="/images/gad-logo.png" width="578" height="480" loading="lazy" decoding="async" alt={t.principles.supplier.alt} /></div>}
+              {item.number === '03' && <div class="supplier-lockup"><img src="/images/gad-logo-264.webp" width="264" height="219" loading="lazy" decoding="async" alt={t.principles.supplier.alt} /></div>}
             </div>
           </article>
         ))}
@@ -109,7 +117,7 @@ const contactCards = [
             <div class={`menu-items menu-items-${category.id}`}>
               {category.items.map((item) => (
                 <article class:list={['menu-item', `menu-item-${item.kind}`, 'image' in item && item.image && 'menu-item-has-image']}>
-                  {'image' in item && item.image && <div class="menu-item-media"><img src={item.image} {...menuImageDimensions(item.image)} loading="lazy" decoding="async" alt={menuItems[item.id].imageAlt || menuItems[item.id].name} /></div>}
+                  {'image' in item && item.image && <div class="menu-item-media"><img {...menuImage(item.image)} loading="lazy" decoding="async" alt={menuItems[item.id].imageAlt || menuItems[item.id].name} /></div>}
                   <div class="menu-item-copy">
                     <h4>{menuItems[item.id].name}</h4>
                     {menuItems[item.id].description && <p>{menuItems[item.id].description}</p>}
