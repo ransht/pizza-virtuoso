@@ -1,133 +1,137 @@
 {
   "meta": {
-    "title": "Kosher Pizza in Rishon LeZion | Pizza Virtuoso",
-    "description": "Kosher pizza in Rishon LeZion, opposite the Performing Arts Center. 24-hour dough and Gad mozzarella. Delivery in Rishon LeZion, pickup or dine-in. Sun–Thu 17:00–23:30.",
+    "title": "Pizza Virtuoso Rishon LeZion | Kosher Pizza & Delivery",
+    "description": "Pizza Virtuoso in Rishon LeZion, opposite the Performing Arts Center. 100% mozzarella, long-fermented dough and delivery. {couponPercent}% off direct online orders with code {coupon}.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
-  "a11y": { "skip": "Skip to main content", "openMenu": "Open navigation menu", "closeMenu": "Close navigation menu", "mainNav": "Main navigation", "language": "Choose language" },
-  "nav": { "home": "Home", "story": "Our story", "difference": "Why we're different", "menu": "Menu", "contact": "Contact", "order": "Order now", "orderSoon": "Online ordering — coming soon", "langLabel": "עברית", "langCode": "עב" },
+  "a11y": {
+    "skip": "Skip to main content",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "mainNav": "Main navigation",
+    "language": "Choose language",
+    "quickActions": "Quick order and call"
+  },
+  "nav": {
+    "menu": "Menu",
+    "deals": "Deals",
+    "why": "Why us",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "order": "Order now",
+    "langLabel": "עברית",
+    "langCode": "עב"
+  },
   "hero": {
     "eyebrow": "Under new management",
     "brand": "Pizza Virtuoso",
-    "title": "Kosher pizza in Rishon LeZion — Pizza Virtuoso",
-    "body": "Find us at 16 Jabotinsky Street, opposite the Rishon LeZion Performing Arts Center, with 24-hour fermented dough, house-made sauce and exclusively Gad 22% fat mozzarella.",
-    "primary": "Explore the menu",
-    "order": "Order online",
-    "secondary": "How we make it",
-    "trust": "Pizza as an art form • Baked here • Served hot"
+    "brandLatin": "פיצה וירטואוז",
+    "title": "The legendary pizza opposite the Rishon LeZion Performing Arts Center",
+    "points": [ "100% Gad mozzarella", "24-hour fermented dough", "Quality ingredients", "Kosher", "Fair prices" ],
+    "pointsLabel": "What you get",
+    "order": "Order now and get {couponPercent}% off",
+    "call": "Call to order"
   },
-  "local": {
-    "kicker": "Central Rishon LeZion",
-    "title": "Kosher pizza opposite the Rishon LeZion Performing Arts Center",
-    "body": "We are at 16 Jabotinsky Street, directly opposite the Rishon LeZion Performing Arts Center. Stop for pizza before or after a show, order online for delivery in Rishon LeZion or for pickup, or open directions straight to Pizza Virtuoso.",
-    "order": "Order online",
-    "navigate": "Navigate to Pizza Virtuoso",
-    "call": "Call the restaurant"
+  "coupon": {
+    "title": "{couponPercent}% off when you order direct from our site",
+    "codeLabel": "Coupon code",
+    "copy": "Copy code",
+    "copied": "Code copied ✓",
+    "hint": "Enter the code at checkout"
   },
-  "kosher": {
-    "kicker": "Kosher and fresh",
-    "title": "Kosher pizza in Rishon LeZion",
-    "body": "Pizza Virtuoso is a kosher pizzeria under the supervision of the Rishon LeZion Rabbinate. We prepare pizza, pasta, ravioli, salads and baked dishes on site, with fresh ingredients and careful preparation.",
-    "supervision": "Kosher under the supervision of the Rishon LeZion Rabbinate"
+  "why": {
+    "kicker": "No secrets",
+    "title": "Why Virtuoso?",
+    "items": [ { "title": "100% Gad mozzarella", "note": "Never a cheese blend" }, { "title": "Long-fermented dough", "note": "24 hours" }, { "title": "Olive oil", "note": "" }, { "title": "Quality ingredients", "note": "Fresh mushrooms, never canned" }, { "title": "A long-time Rishon LeZion favorite", "note": "" }, { "title": "Now under new management", "note": "" }, { "title": "Fast, personal service", "note": "" }, { "title": "Ordering direct costs less", "note": "{couponPercent}% off with code {coupon}" } ],
+    "supplierAlt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier"
   },
-  "story": {
-    "kicker": "Our story",
-    "title": "You can taste the difference from the first bite",
-    "lead": "Great pizza begins long before it reaches the oven.",
-    "paragraphs": [
-      "It starts with the ingredients, the time we give the dough and attention to every small detail. Our dough ferments for 24 hours for balanced texture, airy edges and deeper flavor.",
-      "We make our tomato sauce in-house and top every pizza exclusively with Gad 22% fat mozzarella, generously — no blends with other cheeses and no shortcuts.",
-      "We take the same approach to toppings. Order mushrooms and you get fresh mushrooms, not something from a can. Every order is prepared carefully and baked on the spot.",
-      "We work cleanly, stay organized, handle ingredients with care and treat people with respect. Our goal is simple: every pizza leaving our kitchen should be one we'd be proud to serve our own family."
-    ],
-    "imageAlt": "Hands gently opening fermented pizza dough on a flour-dusted counter"
-  },
-  "principles": {
-    "kicker": "No secrets. Just principles.",
-    "title": "Four small decisions that make a big difference",
-    "items": [
-      { "number": "01", "title": "24 hours of patience", "body": "We give the dough time to develop flavor, texture and a beautifully airy crust." },
-      { "number": "02", "title": "Sauce made here", "body": "Our pizza sauce is made in-house with a balanced flavor that complements the dough and cheese." },
-      { "number": "03", "title": "100% Gad mozzarella, 22% fat.", "body": "Every pizza is topped only with Gad 22% fat mozzarella — never blended with other cheeses, and as generously as we'd want it on our own pizza." },
-      { "number": "04", "title": "Fresh over shortcuts", "body": "Fresh mushrooms, good vegetables and carefully chosen toppings — never cheap canned substitutes." }
-    ],
-    "supplier": { "alt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier" },
-    "mozzarella": {
-      "kicker": "Why mozzarella?",
-      "title": "The cheese has to work with the oven",
-      "paragraphs": [
-        "Mozzarella belongs to the pasta-filata family: its curd is heated and stretched to create an elastic, fibrous structure. That is why it can melt, stretch and come together with the sauce and dough without overpowering them. A standard yellow cheese may be excellent in a sandwich, but it behaves differently in a hot pizza oven — in flavor, oil release, browning and texture.",
-        "Mozzarellas are not all alike, either. Milk type, moisture, fat, salt, age and protein structure all influence melt, stretch and browning. We consistently use only Gad 22% fat mozzarella, so every pizza gets a balanced milky flavor, even coverage and the stretch a pizza should have."
-      ],
-      "storyKicker": "A short story from Italy",
-      "storyTitle": "A name born from a hand movement",
-      "story": "The word mozzarella comes from the Italian verb mozzare — to cut or separate. For generations, cheesemakers stretched warm curd and pinched off individual portions by hand. The ancient stretch that gave the cheese its name is also one of the qualities that made it pizza's natural partner.",
-      "sourceLabel": "Read the origin story from the Italian consortium",
-      "sourceUrl": "https://www.mozzarelladop.it/bufala-campana/produzione"
-    }
-  },
-  "process": {
-    "kicker": "From dough to oven",
-    "title": "Simple, precise, in the right order",
-    "steps": ["Make the dough", "Let it develop for 24 hours", "Open each base to order", "Spread our house-made sauce", "Add Gad 22% fat mozzarella and toppings generously", "Bake and serve hot"]
+  "deals": {
+    "kicker": "Better value",
+    "title": "Our deals",
+    "includes": "What you get",
+    "save": "You save",
+    "order": "Order"
   },
   "menu": {
     "kicker": "The menu",
     "title": "What are you craving?",
-    "intro": "Every price in one place, organized by category and size. Choose what sounds good and order online in a few clicks.",
+    "intro": "Every price in one place, by category and size. Pick what you fancy and order online.",
     "categories": { "pizzas": "Pizza", "pastas": "Pasta", "salads": "Salads", "bakes": "Bakes", "drinks": "Drinks" },
     "categoryNotes": { "pizzas": "Three sizes, toppings and slices", "pastas": "Penne and ravioli", "salads": "Small or large, with your choice of toppings", "bakes": "From the oven and alongside your pizza", "drinks": "Cold, fizzy and ready for the table" },
     "priceLabels": { "M": "M", "L": "L", "XL": "XL", "unit": "Price", "withTopping": "With topping" },
     "currency": "₪",
     "included": "No extra charge",
-    "items": {
-      "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative Margherita pizza with mozzarella, green olives and cherry tomatoes" },
-      "pesto": { "name": "Pesto Pizza", "description": "Pesto sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Illustrative Pesto pizza with mozzarella, cherry tomatoes and mushrooms" },
-      "alfredo": { "name": "Alfredo Pizza", "description": "", "imageAlt": "Illustrative Alfredo pizza with mozzarella and mushrooms" },
-      "rose": { "name": "Rosé Pizza", "description": "", "imageAlt": "Illustrative Rosa pizza with mozzarella, green olives and cherry tomatoes" },
-      "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." },
-      "regularTopping": { "name": "Regular Topping", "description": "Green olives, black olives, corn, hot pepper, red onion, tomato, mushrooms or hard-boiled egg.", "imageAlt": "Selection of regular pizza toppings" },
-      "specialTopping": { "name": "Special Topping", "description": "Extra cheese, tuna or Bulgarian cheese.", "imageAlt": "Mozzarella, tuna and Bulgarian cheese as special pizza toppings" },
-      "penne": { "name": "Penne", "description": "" },
-      "sweetPotatoRavioli": { "name": "Sweet Potato Ravioli", "description": "" },
-      "mushroomRavioli": { "name": "Mushroom Ravioli", "description": "" },
-      "cheeseRavioli": { "name": "Cheese Ravioli", "description": "" },
-      "customSaladSmall": { "name": "Build-your-own Salad · Small", "description": "" },
-      "customSaladLarge": { "name": "Build-your-own Salad · Large", "description": "" },
-      "greekSaladSmall": { "name": "Greek Salad · Small", "description": "" },
-      "greekSaladLarge": { "name": "Greek Salad · Large", "description": "" },
-      "saladToppings": { "name": "Salad Toppings", "description": "Cucumber, tomato, black or green olives, pepper, mushrooms, yellow cheese, corn, onion, lettuce, sprouts, hot pepper, hard-boiled egg, Bulgarian cheese and fresh mushrooms." },
-      "ziva": { "name": "Ziva", "description": "" },
-      "garlicBread": { "name": "Garlic Bread", "description": "" },
-      "bagelToast": { "name": "Toasted Bagel", "description": "" },
-      "malawachPizza": { "name": "Malawach Pizza", "description": "" },
-      "cans": { "name": "Cans", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero or Fanta.", "imageAlt": "Selection of chilled soft-drink cans" },
-      "energyDrink": { "name": "Energy Drink", "description": "Regular XL.", "imageAlt": "Chilled energy drink can" },
-      "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water.", "imageAlt": "Selection of chilled small drink bottles" },
-      "waterSoda": { "name": "San Benedetto Water & Soda", "description": "San Benedetto mineral water or soda.", "imageAlt": "San Benedetto mineral water and soda bottles" }
-    },
-    "order": "Order online",
-    "orderHint": "Final price is confirmed by the restaurant",
-    "share": "Share with a friend who loves pizza"
+    "items": { "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Margherita pizza with mozzarella, green olives and cherry tomatoes" }, "pesto": { "name": "Pesto Pizza", "description": "Pesto sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Pesto pizza with mozzarella, cherry tomatoes and mushrooms" }, "alfredo": { "name": "Alfredo Pizza", "description": "", "imageAlt": "Alfredo pizza with mozzarella and mushrooms" }, "rose": { "name": "Rosé Pizza", "description": "", "imageAlt": "Rosa pizza with mozzarella, green olives and cherry tomatoes" }, "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." }, "regularTopping": { "name": "Regular Topping", "description": "Green olives, black olives, corn, hot pepper, red onion, tomato, mushrooms or hard-boiled egg.", "imageAlt": "Selection of regular pizza toppings" }, "specialTopping": { "name": "Special Topping", "description": "Extra cheese, tuna or Bulgarian cheese.", "imageAlt": "Mozzarella, tuna and Bulgarian cheese as special pizza toppings" }, "penne": { "name": "Penne", "description": "" }, "sweetPotatoRavioli": { "name": "Sweet Potato Ravioli", "description": "" }, "mushroomRavioli": { "name": "Mushroom Ravioli", "description": "" }, "cheeseRavioli": { "name": "Cheese Ravioli", "description": "" }, "customSaladSmall": { "name": "Build-your-own Salad · Small", "description": "" }, "customSaladLarge": { "name": "Build-your-own Salad · Large", "description": "" }, "greekSaladSmall": { "name": "Greek Salad · Small", "description": "" }, "greekSaladLarge": { "name": "Greek Salad · Large", "description": "" }, "saladToppings": { "name": "Salad Toppings", "description": "Cucumber, tomato, black or green olives, pepper, mushrooms, yellow cheese, corn, onion, lettuce, sprouts, hot pepper, hard-boiled egg, Bulgarian cheese and fresh mushrooms." }, "ziva": { "name": "Ziva", "description": "" }, "garlicBread": { "name": "Garlic Bread", "description": "" }, "bagelToast": { "name": "Toasted Bagel", "description": "" }, "malawachPizza": { "name": "Malawach Pizza", "description": "" }, "cans": { "name": "Cans", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero or Fanta.", "imageAlt": "Selection of chilled soft-drink cans" }, "energyDrink": { "name": "Energy Drink", "description": "Regular XL.", "imageAlt": "Chilled energy drink can" }, "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water.", "imageAlt": "Selection of chilled small drink bottles" }, "waterSoda": { "name": "San Benedetto Water & Soda", "description": "San Benedetto mineral water or soda.", "imageAlt": "San Benedetto mineral water and soda bottles" } },
+    "order": "Order now",
+    "orderHint": "Ordering direct from our site: {couponPercent}% off with code {coupon}",
+    "share": "Share with a friend who loves pizza",
+    "sauceNote": "Want a little extra sauce on the side? Gladly – no extra charge."
   },
-  "sauce": { "eyebrow": "A little something from us", "title": "Want a little extra sauce on the side?", "body": "Gladly. Just ask — there's no extra charge." },
-  "clean": { "kicker": "A kitchen you can trust", "title": "We don't compromise on flavor. Or cleanliness.", "body": "We keep our work surfaces clean, our kitchen organized, our ingredients handled properly and every order carefully prepared." },
+  "story": {
+    "kicker": "How we make it",
+    "title": "You can taste the difference from the first bite",
+    "lead": "Great pizza begins long before it reaches the oven.",
+    "paragraphs": [ "It starts with the ingredients, the time we give the dough and attention to every small detail. Our dough ferments for 24 hours for balanced texture, airy edges and deeper flavor.", "We make our tomato sauce in-house and top every pizza exclusively with Gad 22% fat mozzarella, generously — no blends with other cheeses and no shortcuts.", "We take the same approach to toppings. Order mushrooms and you get fresh mushrooms, not something from a can. Every order is prepared carefully and baked on the spot.", "We work cleanly, stay organized, handle ingredients with care and treat people with respect. Our goal is simple: every pizza leaving our kitchen should be one we'd be proud to serve our own family." ],
+    "imageAlt": "Hands gently opening fermented pizza dough on a flour-dusted counter"
+  },
+  "mozzarella": {
+    "kicker": "Why mozzarella?",
+    "title": "The cheese has to work with the oven",
+    "paragraphs": [ "Mozzarella belongs to the pasta-filata family: its curd is heated and stretched to create an elastic, fibrous structure. That is why it can melt, stretch and come together with the sauce and dough without overpowering them. A standard yellow cheese may be excellent in a sandwich, but it behaves differently in a hot pizza oven — in flavor, oil release, browning and texture.", "Mozzarellas are not all alike, either. Milk type, moisture, fat, salt, age and protein structure all influence melt, stretch and browning. We consistently use only Gad 22% fat mozzarella, so every pizza gets a balanced milky flavor, even coverage and the stretch a pizza should have." ],
+    "storyKicker": "A short story from Italy",
+    "storyTitle": "A name born from a hand movement",
+    "story": "The word mozzarella comes from the Italian verb mozzare — to cut or separate. For generations, cheesemakers stretched warm curd and pinched off individual portions by hand. The ancient stretch that gave the cheese its name is also one of the qualities that made it pizza's natural partner.",
+    "sourceLabel": "Read the origin story from the Italian consortium",
+    "sourceUrl": "https://www.mozzarelladop.it/bufala-campana/produzione"
+  },
+  "gallery": {
+    "kicker": "From our kitchen",
+    "title": "What it looks like here"
+  },
+  "reviews": {
+    "kicker": "Reviews",
+    "title": "What people say about us",
+    "outOf": "out of 5",
+    "count": "{count} Google reviews",
+    "ratingLabel": "Rated {value} out of 5 on Google",
+    "checked": "As of {date}",
+    "readAll": "Read all reviews on Google",
+    "askTitle": "Eaten with us? We would love a Google rating",
+    "askAction": "Rate us on Google"
+  },
+  "venue": {
+    "kicker": "Right across the street",
+    "title": "Coming to a show at the Performing Arts Center?",
+    "body": "Takeaway before the show or pizza after it – we are right next door.",
+    "order": "Order ahead",
+    "navigate": "Get directions"
+  },
+  "kosher": {
+    "title": "Kosher",
+    "supervision": "Supervised by the {kosherSupervision}"
+  },
   "faq": {
     "kicker": "Frequently asked",
     "title": "Good to know before you order",
-    "items": [
-      { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the Rishon LeZion Rabbinate." },
-      { "question": "What are Pizza Virtuoso's opening hours?", "answer": "We are open Sunday to Thursday, 17:00–23:30. We are closed on Friday and Saturday." },
-      { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." },
-      { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call 03-9504888, or come and dine in." },
-      { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call 03-9504888." }
-    ]
+    "items": [ { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the {kosherSupervision}." }, { "question": "What are Pizza Virtuoso's opening hours?", "answer": "Our opening hours: {hours}." }, { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." }, { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call {phone}, or come and dine in." }, { "question": "Is there a discount for ordering direct?", "answer": "Yes. Orders placed directly on our ordering site get {couponPercent}% off with coupon code {coupon}. Enter the code at checkout." }, { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call {phone}." } ]
   },
   "contact": {
-    "kicker": "Come by",
-    "title": "Good pizza is closer than you think",
-    "intro": "Find us at 16 Jabotinsky Street, Rishon LeZion, directly across from the Performing Arts Center.",
-    "labels": { "address": "Address", "hours": "Opening hours", "phone": "Restaurant phone", "social": "Online ordering" },
+    "kicker": "Find us",
+    "title": "Kosher pizza opposite the Rishon LeZion Performing Arts Center",
+    "intro": "16 Jabotinsky Street, Rishon LeZion – directly opposite the Meir Nitzan Performing Arts Center.",
+    "labels": { "address": "Address", "hours": "Opening hours", "specialHours": "Special hours", "phone": "Phone", "whatsapp": "WhatsApp" },
+    "addressValue": "16 Jabotinsky St., Rishon LeZion · Across from the Performing Arts Center",
+    "order": "Order now",
+    "call": "Call us",
+    "whatsappAction": "Message us on WhatsApp",
+    "whatsappMessage": "היי, הגעתי דרך האתר של פיצה וירטואוז ורציתי לבצע הזמנה 🍕",
+    "openNow": "Open now · until {time}",
+    "closedNow": "Closed right now",
+    "opensAt": "Opens at {time}",
+    "waze": "Waze",
+    "googleMaps": "Google Maps",
+    "wazeAction": "Navigate with Waze",
+    "mapsAction": "Navigate with Google Maps",
     "tiktokKicker": "Fresh from the oven",
     "tiktokTitle": "We're now on TikTok",
     "tiktokBody": "Kitchen peeks, dough in motion and delicious moments straight from the oven.",
@@ -135,22 +139,22 @@
     "facebookKicker": "Stay in the know",
     "facebookTitle": "Find us on Facebook too",
     "facebookBody": "News, updates and everything delicious at Pizza Virtuoso.",
-    "facebookAction": "Visit Facebook",
-    "addressValue": "16 Jabotinsky St., Rishon LeZion · Across from the Performing Arts Center",
-    "hoursValue": "Sunday–Thursday · 17:00–23:30 · Closed Friday and Saturday",
-    "directionsKicker": "Your choice",
-    "directionsTitle": "How would you like to navigate?",
-    "directionsHint": "Open directions to 16 Jabotinsky Street in the navigation app you prefer.",
-    "waze": "Waze",
-    "googleMaps": "Google Maps",
-    "pending": "Coming soon",
-    "navigate": "Navigate",
-    "call": "Call us",
-    "whatsapp": "Order online"
+    "facebookAction": "Visit Facebook"
   },
-  "final": { "eyebrow": "The dough is resting", "title": "All that's left is to choose your pizza", "body": "We'll make it here, generously and without shortcuts.", "menu": "See the menu", "navigate": "Navigate", "order": "Order online", "orderSoon": "Ordering — coming soon" },
-  "footer": { "tagline": "Fresh pizza in Rishon LeZion. Made patiently, served generously.", "rights": "All rights reserved.", "photoNote": "Website photography is temporary and will be replaced with photos of the pizzeria." },
-  "mobile": { "menu": "Menu", "navigate": "Navigate", "call": "Call", "order": "Order", "soon": "Soon" },
-  "analytics": { "title": "Cookies and usage measurement", "body": "With your permission, we use Google Analytics to understand how the site is used and improve it. You can decline and continue using the site normally.", "accept": "Accept", "reject": "No thanks", "settings": "Privacy settings" },
+  "footer": {
+    "tagline": "Kosher pizza in Rishon LeZion, opposite the Performing Arts Center. Delivery, pickup and dine-in.",
+    "rights": "All rights reserved."
+  },
+  "mobile": {
+    "order": "Order online",
+    "call": "Call"
+  },
+  "analytics": {
+    "title": "Cookies and usage measurement",
+    "body": "With your permission, we use Google Analytics to understand how the site is used and improve it. You can decline and continue using the site normally.",
+    "accept": "Accept",
+    "reject": "No thanks",
+    "settings": "Privacy settings"
+  },
   "shareText": "I found pizza in Rishon LeZion that's made properly — Pizza Virtuoso"
 }
