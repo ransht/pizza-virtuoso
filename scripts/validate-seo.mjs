@@ -17,7 +17,7 @@ function walk(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const path = join(directory, entry.name);
     if (entry.isDirectory()) walk(path);
-    else if (entry.name.endsWith('.html')) htmlFiles.push(path);
+    else if (entry.name.endsWith('.html') && !/^google[0-9a-f]+.html$/.test(entry.name)) htmlFiles.push(path); // skip Search Console ownership files
   }
 }
 
