@@ -131,6 +131,20 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
     </div>
   </section>
 
+  {/* The calculator is Hebrew-only, so it is offered on the Hebrew page alone. */}
+  {lang === 'he' && (
+    <aside class="party" aria-labelledby="party-title">
+      <div class="page-shell party-inner">
+        <div>
+          <p class="section-kicker">{t.party.kicker}</p>
+          <h2 id="party-title">{t.party.title}</h2>
+          <p>{t.party.body}</p>
+        </div>
+        <a class="button button-primary" href={business.calcUrl} data-track="calculator_click" data-track-location="party">{t.party.action}</a>
+      </div>
+    </aside>
+  )}
+
   <section class="story section" id="story" aria-labelledby="story-title">
     <div class="page-shell story-grid">
       <div class="story-copy">
@@ -281,7 +295,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
 <footer class="site-footer">
   <div class="page-shell footer-grid">
     <div><p class="footer-brand">{t.hero.brand}</p><address><a href={mapsUrl} {...external}>{t.contact.addressValue}</a><br /><a href={`tel:${business.telephone}`} data-track="phone_click" data-track-location="footer"><bdi>{business.telephoneDisplay}</bdi></a></address><p>{t.footer.tagline}</p></div>
-    <p><a class="footer-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="footer">{t.nav.order}</a></p>
+    <p><a class="footer-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="footer">{t.nav.order}</a>{lang === 'he' && <><br /><a class="footer-accessibility" href={business.calcUrl} data-track="calculator_click" data-track-location="footer">{t.party.footer}</a></>}</p>
     <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}<br /><a class="footer-accessibility" href={`/${lang}/accessibility/`}>{lang === 'he' ? 'הצהרת נגישות' : 'Accessibility statement'}</a></p>
   </div>
 </footer>
