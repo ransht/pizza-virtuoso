@@ -45,7 +45,7 @@ GitHub Pages cannot return a `301`, so `/` is a `200` page with an instant meta 
 - Use the most specific valid primary category equivalent to **Pizza restaurant**; add only genuinely applicable secondary categories.
 - Verify the exact name `פיצה וירטואוז`, address `ז׳בוטינסקי 16, ראשון לציון`, phone `03-9504888`, canonical website URL, current hours and special holiday hours.
 - Verify menu and ordering URLs, kosher attributes offered by Google, logo, cover photo and current real business photos.
-- Investigate the **Pizza X** listing at the same address. Determine whether it is an old closed business, an active separate business or an incorrect listing. If it is a former business, use Google’s legitimate “closed/moved/suggest an edit” process; do not manipulate the listing.
+- **Pizza X** is an active competitor and a separate business, not a former name of Pizza Virtuoso (owner-confirmed, October 2026). Never mark its listing closed or report it. If its listing shows Pizza Virtuoso's address and Pizza X is actually elsewhere, suggesting a correct address through Google's "suggest an edit" is the only legitimate step. Keep `פיצה וירטואוז` and its storefront photos clearly distinct on the profile so Google does not confuse the two.
 - Check that the website/Maps destination points specifically to the active Pizza Virtuoso profile.
 
 ## Reviews, citations and local authority
