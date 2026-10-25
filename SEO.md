@@ -16,7 +16,7 @@ The menu, location, kosher and ordering intents are consolidated on the substant
 ## Owner-verified facts (October 2026)
 
 - **Kosher supervision:** Rishon LeZion Rabbinate (not mehadrin). Describe it only as "הרבנות ראשון לציון".
-- **Opening hours:** Sunday–Thursday 17:00–23:30; closed Friday and Saturday. The owner plans to open on Saturday night later; add the Saturday-night slot to `openingHours` in `src/content/business/config.json` when that starts; every visible mention and the structured data follow from it.
+- **Opening hours:** Sunday–Thursday 17:00–23:30; Saturday night (מוצאי שבת) 18:00–23:30; closed Friday. Owner-confirmed 25 October 2026 and set the same way on the Google Business Profile. `openingHours` in `src/content/business/config.json` is the single source; every visible mention and the structured data follow from it.
 
 - **Google and Facebook profiles (checked 5 October 2026):** `googleBusinessUrl` is the permanent Maps URL of the active "פיצה וירטואוז" profile (CID 9467731136455280639) and `facebookUrl` is the permanent page URL. Do not replace them with `share.google` or `facebook.com/share` short links; `pnpm validate:seo` rejects those in structured data.
 
