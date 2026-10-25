@@ -9,12 +9,9 @@
 
 The menu, location, kosher and ordering intents are consolidated on the substantial homepage. Do not create near-duplicate pages for spelling or preposition variants. The crawlable menu section covers pizza, Margherita, pesto, Alfredo, rosa, slices, pasta, ravioli, salads, baked dishes and drinks naturally.
 
-## Facts awaiting owner verification
-
-- **Menu and prices:** public directory menus conflict with the repository. Confirm the current in-store menu before changing `src/content/menu/menu.json`.
-
 ## Owner-verified facts (October 2026)
 
+- **Menu and prices:** the prices on pizzavirtuoso.co.il (`src/content/menu/menu.json`) are the correct ones (owner-confirmed 25 October 2026); directory menus that differ are outdated. The Google Business Profile menu was entered from the same file, so change both together.
 - **Kosher supervision:** Rishon LeZion Rabbinate (not mehadrin). Describe it only as "הרבנות ראשון לציון".
 - **Opening hours:** Sunday–Thursday 17:00–23:30; Saturday night (מוצאי שבת) 18:00–23:30; closed Friday. Owner-confirmed 25 October 2026 and set the same way on the Google Business Profile. `openingHours` in `src/content/business/config.json` is the single source; every visible mention and the structured data follow from it.
 
