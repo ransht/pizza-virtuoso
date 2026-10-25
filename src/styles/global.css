@@ -287,6 +287,8 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 [dir='rtl'] .hero-scrim, [dir='rtl'] .hero-media img { transform: scaleX(-1); }
 .hero-content { padding-block: calc(var(--header-height) + 40px) clamp(40px, 6vw, 72px); }
 .hero-content > * { max-width: 640px; }
+.hero-news { display: inline-flex; align-self: flex-start; gap: 6px; align-items: center; margin-block-end: 14px; padding: 6px 14px; border-radius: 999px; background: #f1c782; color: #1a140e; font-size: .92rem; font-weight: 600; text-decoration: none; }
+.hero-news:hover, .hero-news:focus-visible { background: #f6d59d; }
 .hero .eyebrow { color: #f1c782; margin-block-end: 10px; }
 .hero-brand { margin-block-end: 10px; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
 .hero-brand span { font-family: var(--font-ui); font-size: .82rem; font-weight: 600; letter-spacing: .08em; opacity: .8; }

@@ -13,6 +13,7 @@ const { t } = Astro.props;
   </picture>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-content page-shell">
+    {t.hero.news && <a class="hero-news" href="#contact" data-track="hero_news_click"><strong>{t.hero.newsLabel}</strong> {t.hero.news}</a>}
     <p class="eyebrow">{t.hero.eyebrow}</p>
     <p class="hero-brand">{t.hero.brand} <span>· {t.hero.brandLatin}</span></p>
     <h1 id="hero-title">{t.hero.title}</h1>

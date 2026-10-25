@@ -23,6 +23,8 @@
     "langCode": "EN"
   },
   "hero": {
+    "newsLabel": "חדש!",
+    "news": "פתוחים גם במוצאי שבת ←",
     "eyebrow": "תחת הנהלה חדשה",
     "brand": "פיצה וירטואוז",
     "brandLatin": "Pizza Virtuoso",
