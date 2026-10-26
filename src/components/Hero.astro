@@ -1,6 +1,5 @@
 ---
 import business from '../content/business/config.json';
-import Coupon from './Coupon.astro';
 import { orderHref } from '../lib/order';
 import type { Messages } from '../lib/i18n';
 interface Props { t: Messages; }
@@ -20,7 +19,6 @@ const { t } = Astro.props;
     <ul class="hero-points" aria-label={t.hero.pointsLabel}>
       {t.hero.points.map((point) => <li>{point}</li>)}
     </ul>
-    <Coupon {t} location="hero" />
     <div class="hero-buttons">
       <a class="button button-order hero-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="hero">{t.hero.order}</a>
       <a class="button button-ghost" href={`tel:${business.telephone}`} data-track="phone_click" data-track-location="hero">{t.hero.call}<bdi>{business.telephoneDisplay}</bdi></a>

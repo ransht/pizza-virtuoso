@@ -14,8 +14,6 @@ function tokens(lang: Language): Record<string, string> {
     hours: hoursSummary(lang),
     hoursShort: hoursShort(lang),
     phone: business.telephoneDisplay,
-    coupon: business.directOrderCoupon.code,
-    couponPercent: String(business.directOrderCoupon.percent),
     kosherSupervision: lang === 'he' ? business.kosherSupervision : business.kosherSupervisionEn,
   };
 }

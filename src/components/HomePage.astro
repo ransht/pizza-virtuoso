@@ -5,7 +5,6 @@ import dealsData from '../content/deals/deals.json';
 import galleryData from '../content/gallery/photos.json';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
-import Coupon from './Coupon.astro';
 import WazeIcon from './WazeIcon.astro';
 import GoogleMapsIcon from './GoogleMapsIcon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
@@ -124,7 +123,6 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
         ))}
       </div>
       <div class="menu-order-bar">
-        <Coupon {t} location="menu" />
         <a class="button button-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="menu">{t.hero.order}</a>
       </div>
       <a class="share-link" href={shareUrl} {...external}><span aria-hidden="true">↗</span>{t.menu.share}</a>
@@ -378,43 +376,6 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
     const element = (event.target as Element | null)?.closest<HTMLElement>('[data-track]');
     if (element) track(element.dataset.track!, { link_location: element.dataset.trackLocation, item_id: element.dataset.trackId });
   });
-
-  // --- Coupon ---------------------------------------------------------------------------
-  const copyText = async (text: string) => {
-    try { await navigator.clipboard.writeText(text); return true; } catch { /* older or in-app browsers */ }
-    const field = document.createElement('textarea');
-    field.value = text; field.setAttribute('readonly', ''); field.style.cssText = 'position:fixed;opacity:0';
-    document.body.append(field); field.select();
-    const copied = document.execCommand('copy');
-    field.remove();
-    return copied;
-  };
-  document.querySelectorAll<HTMLButtonElement>('[data-copy-code]').forEach((button) => {
-    const label = button.textContent;
-    const coupon = button.closest<HTMLElement>('[data-coupon]');
-    button.addEventListener('click', async () => {
-      if (!(await copyText(button.dataset.copyCode!))) {
-        // Copying is blocked (some in-app browsers): select the code so a long press can copy it.
-        const code = coupon?.querySelector('.coupon-code bdi');
-        if (code) getSelection()?.selectAllChildren(code);
-        return;
-      }
-      button.textContent = button.dataset.copiedLabel!;
-      button.classList.add('is-copied');
-      const status = coupon?.querySelector('[data-copy-status]');
-      if (status) status.textContent = button.dataset.copiedLabel!;
-      track('coupon_copy', { link_location: coupon?.dataset.trackLocation });
-      setTimeout(() => { button.textContent = label; button.classList.remove('is-copied'); if (status) status.textContent = ''; }, 2500);
-    });
-  });
-  if ('IntersectionObserver' in window) {
-    const seen = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      seen.unobserve(entry.target);
-      track('coupon_view', { link_location: (entry.target as HTMLElement).dataset.trackLocation });
-    }), { threshold: 0.6 });
-    document.querySelectorAll('[data-coupon]').forEach((element) => seen.observe(element));
-  }
 
   // --- Open now -------------------------------------------------------------------------
   // Computed in the restaurant's time zone from the same data as the hours table.

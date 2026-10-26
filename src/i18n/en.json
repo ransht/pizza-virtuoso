@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Pizza Virtuoso Rishon LeZion | Kosher Pizza & Delivery",
-    "description": "Pizza Virtuoso in Rishon LeZion, opposite the Performing Arts Center. 100% mozzarella, long-fermented dough and delivery. {couponPercent}% off direct online orders with code {coupon}.",
+    "description": "Pizza Virtuoso in Rishon LeZion, opposite the Performing Arts Center. 100% mozzarella, long-fermented dough and delivery.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": {
@@ -31,20 +31,13 @@
     "title": "The legendary pizza opposite the Rishon LeZion Performing Arts Center",
     "points": [ "100% Gad mozzarella", "24-hour fermented dough", "Quality ingredients", "Kosher", "Fair prices" ],
     "pointsLabel": "What you get",
-    "order": "Order now and get {couponPercent}% off",
+    "order": "Order now",
     "call": "Call to order"
-  },
-  "coupon": {
-    "title": "{couponPercent}% off when you order direct from our site",
-    "codeLabel": "Coupon code",
-    "copy": "Copy code",
-    "copied": "Code copied ✓",
-    "hint": "Enter the code at checkout"
   },
   "why": {
     "kicker": "No secrets",
     "title": "Why Virtuoso?",
-    "items": [ { "title": "100% Gad mozzarella", "note": "Never a cheese blend" }, { "title": "Long-fermented dough", "note": "24 hours" }, { "title": "Olive oil", "note": "" }, { "title": "Quality ingredients", "note": "Fresh mushrooms, never canned" }, { "title": "A long-time Rishon LeZion favorite", "note": "" }, { "title": "Now under new management", "note": "" }, { "title": "Fast, personal service", "note": "" }, { "title": "Ordering direct costs less", "note": "{couponPercent}% off with code {coupon}" } ],
+    "items": [ { "title": "100% Gad mozzarella", "note": "Never a cheese blend" }, { "title": "Long-fermented dough", "note": "24 hours" }, { "title": "Olive oil", "note": "" }, { "title": "Quality ingredients", "note": "Fresh mushrooms, never canned" }, { "title": "A long-time Rishon LeZion favorite", "note": "" }, { "title": "Now under new management", "note": "" }, { "title": "Fast, personal service", "note": "" } ],
     "supplierAlt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier"
   },
   "deals": {
@@ -63,9 +56,8 @@
     "priceLabels": { "M": "M", "L": "L", "XL": "XL", "unit": "Price", "withTopping": "With topping" },
     "currency": "₪",
     "included": "No extra charge",
-    "items": { "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Margherita pizza with mozzarella, green olives and cherry tomatoes" }, "pesto": { "name": "Pesto Pizza", "description": "Pesto sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Pesto pizza with mozzarella, cherry tomatoes and mushrooms" }, "alfredo": { "name": "Alfredo Pizza", "description": "", "imageAlt": "Alfredo pizza with mozzarella and mushrooms" }, "rose": { "name": "Rosé Pizza", "description": "", "imageAlt": "Rosa pizza with mozzarella, green olives and cherry tomatoes" }, "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." }, "regularTopping": { "name": "Regular Topping", "description": "Green olives, black olives, corn, hot pepper, red onion, tomato, mushrooms or hard-boiled egg.", "imageAlt": "Selection of regular pizza toppings" }, "specialTopping": { "name": "Special Topping", "description": "Extra cheese, tuna or Bulgarian cheese.", "imageAlt": "Mozzarella, tuna and Bulgarian cheese as special pizza toppings" }, "penne": { "name": "Penne", "description": "" }, "sweetPotatoRavioli": { "name": "Sweet Potato Ravioli", "description": "" }, "mushroomRavioli": { "name": "Mushroom Ravioli", "description": "" }, "cheeseRavioli": { "name": "Cheese Ravioli", "description": "" }, "customSaladSmall": { "name": "Build-your-own Salad · Small", "description": "" }, "customSaladLarge": { "name": "Build-your-own Salad · Large", "description": "" }, "greekSaladSmall": { "name": "Greek Salad · Small", "description": "" }, "greekSaladLarge": { "name": "Greek Salad · Large", "description": "" }, "saladToppings": { "name": "Salad Toppings", "description": "Cucumber, tomato, black or green olives, pepper, mushrooms, yellow cheese, corn, onion, lettuce, sprouts, hot pepper, hard-boiled egg, Bulgarian cheese and fresh mushrooms." }, "ziva": { "name": "Ziva", "description": "" }, "garlicBread": { "name": "Garlic Bread", "description": "" }, "bagelToast": { "name": "Toasted Bagel", "description": "" }, "malawachPizza": { "name": "Malawach Pizza", "description": "" }, "cans": { "name": "Cans", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero or Fanta.", "imageAlt": "Selection of chilled soft-drink cans" }, "energyDrink": { "name": "Energy Drink", "description": "Regular XL.", "imageAlt": "Chilled energy drink can" }, "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water.", "imageAlt": "Selection of chilled small drink bottles" }, "waterSoda": { "name": "San Benedetto Water & Soda", "description": "San Benedetto mineral water or soda.", "imageAlt": "San Benedetto mineral water and soda bottles" } },
+    "items": { "margherita": { "name": "Margherita Pizza", "description": "House-made tomato sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Margherita pizza with mozzarella, green olives and cherry tomatoes" }, "pesto": { "name": "Pesto Pizza", "description": "Pesto sauce and generous Gad 22% fat mozzarella.", "imageAlt": "Pesto pizza with mozzarella, cherry tomatoes and mushrooms" }, "alfredo": { "name": "Alfredo Pizza", "description": "", "imageAlt": "Alfredo pizza with mozzarella and mushrooms" }, "rose": { "name": "Rosé Pizza", "description": "", "imageAlt": "Rosa pizza with mozzarella, green olives and cherry tomatoes" }, "slice": { "name": "Pizza Slice", "description": "A single slice, plain or with one topping." }, "regularTopping": { "name": "Regular Topping", "description": "Green olives, black olives, corn, hot pepper, red onion, tomato, mushrooms or hard-boiled egg.", "imageAlt": "Selection of regular pizza toppings" }, "specialTopping": { "name": "Special Topping", "description": "Extra cheese, tuna or Bulgarian cheese.", "imageAlt": "Mozzarella, tuna and Bulgarian cheese as special pizza toppings" }, "penne": { "name": "Penne", "description": "" }, "sweetPotatoRavioli": { "name": "Sweet Potato Ravioli", "description": "" }, "mushroomRavioli": { "name": "Mushroom Ravioli", "description": "" }, "cheeseRavioli": { "name": "Cheese Ravioli", "description": "" }, "customSaladSmall": { "name": "Build-your-own Salad · Small", "description": "" }, "customSaladLarge": { "name": "Build-your-own Salad · Large", "description": "" }, "greekSaladSmall": { "name": "Greek Salad · Small", "description": "" }, "greekSaladLarge": { "name": "Greek Salad · Large", "description": "" }, "saladToppings": { "name": "Salad Toppings", "description": "Cucumber, tomato, black or green olives, pepper, mushrooms, corn, onion, lettuce, sprouts, hot pepper, hard-boiled egg, Bulgarian cheese and fresh mushrooms." }, "ziva": { "name": "Ziva", "description": "" }, "garlicBread": { "name": "Garlic Bread", "description": "" }, "bagelToast": { "name": "Toasted Bagel", "description": "" }, "malawachPizza": { "name": "Malawach Pizza", "description": "" }, "cans": { "name": "Cans", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero or Fanta.", "imageAlt": "Selection of chilled soft-drink cans" }, "energyDrink": { "name": "Energy Drink", "description": "Regular XL.", "imageAlt": "Chilled energy drink can" }, "smallBottles": { "name": "Small Bottles", "description": "Coca-Cola, Coca-Cola Zero, Sprite, Sprite Zero, Fanta, Fuze Tea, grape, orange, strawberry-banana or flavored water.", "imageAlt": "Selection of chilled small drink bottles" }, "waterSoda": { "name": "San Benedetto Water & Soda", "description": "San Benedetto mineral water or soda.", "imageAlt": "San Benedetto mineral water and soda bottles" } },
     "order": "Order now",
-    "orderHint": "Ordering direct from our site: {couponPercent}% off with code {coupon}",
     "share": "Share with a friend who loves pizza",
     "sauceNote": "Want a little extra sauce on the side? Gladly – no extra charge."
   },
@@ -115,7 +107,7 @@
   "faq": {
     "kicker": "Frequently asked",
     "title": "Good to know before you order",
-    "items": [ { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the {kosherSupervision}." }, { "question": "What are Pizza Virtuoso's opening hours?", "answer": "Our opening hours: {hours}." }, { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." }, { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call {phone}, or come and dine in." }, { "question": "Is there a discount for ordering direct?", "answer": "Yes. Orders placed directly on our ordering site get {couponPercent}% off with coupon code {coupon}. Enter the code at checkout." }, { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call {phone}." } ]
+    "items": [ { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the {kosherSupervision}." }, { "question": "What are Pizza Virtuoso's opening hours?", "answer": "Our opening hours: {hours}." }, { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." }, { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call {phone}, or come and dine in." }, { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call {phone}." } ]
   },
   "contact": {
     "kicker": "Find us",

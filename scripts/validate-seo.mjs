@@ -47,11 +47,10 @@ for (const file of htmlFiles) {
     // Missing information is left out, never announced to customers.
     const visible = html.replace(/<script[\s\S]*?<\/script>/g, '');
     assert(!/זמני|יוחלפו|המחשה|יעודכן בקרוב|לאחר אימות|temporary|[Ii]llustrative|[Cc]oming soon/.test(visible), `${name}: placeholder wording is visible to customers.`);
-    assert(visible.includes(`<bdi>${business.directOrderCoupon.code}</bdi>`), `${name}: the direct-order coupon is not shown.`);
     // One destination for every order CTA; only deals may point deeper into the ordering system.
     const orderLinks = [...html.matchAll(/<a\b[^>]*data-order-link[^>]*>/g)].map(([tag]) => tag.match(/href="([^"]+)"/)?.[1].replaceAll('&amp;', '&'));
     assert(orderLinks.length >= 5, `${name}: expected order CTAs in the hero, menu, venue, contact and sticky bar.`);
-    for (const href of orderLinks) assert(href?.startsWith(business.orderUrl) && href.includes(`coupon=${business.directOrderCoupon.code}`), `${name}: order CTA points to ${href}.`);
+    for (const href of orderLinks) assert(href?.startsWith(business.orderUrl), `${name}: order CTA points to ${href}.`);
     if (!hasDeals) assert(new Set(orderLinks).size === 1, `${name}: order CTAs point to different destinations.`);
   }
 
