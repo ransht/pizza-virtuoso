@@ -534,9 +534,8 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .premium-card li { display: flex; gap: 10px; align-items: baseline; font-weight: 700; font-size: .98rem; }
 .premium-card li::before { content: '✓'; color: var(--olive); font-weight: 800; }
 .premium-brand { display: grid; place-items: center; block-size: 120px; margin-block-end: 26px; border-block-end: 1px solid var(--line); padding-block-end: 22px; }
-.premium-brand-spadoni { align-content: center; gap: 2px; text-align: center; direction: ltr; }
-.premium-brand-spadoni span { font-family: var(--font-display); font-style: italic; color: var(--tomato); font-size: 1.1rem; line-height: 1; }
-.premium-brand-spadoni strong { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.7rem); letter-spacing: .14em; line-height: 1.1; color: #1f3a6b; }
+.premium-brand-spadoni { align-content: center; gap: 10px; text-align: center; direction: ltr; }
+.premium-brand-spadoni img { inline-size: min(220px, 100%); block-size: auto; }
 .premium-brand-spadoni small { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); }
 .premium-brand-gad img { block-size: 92px; inline-size: auto; mix-blend-mode: multiply; }
 .premium-stamp { margin: auto 0 0; align-self: flex-start; padding: 6px 14px; border: 1px solid var(--brass); border-radius: 999px; color: #7a6230; font-size: .78rem; font-weight: 800; letter-spacing: .1em; }
@@ -556,4 +555,5 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
   .premium-what ol { grid-template-columns: 1fr; }
   .premium-brand { block-size: 100px; }
   .premium-brand-gad img { block-size: 74px; }
+  .premium-brand-spadoni img { inline-size: 180px; }
 }
