@@ -51,6 +51,49 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
 <main id="main">
   <Hero {t} />
 
+  <section class="premium" id="premium" aria-labelledby="premium-title">
+    <div class="page-shell">
+      <header class="premium-heading">
+        <p class="section-kicker">{t.premium.kicker}</p>
+        <h2 id="premium-title">{t.premium.title}</h2>
+        <p class="premium-lead">{t.premium.lead}</p>
+      </header>
+      <div class="premium-pair">
+        <article class="premium-card" aria-labelledby="premium-dough-title">
+          <div class="premium-brand premium-brand-spadoni" aria-hidden="true">
+            <span>Molino</span><strong>SPADONI</strong><small>Ravenna · Italia</small>
+          </div>
+          <p class="section-kicker">{t.premium.doughKicker}</p>
+          <h3 id="premium-dough-title">{t.premium.doughTitle}</h3>
+          <p>{t.premium.doughBody}</p>
+          <ul>{t.premium.doughPoints.map((point) => <li>{point}</li>)}</ul>
+          <p class="premium-stamp">{t.premium.doughSince}</p>
+        </article>
+        <span class="premium-plus" aria-hidden="true">+</span>
+        <article class="premium-card" aria-labelledby="premium-cheese-title">
+          <div class="premium-brand premium-brand-gad">
+            <img src="/images/gad-logo-264.webp" width="264" height="219" loading="lazy" decoding="async" alt={t.premium.logoAlt} />
+          </div>
+          <p class="section-kicker">{t.premium.cheeseKicker}</p>
+          <h3 id="premium-cheese-title">{t.premium.cheeseTitle}</h3>
+          <p>{t.premium.cheeseBody}</p>
+          <ul>{t.premium.cheesePoints.map((point) => <li>{point}</li>)}</ul>
+          <p class="premium-stamp">22%</p>
+        </article>
+      </div>
+      <div class="premium-what">
+        <h3>{t.premium.whatTitle}</h3>
+        <ol>
+          {t.premium.what.map((item) => <li><strong>{item.title}</strong><p>{item.body}</p></li>)}
+        </ol>
+      </div>
+      <div class="premium-cta">
+        <a class="button button-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="premium">{t.premium.order}</a>
+        <p>{t.premium.note}</p>
+      </div>
+    </div>
+  </section>
+
   <section class="why section" id="why" aria-labelledby="why-title">
     <div class="page-shell">
       <header class="why-heading">

@@ -49,6 +49,10 @@ const restaurant: Record<string, unknown> = {
   image: [new URL('/images/hero/hero-pizza-1672.webp', origin).href, new URL('/images/og-pizza.jpg', origin).href],
   logo: new URL('/favicon.svg', origin).href,
   servesCuisine: ['Pizza', 'Italian', 'Dairy', 'Kosher'],
+  slogan: t.premium.title,
+  knowsAbout: lang === 'he'
+    ? ['פיצה פרימיום', 'בצק ספדוני מאיטליה', 'Molino Spadoni', 'מוצרלה גד 22%', 'פיצה כשרה בראשון לציון']
+    : ['Premium pizza', 'Spadoni dough from Italy', 'Molino Spadoni', 'Gad 22% mozzarella', 'Kosher pizza in Rishon LeZion'],
   menu: menuId,
   hasMenu: { '@id': menuId },
 };

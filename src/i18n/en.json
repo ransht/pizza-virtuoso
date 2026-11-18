@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Pizza Virtuoso Rishon LeZion | Kosher Pizza & Delivery",
-    "description": "Pizza Virtuoso in Rishon LeZion, opposite the Performing Arts Center. 100% mozzarella, long-fermented dough and delivery.",
+    "title": "Pizza Virtuoso Rishon LeZion | Premium Kosher Pizza & Delivery",
+    "description": "Premium kosher pizza in Rishon LeZion, opposite the Performing Arts Center: Spadoni dough from Italy, 100% Gad 22% mozzarella and delivery.",
     "ogAlt": "Fresh pizza with mozzarella, mushrooms and basil beside a warm oven"
   },
   "a11y": {
@@ -15,6 +15,7 @@
   "nav": {
     "menu": "Menu",
     "deals": "Deals",
+    "premium": "Premium",
     "why": "Why us",
     "reviews": "Reviews",
     "contact": "Contact",
@@ -29,7 +30,7 @@
     "brand": "Pizza Virtuoso",
     "brandLatin": "פיצה וירטואוז",
     "title": "The legendary pizza opposite the Rishon LeZion Performing Arts Center",
-    "points": [ "100% Gad mozzarella", "24-hour fermented dough", "Quality ingredients", "Kosher", "Fair prices" ],
+    "points": [ "Spadoni dough from Italy", "100% Gad mozzarella", "Quality ingredients", "Kosher", "Fair prices" ],
     "pointsLabel": "What you get",
     "order": "Order now",
     "call": "Call to order"
@@ -39,6 +40,25 @@
     "title": "Why Virtuoso?",
     "items": [ { "title": "100% Gad mozzarella", "note": "Never a cheese blend" }, { "title": "Long-fermented dough", "note": "24 hours" }, { "title": "Olive oil", "note": "" }, { "title": "Quality ingredients", "note": "Fresh mushrooms, never canned" }, { "title": "A long-time Rishon LeZion favorite", "note": "" }, { "title": "Now under new management", "note": "" }, { "title": "Fast, personal service", "note": "" } ],
     "supplierAlt": "Gad Dairy logo, Pizza Virtuoso's exclusive mozzarella supplier"
+  },
+  "premium": {
+    "kicker": "Premium pizza",
+    "title": "Spadoni dough from Italy. Gad mozzarella. No compromises.",
+    "lead": "Premium pizza doesn't start with the toppings — it starts with the base. That's why we brought Molino Spadoni dough from Italy to Rishon LeZion and top it only with Gad 22% fat mozzarella.",
+    "doughKicker": "The dough · Italy",
+    "doughTitle": "Molino Spadoni",
+    "doughBody": "An Italian flour mill from Ravenna in Romagna that has been milling for more than a century. Spadoni is one of Italy's leading names in specialty flours and pizza dough, sold in more than 30 countries.",
+    "doughPoints": [ "Italian dough chosen specifically for pizza", "Airy, crisp edges", "A light texture that never feels heavy" ],
+    "doughSince": "100+ years of Italian flour",
+    "cheeseKicker": "The cheese · Gad",
+    "cheeseTitle": "Gad 22% mozzarella",
+    "cheeseBody": "Gad Dairies was founded in 1980 by Ezra Cohen, with roots in his family's dairy in Turkey and inspiration from Italian cheesemaking. It is one of the most expensive mozzarellas a pizzeria can buy in Israel — and we use it on every pizza, generously, never cut with cheaper cheese.",
+    "cheesePoints": [ "100% mozzarella, never a blend", "Stretches, melts and browns beautifully", "A rich, balanced milky flavor" ],
+    "logoAlt": "Gad Dairies logo – Always Special",
+    "whatTitle": "So what makes a pizza premium?",
+    "what": [ { "title": "A base that makes the difference", "body": "Italian dough made from specialty pizza flour gives an airy crust, a sturdy bottom and a light bite." }, { "title": "Cheese without shortcuts", "body": "Most pizzerias save on cheese, the most expensive ingredient on the tray. Ours is 100% Gad mozzarella." }, { "title": "The same fair price", "body": "Premium ingredients without fine-dining prices. Just pizza done right." } ],
+    "order": "I want premium pizza",
+    "note": "Kosher · Baked fresh for every order · Delivery across Rishon LeZion"
   },
   "deals": {
     "kicker": "Better value",
@@ -107,7 +127,7 @@
   "faq": {
     "kicker": "Frequently asked",
     "title": "Good to know before you order",
-    "items": [ { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the {kosherSupervision}." }, { "question": "What are Pizza Virtuoso's opening hours?", "answer": "Our opening hours: {hours}." }, { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." }, { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call {phone}, or come and dine in." }, { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call {phone}." } ]
+    "items": [ { "question": "Is Pizza Virtuoso kosher?", "answer": "Yes. Pizza Virtuoso is a kosher pizzeria under the supervision of the {kosherSupervision}." }, { "question": "What is Spadoni dough?", "answer": "Molino Spadoni is an Italian flour mill from Ravenna in Romagna that has been milling for more than a century and specializes in pizza flours and dough. At Pizza Virtuoso, our pizzas are baked on Spadoni dough from Italy." }, { "question": "What cheese does Pizza Virtuoso use?", "answer": "Only Gad Dairies 22% fat mozzarella, generously, never blended with other cheeses. It is one of the most expensive mozzarellas a pizzeria can buy in Israel." }, { "question": "What are Pizza Virtuoso's opening hours?", "answer": "Our opening hours: {hours}." }, { "question": "Where is Pizza Virtuoso located?", "answer": "At 16 Jabotinsky Street, Rishon LeZion, directly opposite the Performing Arts Center." }, { "question": "How do I order pizza?", "answer": "Order online for delivery or pickup, call {phone}, or come and dine in." }, { "question": "Do you deliver?", "answer": "Yes. We deliver throughout Rishon LeZion for a ₪25 delivery fee. Order online through our ordering site or call {phone}." } ]
   },
   "contact": {
     "kicker": "Find us",

@@ -5,7 +5,7 @@ interface Props { lang: Language; t: Messages; hasDeals: boolean; }
 const { lang, t, hasDeals } = Astro.props;
 const otherLang = lang === 'he' ? 'en' : 'he';
 const links = ([
-  ['menu', '#menu'], ['deals', '#deals'], ['why', '#why'], ['reviews', '#reviews'], ['contact', '#contact'],
+  ['menu', '#menu'], ['premium', '#premium'], ['deals', '#deals'], ['why', '#why'], ['reviews', '#reviews'], ['contact', '#contact'],
 ] as const).filter(([key]) => key !== 'deals' || hasDeals);
 ---
 <a class="skip-link" href="#main">{t.a11y.skip}</a>
