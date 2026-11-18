@@ -1,0 +1,64 @@
+---
+// Frame for the Hebrew pizza guide pages: a light top bar with one order button,
+// the article, a closing order band and the same sticky mobile bar as the homepage.
+import business from '../content/business/config.json';
+import OrderLinkTracking from './OrderLinkTracking.astro';
+import { guidePath } from '../content/guide/pizza-guide';
+import { hoursShort } from '../lib/hours';
+import { orderHref } from '../lib/order';
+import type { Messages } from '../lib/i18n';
+
+interface Crumb { label: string; href?: string }
+interface Props { t: Messages; crumbs: Crumb[]; trackLocation: string }
+const { t, crumbs, trackLocation } = Astro.props;
+const mapsUrl = business.googleBusinessUrl || business.googleMapsUrl;
+const external = { target: '_blank', rel: 'noopener noreferrer' };
+---
+<a class="skip-link" href="#main">{t.a11y.skip}</a>
+<header class="guide-topbar">
+  <a class="guide-brand" href="/he/">
+    <span class="brand-mark" aria-hidden="true">V</span>
+    <span><strong>{t.hero.brand}</strong><small>מדריך הפיצה</small></span>
+  </a>
+  <nav aria-label="ניווט מדריך הפיצה">
+    <a class="guide-topbar-link" href="/he/#menu">{t.nav.menu}</a>
+    <a class="button button-small button-primary" href={orderHref()} data-order-link data-track="order_now_click" data-track-location={`${trackLocation}-header`}>{t.nav.order}</a>
+  </nav>
+</header>
+
+<main id="main" class="guide-page">
+  <nav class="guide-breadcrumbs" aria-label="מיקום באתר">
+    <ol>
+      {crumbs.map((crumb) => <li>{crumb.href ? <a href={crumb.href}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}</li>)}
+    </ol>
+  </nav>
+  <slot />
+
+  <aside class="guide-order-band" aria-labelledby="guide-order-title">
+    <div>
+      <p class="section-kicker">{t.hero.brand} · ראשון לציון</p>
+      <h2 id="guide-order-title">בצק של 24 שעות, בלי לחכות 24 שעות</h2>
+      <p>מוצרלה 22% של גד, רוטב שמוכן במקום, פטריות טריות. כשר בהשגחת {business.kosherSupervision}.</p>
+      <p class="guide-order-meta"><a href={mapsUrl} {...external}>{t.contact.addressValue}</a> · <bdi>{hoursShort('he')}</bdi> · <a href={`tel:${business.telephone}`} data-track="phone_click" data-track-location={`${trackLocation}-band`}><bdi>{business.telephoneDisplay}</bdi></a></p>
+    </div>
+    <div class="guide-order-actions">
+      <a class="button button-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location={`${trackLocation}-band`}>{t.nav.order}</a>
+      <a class="button button-ghost" href="/he/#menu">לתפריט ולמחירים</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="page-shell footer-grid">
+    <div><p class="footer-brand">{t.hero.brand}</p><address><a href={mapsUrl} {...external}>{t.contact.addressValue}</a><br /><a href={`tel:${business.telephone}`} data-track="phone_click" data-track-location={`${trackLocation}-footer`}><bdi>{business.telephoneDisplay}</bdi></a></address><p>{t.footer.tagline}</p></div>
+    <p><a class="footer-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location={`${trackLocation}-footer`}>{t.nav.order}</a><br /><a class="footer-accessibility" href={guidePath()}>מדריך הפיצה</a></p>
+    <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}<br /><a class="footer-accessibility" href="/he/accessibility/">הצהרת נגישות</a></p>
+  </div>
+</footer>
+
+<nav class="mobile-action-bar" aria-label={t.a11y.quickActions}>
+  <a class="mobile-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location={`${trackLocation}-sticky-bar`}>{t.mobile.order}</a>
+  <a class="mobile-call" href={`tel:${business.telephone}`} data-track="phone_click" data-track-location={`${trackLocation}-sticky-bar`}>{t.mobile.call}</a>
+</nav>
+
+<OrderLinkTracking />

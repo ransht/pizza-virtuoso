@@ -1,0 +1,42 @@
+---
+// Shared by every page with order CTAs: forwards campaign parameters to the ordering system
+// and reports [data-track] clicks to analytics.
+---
+<script>
+  // --- Campaign attribution -------------------------------------------------------------
+  // Campaign parameters from the landing URL (Facebook, WhatsApp, Google…) are remembered for
+  // the visit and forwarded to the ordering system, which stores them with the order.
+  // Only this fixed list is forwarded; nothing personal is read or sent.
+  const campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+  const campaignStore = 'pizza-virtuoso-campaign';
+  const campaign: Record<string, string> = {};
+  const landing = new URLSearchParams(location.search);
+  campaignKeys.forEach((key) => { const value = landing.get(key)?.trim().slice(0, 100); if (value) campaign[key] = value; });
+  try {
+    if (Object.keys(campaign).length) sessionStorage.setItem(campaignStore, JSON.stringify(campaign));
+    else Object.assign(campaign, JSON.parse(sessionStorage.getItem(campaignStore) || '{}'));
+  } catch { /* storage unavailable: the parameters of this page view are still forwarded */ }
+  if (!Object.keys(campaign).length && document.referrer) {
+    // No campaign tag: keep the real origin instead of letting every order look like a referral from this site.
+    const host = new URL(document.referrer).hostname;
+    if (/(^|\.)google\./.test(host)) Object.assign(campaign, { utm_source: 'google', utm_medium: 'organic' });
+    else if (/(^|\.)(facebook|fb|instagram)\.com$/.test(host)) Object.assign(campaign, { utm_source: 'facebook', utm_medium: 'social' });
+    // Visitors who arrive on a guide page and then open the homepage keep their original source.
+    if (Object.keys(campaign).length) try { sessionStorage.setItem(campaignStore, JSON.stringify(campaign)); } catch { /* ignore */ }
+  }
+  document.querySelectorAll<HTMLAnchorElement>('a[data-order-link]').forEach((link) => {
+    const url = new URL(link.href);
+    Object.entries(campaign).forEach(([key, value]) => url.searchParams.set(key, value));
+    link.href = url.href;
+  });
+
+  // --- Analytics events -----------------------------------------------------------------
+  // gtag exists only after the visitor accepted analytics (see GoogleAnalytics.astro).
+  const track = (event: string, parameters: Record<string, string | undefined> = {}) => {
+    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', event, parameters);
+  };
+  document.addEventListener('click', (event) => {
+    const element = (event.target as Element | null)?.closest<HTMLElement>('[data-track]');
+    if (element) track(element.dataset.track!, { link_location: element.dataset.trackLocation, item_id: element.dataset.trackId });
+  });
+</script>

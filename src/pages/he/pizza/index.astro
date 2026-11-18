@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GuideShell from '../../../components/GuideShell.astro';
+import { guideHub, guidePages, guidePath } from '../../../content/guide/pizza-guide';
+import { dictionaries } from '../../../lib/i18n';
+
+const t = dictionaries.he;
+const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
+const abs = (path: string) => new URL(path, origin).href;
+const path = guidePath();
+const collection = {
+  '@type': 'CollectionPage',
+  '@id': abs(`${path}#main`),
+  url: abs(path),
+  name: guideHub.h1,
+  description: guideHub.description,
+  inLanguage: 'he-IL',
+  about: { '@id': abs('/#restaurant') },
+  publisher: { '@id': abs('/#restaurant') },
+  hasPart: guidePages.map((page) => ({ '@id': abs(`${guidePath(page.slug)}#main`) })),
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.hero.brand, item: abs('/he/') },
+      { '@type': 'ListItem', position: 2, name: guideHub.kicker, item: abs(path) },
+    ],
+  },
+};
+---
+<BaseLayout lang="he" {t} canonicalPath={path} languageAlternates={false} structuredData={[collection]} meta={{
+  title: guideHub.title,
+  description: guideHub.description,
+  image: '/images/og-pizza.jpg',
+  imageAlt: guideHub.image.alt,
+}}>
+  <GuideShell {t} trackLocation="guide-hub" crumbs={[{ label: t.hero.brand, href: '/he/' }, { label: guideHub.kicker }]}>
+    <div class="guide-article">
+      <header class="guide-hero">
+        <div class="guide-hero-copy">
+          <p class="section-kicker">{guideHub.kicker}</p>
+          <h1>{guideHub.h1}</h1>
+          <p class="guide-lead">{guideHub.lead}</p>
+        </div>
+        <img src={guideHub.image.src} width={guideHub.image.width} height={guideHub.image.height} alt={guideHub.image.alt} loading="eager" decoding="async" fetchpriority="high" />
+      </header>
+      <section class="guide-related guide-hub-list" aria-label="המדריכים">
+        <ul class="guide-cards">
+          {guidePages.map((page) => (
+            <li><a class="guide-card" href={guidePath(page.slug)}><span class="guide-card-kicker">{page.kicker.split(' · ')[1]}</span><strong>{page.cardTitle}</strong><span>{page.cardText}</span></a></li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </GuideShell>
+</BaseLayout>

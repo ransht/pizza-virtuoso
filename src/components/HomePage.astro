@@ -10,6 +10,8 @@ import GoogleMapsIcon from './GoogleMapsIcon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import TikTokIcon from './TikTokIcon.astro';
 import FacebookIcon from './FacebookIcon.astro';
+import OrderLinkTracking from './OrderLinkTracking.astro';
+import { guidePath } from '../content/guide/pizza-guide';
 import { hoursRows, openStatusData, specialHoursRows } from '../lib/hours';
 import { orderHref } from '../lib/order';
 import type { Language, Messages } from '../lib/i18n';
@@ -150,6 +152,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
         <h2 id="story-title">{t.story.title}</h2>
         <p class="story-lead">{t.story.lead}</p>
         {t.story.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {lang === 'he' && <p class="story-guide-link"><a href={guidePath('dough')}>רוצים לנסות בבית? המתכון לבצק בהתפחה ארוכה<span aria-hidden="true">←</span></a></p>}
       </div>
       <figure class="story-figure">
         <img src="/images/dough-story.webp" width="820" height="1025" loading="lazy" decoding="async" alt={t.story.imageAlt} />
@@ -293,7 +296,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
 <footer class="site-footer">
   <div class="page-shell footer-grid">
     <div><p class="footer-brand">{t.hero.brand}</p><address><a href={mapsUrl} {...external}>{t.contact.addressValue}</a><br /><a href={`tel:${business.telephone}`} data-track="phone_click" data-track-location="footer"><bdi>{business.telephoneDisplay}</bdi></a></address><p>{t.footer.tagline}</p></div>
-    <p><a class="footer-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="footer">{t.nav.order}</a>{lang === 'he' && <><br /><a class="footer-accessibility" href={business.calcUrl} data-track="calculator_click" data-track-location="footer">{t.party.footer}</a></>}</p>
+    <p><a class="footer-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="footer">{t.nav.order}</a>{lang === 'he' && <><br /><a class="footer-accessibility" href={business.calcUrl} data-track="calculator_click" data-track-location="footer">{t.party.footer}</a><br /><a class="footer-accessibility" href={guidePath()}>מדריך הפיצה: מתכון בצק וטעויות נפוצות</a></>}</p>
     <p>© {new Date().getFullYear()} {t.hero.brand}. {t.footer.rights}<br /><a class="footer-accessibility" href={`/${lang}/accessibility/`}>{lang === 'he' ? 'הצהרת נגישות' : 'Accessibility statement'}</a></p>
   </div>
 </footer>
@@ -302,6 +305,8 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
   <a class="mobile-order" href={orderHref()} data-order-link data-track="order_now_click" data-track-location="sticky-bar">{t.mobile.order}</a>
   <a class="mobile-call" href={`tel:${business.telephone}`} data-track="phone_click" data-track-location="sticky-bar">{t.mobile.call}</a>
 </nav>
+
+<OrderLinkTracking />
 
 <script>
   const header = document.querySelector('[data-header]');
@@ -341,41 +346,6 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
     categoryLinks.forEach((item) => { item.classList.remove('active'); item.removeAttribute('aria-current'); });
     link.classList.add('active'); link.setAttribute('aria-current', 'true');
   }));
-
-  // --- Campaign attribution -------------------------------------------------------------
-  // Campaign parameters from the landing URL (Facebook, WhatsApp, Google…) are remembered for
-  // the visit and forwarded to the ordering system, which stores them with the order.
-  // Only this fixed list is forwarded; nothing personal is read or sent.
-  const campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
-  const campaignStore = 'pizza-virtuoso-campaign';
-  const campaign: Record<string, string> = {};
-  const landing = new URLSearchParams(location.search);
-  campaignKeys.forEach((key) => { const value = landing.get(key)?.trim().slice(0, 100); if (value) campaign[key] = value; });
-  try {
-    if (Object.keys(campaign).length) sessionStorage.setItem(campaignStore, JSON.stringify(campaign));
-    else Object.assign(campaign, JSON.parse(sessionStorage.getItem(campaignStore) || '{}'));
-  } catch { /* storage unavailable: the parameters of this page view are still forwarded */ }
-  if (!Object.keys(campaign).length && document.referrer) {
-    // No campaign tag: keep the real origin instead of letting every order look like a referral from this site.
-    const host = new URL(document.referrer).hostname;
-    if (/(^|\.)google\./.test(host)) Object.assign(campaign, { utm_source: 'google', utm_medium: 'organic' });
-    else if (/(^|\.)(facebook|fb|instagram)\.com$/.test(host)) Object.assign(campaign, { utm_source: 'facebook', utm_medium: 'social' });
-  }
-  document.querySelectorAll<HTMLAnchorElement>('a[data-order-link]').forEach((link) => {
-    const url = new URL(link.href);
-    Object.entries(campaign).forEach(([key, value]) => url.searchParams.set(key, value));
-    link.href = url.href;
-  });
-
-  // --- Analytics events -----------------------------------------------------------------
-  // gtag exists only after the visitor accepted analytics (see GoogleAnalytics.astro).
-  const track = (event: string, parameters: Record<string, string | undefined> = {}) => {
-    (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', event, parameters);
-  };
-  document.addEventListener('click', (event) => {
-    const element = (event.target as Element | null)?.closest<HTMLElement>('[data-track]');
-    if (element) track(element.dataset.track!, { link_location: element.dataset.trackLocation, item_id: element.dataset.trackId });
-  });
 
   // --- Open now -------------------------------------------------------------------------
   // Computed in the restaurant's time zone from the same data as the hours table.

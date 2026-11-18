@@ -9,6 +9,22 @@
 
 The menu, location, kosher and ordering intents are consolidated on the substantial homepage. Do not create near-duplicate pages for spelling or preposition variants. The crawlable menu section covers pizza, Margherita, pesto, Alfredo, rosa, slices, pasta, ravioli, salads, baked dishes and drinks naturally.
 
+### Pizza guide (informational content, Hebrew only)
+
+| Page | Primary intent | Schema |
+| --- | --- | --- |
+| `/he/pizza/` | מדריך פיצה; hub linking the three articles | `CollectionPage` |
+| `/he/pizza/dough/` | מתכון בצק פיצה; בצק פיצה התפחה ארוכה / במקרר; בצק פיצה איטלקי | `Recipe` |
+| `/he/pizza/mistakes/` | טעויות בהכנת פיצה; בצק פיצה יוצא קשה; פיצה יוצאת רטובה; איך לחמם פיצה | `Article` |
+| `/he/pizza/facts/` | היסטוריה של פיצה; פיצה מרגריטה מקור; אננס על פיצה | `Article` |
+
+- These pages target how-to and curiosity searches, not the local "pizza in Rishon LeZion" intents, which stay on the homepage. They link to the homepage menu and mozzarella section and carry their own order CTAs.
+- Content lives in `src/content/guide/pizza-guide.ts` (owner-approved draft: `drafts/pizza-guide-content.md`, 18 November 2026). "אצלנו בוירטואוז" boxes may only repeat facts the homepage already states.
+- Entry points on the homepage are deliberately quiet (a link under the story section and one in the footer) so they never compete with ordering. Do not add the guide to the header navigation.
+- Hebrew only for now: the pages pass `languageAlternates={false}` and are listed in the sitemap without hreflang. When English versions exist, add `/en/pizza/...`, turn alternates back on and move the paths to `localizedPaths` in `src/pages/sitemap.xml.ts`.
+- No FAQ schema on the guide: Google no longer shows FAQ rich results for commercial sites.
+- After deployment, inspect each guide URL in Search Console and request indexing; check the dough page in the Rich Results Test (Recipe).
+
 ## Owner-verified facts (October 2026)
 
 - **Menu and prices:** the prices on pizzavirtuoso.co.il (`src/content/menu/menu.json`) are the correct ones (owner-confirmed 25 October 2026); directory menus that differ are outdated. The Google Business Profile menu was entered from the same file, so change both together.

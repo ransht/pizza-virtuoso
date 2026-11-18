@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import GuideShell from '../../../components/GuideShell.astro';
+import { doughRecipe, guideHub, guidePages, guidePath, guidePublished, type GuidePage } from '../../../content/guide/pizza-guide';
+import { dictionaries } from '../../../lib/i18n';
+import { orderHref } from '../../../lib/order';
+
+export function getStaticPaths() {
+  return guidePages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+interface Props { page: GuidePage }
+const { page } = Astro.props;
+const t = dictionaries.he;
+const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
+const abs = (path: string) => new URL(path, origin).href;
+const path = guidePath(page.slug);
+const restaurantId = abs('/#restaurant');
+const related = guidePages.filter((item) => item.slug !== page.slug);
+const isRecipe = page.slug === 'dough';
+
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  '@id': abs(`${path}#breadcrumb`),
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t.hero.brand, item: abs('/he/') },
+    { '@type': 'ListItem', position: 2, name: guideHub.kicker, item: abs(guidePath()) },
+    { '@type': 'ListItem', position: 3, name: page.cardTitle, item: abs(path) },
+  ],
+};
+const shared = {
+  '@id': abs(`${path}#main`),
+  name: page.h1,
+  description: page.description,
+  image: abs(page.image.src),
+  inLanguage: 'he-IL',
+  datePublished: guidePublished,
+  author: { '@id': restaurantId },
+  publisher: { '@id': restaurantId },
+  mainEntityOfPage: abs(path),
+};
+const mainNode = isRecipe ? {
+  '@type': 'Recipe',
+  ...shared,
+  recipeCategory: 'בצק',
+  recipeCuisine: 'איטלקי',
+  keywords: 'בצק פיצה, התפחה ארוכה, התפחה במקרר, בצק פיצה איטלקי',
+  recipeYield: doughRecipe.yield,
+  prepTime: doughRecipe.prepTime,
+  cookTime: doughRecipe.cookTime,
+  totalTime: doughRecipe.totalTime,
+  recipeIngredient: doughRecipe.ingredients,
+  recipeInstructions: doughRecipe.steps.map((step) => ({ '@type': 'HowToStep', name: step.name, text: step.text })),
+} : {
+  '@type': 'Article',
+  ...shared,
+  headline: page.h1,
+};
+---
+<BaseLayout lang="he" {t} canonicalPath={path} languageAlternates={false} ogType="article" structuredData={[mainNode, breadcrumb]} meta={{
+  title: page.title,
+  description: page.description,
+  image: '/images/og-pizza.jpg',
+  imageAlt: page.image.alt,
+}}>
+  <GuideShell {t} trackLocation={`guide-${page.slug}`} crumbs={[{ label: t.hero.brand, href: '/he/' }, { label: guideHub.kicker, href: guidePath() }, { label: page.cardTitle }]}>
+    <article class="guide-article">
+      <header class:list={['guide-hero', { 'guide-hero-portrait': page.image.height > page.image.width }]}>
+        <div class="guide-hero-copy">
+          <p class="section-kicker">{page.kicker}</p>
+          <h1>{page.h1}</h1>
+          <p class="guide-lead">{page.lead}</p>
+          {isRecipe && (
+            <dl class="recipe-facts">
+              <div><dt>עבודה</dt><dd>כ־30 דקות</dd></div>
+              <div><dt>התפחה</dt><dd>24 שעות</dd></div>
+              <div><dt>אפייה</dt><dd>6–9 דקות</dd></div>
+              <div><dt>כמות</dt><dd>4 פיצות</dd></div>
+            </dl>
+          )}
+        </div>
+        <img src={page.image.src} width={page.image.width} height={page.image.height} alt={page.image.alt} loading="eager" decoding="async" fetchpriority="high" />
+      </header>
+
+      <div class="guide-body">
+        {page.blocks.map((block) => {
+          switch (block.type) {
+            case 'p': return <p set:html={block.html} />;
+            case 'h2': return <h2 id={block.id}>{block.text}</h2>;
+            case 'h3': return <h3>{block.text}</h3>;
+            case 'fix': return <p class="guide-fix"><strong>{block.label || 'התיקון:'}</strong> <span set:html={block.html} /></p>;
+            case 'atUs': return <aside class="guide-at-us"><p class="guide-at-us-label">אצלנו בוירטואוז</p><p set:html={block.html} /></aside>;
+            case 'note': return <p class="guide-note" set:html={block.html} />;
+            case 'ul': return <ul>{block.items.map((item) => <li set:html={item} />)}</ul>;
+            case 'ol': return <ol>{block.items.map((item) => <li set:html={item} />)}</ol>;
+            case 'table': return (
+              <div class="guide-table-wrap">
+                <table>
+                  <caption>{block.caption}</caption>
+                  <thead><tr>{block.head.map((cell) => <th scope="col">{cell}</th>)}</tr></thead>
+                  <tbody>{block.rows.map((row) => <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+            );
+            case 'faq': return <div class="faq-list guide-faq">{block.items.map(({ question, answer }) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div>;
+            case 'cta': return (
+              <p class="guide-inline-cta">
+                <span>{block.text}</span>
+                <a class="button button-primary" href={orderHref()} data-order-link data-track="order_now_click" data-track-location={`guide-${page.slug}-inline`}>{t.nav.order}</a>
+              </p>
+            );
+          }
+        })}
+      </div>
+
+      <footer class="guide-article-footer">
+        <section class="guide-related" aria-labelledby="guide-related-title">
+          <h2 id="guide-related-title">עוד במדריך הפיצה</h2>
+          <ul class="guide-cards">
+            {related.map((item) => (
+              <li><a class="guide-card" href={guidePath(item.slug)}><strong>{item.cardTitle}</strong><span>{item.cardText}</span></a></li>
+            ))}
+          </ul>
+        </section>
+        <details class="guide-sources">
+          <summary>מקורות</summary>
+          <p>כתבנו את הדברים במילים שלנו, על סמך:</p>
+          <ul>{page.sources.map((source) => <li><a href={source.url} target="_blank" rel="noopener noreferrer" dir="auto">{source.label}</a></li>)}</ul>
+        </details>
+      </footer>
+    </article>
+  </GuideShell>
+</BaseLayout>

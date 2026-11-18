@@ -16,8 +16,13 @@ interface Props {
   facebookPixelId?: string;
   preloadImage?: string;
   noindex?: boolean;
+  /** false for pages that exist in one language only (no hreflang set). */
+  languageAlternates?: boolean;
+  /** Extra JSON-LD nodes for this page, added to the @graph after WebSite. */
+  structuredData?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
 }
-const { lang, t, meta, canonicalPath, facebookPixelId, preloadImage, noindex = false } = Astro.props;
+const { lang, t, meta, canonicalPath, facebookPixelId, preloadImage, noindex = false, languageAlternates = true, structuredData = [], ogType = 'website' } = Astro.props;
 const origin = import.meta.env.PUBLIC_SITE_URL || Astro.site?.origin || Astro.url.origin;
 const localizedPath = canonicalPath || `/${lang}/`;
 const canonical = new URL(localizedPath, origin);
@@ -32,7 +37,7 @@ const inLanguage = lang === 'he' ? 'he-IL' : 'en';
 const restaurantId = new URL('/#restaurant', origin).href;
 const websiteId = new URL('/#website', origin).href;
 const menuId = new URL(`/${lang}/#menu`, origin).href;
-const hasLanguageAlternative = localizedPath.startsWith(`/${lang}/`) && (lang === 'he' || lang === 'en');
+const hasLanguageAlternative = languageAlternates && localizedPath.startsWith(`/${lang}/`) && (lang === 'he' || lang === 'en');
 const alternatePath = (targetLang: Language) => localizedPath.replace(`/${lang}/`, `/${targetLang}/`);
 const restaurant: Record<string, unknown> = {
   '@type': 'Restaurant',
@@ -115,7 +120,7 @@ const faqPage = {
   inLanguage,
   mainEntity: t.faq.items.map(({ question, answer }) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
 };
-const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website, webPage, menuSchema, faqPage] : [website] };
+const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [restaurant, website, webPage, menuSchema, faqPage] : [website, ...structuredData] };
 ---
 <!doctype html>
 <html lang={lang} dir={direction(lang)}>
@@ -136,7 +141,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [resta
     {isHomePage && <link rel="preload" as="image" imagesrcset="/images/hero/hero-pizza-1100.webp 1100w, /images/hero/hero-pizza-1672.webp 1672w" imagesizes="100vw" media="(min-width: 721px)" fetchpriority="high" />}
     <link rel="preload" href={`/fonts/assistant-${fontSubset}.woff2`} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={`/fonts/noto-serif-${fontSubset}.woff2`} as="font" type="font/woff2" crossorigin />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
@@ -145,7 +150,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': isHomePage ? [resta
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={metaImageAlt} />
     <meta property="og:locale" content={locale(lang)} />
-    <meta property="og:locale:alternate" content={locale(lang === 'he' ? 'en' : 'he')} />
+    {hasLanguageAlternative && <meta property="og:locale:alternate" content={locale(lang === 'he' ? 'en' : 'he')} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={metaDescription} />
