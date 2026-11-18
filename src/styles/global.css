@@ -463,7 +463,7 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
 .guide-body > p, .guide-body li { color: #3d362e; }
 .guide-body h2 { margin-block: 56px 18px; font-size: clamp(1.7rem, 3.4vw, 2.4rem); scroll-margin-top: 96px; }
 .guide-body h3 { margin-block: 32px 12px; font-size: clamp(1.25rem, 2.4vw, 1.5rem); }
-.guide-body a { color: var(--tomato); text-underline-offset: 4px; }
+.guide-body a:not(.button) { color: var(--tomato); text-underline-offset: 4px; }
 .guide-body ul, .guide-body ol { padding-inline-start: 1.3em; display: grid; gap: 10px; margin-block: 0 24px; }
 .guide-body li::marker { color: var(--tomato); font-weight: 700; }
 .guide-fix { padding: 16px 20px; background: var(--white); border-inline-start: 4px solid var(--olive); border-radius: 4px 14px 14px 4px; }
@@ -515,4 +515,45 @@ h3 { font-size: clamp(1.55rem, 3vw, 2.45rem); }
   .guide-inline-cta .button { inline-size: 100%; }
   .guide-order-band { grid-template-columns: 1fr; }
   .guide-order-actions .button { flex: 1 1 100%; }
+}
+
+/* Premium ingredients: Spadoni dough + Gad mozzarella */
+.premium { position: relative; overflow: hidden; background: radial-gradient(120% 80% at 85% 0%, #3a2a1c 0%, var(--charcoal) 60%); color: var(--white); padding-block: clamp(72px, 9vw, 140px); }
+.premium::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(182,154,88,.05) 0 1px, transparent 1px 22px); pointer-events: none; }
+.premium .page-shell { position: relative; }
+.premium .section-kicker { color: var(--brass); }
+.premium-heading { max-width: 900px; margin-block-end: clamp(40px, 6vw, 72px); }
+.premium-heading h2 { font-size: clamp(2.3rem, 5.4vw, 4.8rem); text-wrap: balance; margin-block-end: 24px; }
+.premium-lead { color: rgba(255,253,248,.78); font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 720px; margin: 0; }
+.premium-pair { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: stretch; gap: clamp(14px, 2.4vw, 28px); }
+.premium-card { position: relative; display: flex; flex-direction: column; padding: clamp(26px, 3.4vw, 44px); background: var(--cream); color: var(--charcoal); border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+.premium-card .section-kicker { color: var(--tomato); margin-block-end: 10px; }
+.premium-card h3 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); margin-block-end: 14px; }
+.premium-card > p:not(.section-kicker):not(.premium-stamp) { color: var(--ink-soft); font-size: 1rem; }
+.premium-card ul { margin: 6px 0 28px; padding: 0; list-style: none; display: grid; gap: 8px; }
+.premium-card li { display: flex; gap: 10px; align-items: baseline; font-weight: 700; font-size: .98rem; }
+.premium-card li::before { content: '✓'; color: var(--olive); font-weight: 800; }
+.premium-brand { display: grid; place-items: center; block-size: 120px; margin-block-end: 26px; border-block-end: 1px solid var(--line); padding-block-end: 22px; }
+.premium-brand-spadoni { align-content: center; gap: 2px; text-align: center; direction: ltr; }
+.premium-brand-spadoni span { font-family: var(--font-display); font-style: italic; color: var(--tomato); font-size: 1.1rem; line-height: 1; }
+.premium-brand-spadoni strong { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.7rem); letter-spacing: .14em; line-height: 1.1; color: #1f3a6b; }
+.premium-brand-spadoni small { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); }
+.premium-brand-gad img { block-size: 92px; inline-size: auto; mix-blend-mode: multiply; }
+.premium-stamp { margin: auto 0 0; align-self: flex-start; padding: 6px 14px; border: 1px solid var(--brass); border-radius: 999px; color: #7a6230; font-size: .78rem; font-weight: 800; letter-spacing: .1em; }
+.premium-plus { align-self: center; display: grid; place-items: center; inline-size: 56px; block-size: 56px; border-radius: 50%; background: var(--tomato); color: var(--white); font-family: var(--font-display); font-size: 2rem; line-height: 1; box-shadow: 0 0 0 8px rgba(159,38,28,.25); }
+.premium-what { margin-block-start: clamp(48px, 7vw, 88px); }
+.premium-what h3 { color: #f1c782; font-size: clamp(1.6rem, 3vw, 2.4rem); margin-block-end: 26px; }
+.premium-what ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(18px, 3vw, 40px); counter-reset: premium; }
+.premium-what li { counter-increment: premium; padding-block-start: 18px; border-block-start: 1px solid rgba(182,154,88,.45); }
+.premium-what li::before { content: '0' counter(premium); display: block; color: var(--brass); font-size: .72rem; font-weight: 800; letter-spacing: .14em; margin-block-end: 6px; }
+.premium-what strong { display: block; font-family: var(--font-display); font-size: 1.2rem; margin-block-end: 6px; }
+.premium-what p { margin: 0; color: rgba(255,253,248,.72); font-size: .98rem; }
+.premium-cta { margin-block-start: clamp(40px, 6vw, 64px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.premium-cta p { margin: 0; color: rgba(255,253,248,.7); font-size: .92rem; }
+@media (max-width: 860px) {
+  .premium-pair { grid-template-columns: 1fr; }
+  .premium-plus { justify-self: center; inline-size: 48px; block-size: 48px; margin-block: -8px; z-index: 1; }
+  .premium-what ol { grid-template-columns: 1fr; }
+  .premium-brand { block-size: 100px; }
+  .premium-brand-gad img { block-size: 74px; }
 }
