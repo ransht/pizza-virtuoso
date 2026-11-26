@@ -50,7 +50,14 @@ const mainNode = isRecipe ? {
   cookTime: doughRecipe.cookTime,
   totalTime: doughRecipe.totalTime,
   recipeIngredient: doughRecipe.ingredients,
-  recipeInstructions: doughRecipe.steps.map((step) => ({ '@type': 'HowToStep', name: step.name, text: step.text })),
+  nutrition: { '@type': 'NutritionInformation', calories: doughRecipe.calories, servingSize: doughRecipe.servingSize },
+  recipeInstructions: doughRecipe.steps.map((step) => ({
+    '@type': 'HowToStep',
+    name: step.name,
+    text: step.text,
+    url: abs(`${path}#${step.anchor}`),
+    ...('image' in step && step.image ? { image: abs(step.image) } : {}),
+  })),
 } : {
   '@type': 'Article',
   ...shared,
